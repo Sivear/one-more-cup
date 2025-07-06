@@ -1,0 +1,22 @@
+#!/bin/bash
+
+commit_msg=$(cat "$1")
+email=$(git config user.email)
+msg_re="^(feat|fix|docs|style|refactor|perf|test|workflow|build|ci|chore|release|workflow)(\(.+\))?: .{1,10}"
+
+if [[ ! $commit_msg =~ $msg_re ]]; then
+  echo -e "\n❌ 不合法的 commit 消息格式，请使用如下格式：\
+      \n  ✅ feat: 新功能（feature）\
+      \n  ✅ fix: 修补bug\
+      \n  ✅ docs: 文档\
+      \n  ✅ style： 格式\
+      \n  ✅ refactor: 重构\
+      \n  ✅ perf: 性能\
+      \n  ✅ test: 增加测试或者修改测试\
+      \n  ✅ build: 影响构建系统或外部依赖项的更改\
+      \n  ✅ ci: 对CI配置文件和脚本的更改\
+      \n  ✅ chore：对非 src 和 test目录的修改\
+      \n  ✅ revert：Revert a commit\
+"
+  exit 1
+fi
