@@ -37,6 +37,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "omc_db",
+      "srcPath": "./omc_db",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }
