@@ -1,7 +1,147 @@
 [
   {
-    "id": 0,
+    "id": 1,
     "name": "霸王茶姬",
+    "isPreset": true
+  },
+  {
+    "id": 2,
+    "name": "奈雪的茶",
+    "isPreset": true
+  },
+  {
+    "id": 3,
+    "name": "喜茶",
+    "isPreset": true
+  },
+  {
+    "id": 4,
+    "name": "古茗",
+    "isPreset": true
+  },
+  {
+    "id": 5,
+    "name": "瑞幸",
+    "isPreset": true
+  },
+  {
+    "id": 6,
+    "name": "幸运咖",
+    "isPreset": true
+  },
+  {
+    "id": 7,
+    "name": "库迪",
+    "isPreset": true
+  },
+  {
+    "id": 8,
+    "name": "星巴克",
+    "isPreset": true
+  },
+  {
+    "id": 9,
+    "name": "M Stand",
+    "isPreset": true
+  },
+  {
+    "id": 10,
+    "name": "蜜雪冰城",
+    "isPreset": true
+  },
+  {
+    "id": 11,
+    "name": "一点点",
+    "isPreset": true
+  },
+  {
+    "id": 12,
+    "name": "茶颜悦色",
+    "isPreset": true
+  },
+  {
+    "id": 13,
+    "name": "茶理宜世",
+    "isPreset": true
+  },
+  {
+    "id": 14,
+    "name": "茶百道",
+    "isPreset": true
+  },
+  {
+    "id": 15,
+    "name": "CoCo都可",
+    "isPreset": true
+  },
+  {
+    "id": 16,
+    "name": "茉莉奶白",
+    "isPreset": true
+  },
+  {
+    "id": 17,
+    "name": "柠季",
+    "isPreset": true
+  },
+  {
+    "id": 18,
+    "name": "茶话弄",
+    "isPreset": true
+  },
+  {
+    "id": 19,
+    "name": "茉酸奶",
+    "isPreset": true
+  },
+  {
+    "id": 20,
+    "name": "茶救星球",
+    "isPreset": true
+  },
+  {
+    "id": 21,
+    "name": "益禾堂",
+    "isPreset": true
+  },
+  {
+    "id": 22,
+    "name": "沪上阿姨",
+    "isPreset": true
+  },
+  {
+    "id": 23,
+    "name": "Manner",
+    "isPreset": true
+  },
+  {
+    "id": 24,
+    "name": "乐乐茶",
+    "isPreset": true
+  },
+  {
+    "id": 25,
+    "name": "英歌魂",
+    "isPreset": true
+  },
+  {
+    "id": 26,
+    "name": "LINLEE",
+    "isPreset": true
+  },
+  {
+    "id": 27,
+    "name": "书亦烧仙草",
+    "isPreset": true
+  },
+  {
+    "id": 28,
+    "name": "吾饮良品",
+    "isPreset": true
+  },
+  {
+    "id": 29,
+    "name": "爷爷不泡茶",
     "isPreset": true
   }
 ]

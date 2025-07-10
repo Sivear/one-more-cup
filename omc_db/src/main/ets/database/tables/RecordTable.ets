@@ -23,7 +23,6 @@ export class RecordTable extends AbsTableHandler<IRecord> {
   async insert(item: IRecord) {
     try {
       const db = await getRdbStore()
-      console.log("tessttttttttt", item.condiments)
       const valueBucket: relationalStore.ValuesBucket = {
         time: item.time,
         remark: item.remark ?? "",
