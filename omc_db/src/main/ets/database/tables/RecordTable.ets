@@ -4,6 +4,7 @@ import { AbsTableHandler } from './AbsTableHandler';
 import { SqlConstants } from '../constants/db_config';
 import { IRecord } from '../types/record';
 import { relationalStore } from '@kit.ArkData';
+import { IconManager } from '../constants/presets/icons';
 
 
 export class RecordTable extends AbsTableHandler<IRecord> {
@@ -32,6 +33,7 @@ export class RecordTable extends AbsTableHandler<IRecord> {
         temperature: item.temperature ?? "",
         condiments: item.condiments ? item.condiments.join(",") : "",
         color: item.color ?? 14221013,
+        icon: item.icon ?? IconManager.getRandomIcon(),
         beverage_id: item.beverageId
       }
       if (item.id !== undefined) {
@@ -58,6 +60,7 @@ export class RecordTable extends AbsTableHandler<IRecord> {
         temperature: item.temperature ?? "",
         condiments: item.condiments ? item.condiments.join(",") : "",
         color: item.color ?? 14221013,
+        icon: item.icon ?? IconManager.getRandomIcon(),
         beverage_id: item.beverageId
       }
       const predicates = new rdb.RdbPredicates(this.tableName)
@@ -86,6 +89,7 @@ export class RecordTable extends AbsTableHandler<IRecord> {
             temperature: resultSet.getString(resultSet.getColumnIndex("temperature")),
             condiments: condiments.length === 0 ? [] : condiments.split(",").map((num) => parseInt(num)),
             color: resultSet.getLong(resultSet.getColumnIndex("color")),
+            icon: resultSet.getString(resultSet.getColumnIndex("icon")),
             beverageId: resultSet.getLong(resultSet.getColumnIndex("beverage_id"))
           }
         )

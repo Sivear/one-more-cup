@@ -61,6 +61,7 @@ export namespace SqlConstants {
           temperature TEXT,
           condiments TEXT,
           color INTEGER,
+          icon TEXT,
           beverage_id INTEGER,
           FOREIGN KEY (beverage_id) REFERENCES ${TableNames.BEVERAGE_TABLE}(id)
         )`
