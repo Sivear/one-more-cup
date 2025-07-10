@@ -42,19 +42,20 @@ export class BeverageTable extends AbsTableHandler<IBeverage> {
     }
   }
 
-  async update(item: IBeverage) {
+  async update(item: Partial<IBeverage>) {
     if (item.id === undefined) {
       return
     }
     try {
       const db = await getRdbStore()
       const valueBucket: relationalStore.ValuesBucket = {
-        id: item.id,
-        name: item.name,
-        degree: item.degree ?? 0,
-        is_preset: item.isPreset ? 1 : 0,
-        brand_id: item.brandId
+        id: item.id
       }
+
+      if (item.name !== undefined) valueBucket.name = item.name;
+      if (item.isPreset !== undefined) valueBucket.is_preset = item.isPreset ? 1 : 0;
+      if (item.degree !== undefined) valueBucket.degree = item.degree;
+
       const predicates = new rdb.RdbPredicates(this.tableName)
       predicates.equalTo("id", item.id)
       db.updateSync(valueBucket, predicates)

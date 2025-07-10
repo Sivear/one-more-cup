@@ -40,17 +40,19 @@ export class CondimentTable extends AbsTableHandler<ICondiment> {
     }
   }
 
-  async update(item: ICondiment) {
+  async update(item: Partial<ICondiment>) {
     if (item.id === undefined) {
       return
     }
     try {
       const db = await getRdbStore()
       const valueBucket: relationalStore.ValuesBucket = {
-        id: item.id,
-        name: item.name,
-        is_preset: item.isPreset ? 1 : 0
+        id: item.id
       }
+
+      if (item.name !== undefined) valueBucket.name = item.name;
+      if (item.isPreset !== undefined) valueBucket.is_preset = item.isPreset ? 1 : 0;
+
       const predicates = new rdb.RdbPredicates(this.tableName)
       predicates.equalTo("id", item.id)
       db.updateSync(valueBucket, predicates)

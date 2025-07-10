@@ -27,7 +27,7 @@ export class BeverageApi {
     return BeverageTableHandler.delete(id)
   }
 
-  async updateBeverage(data: IBeverage): Promise<void> {
+  async updateBeverage(data: Partial<IBeverage>): Promise<void> {
     if (data.id === undefined) {
       return
     }

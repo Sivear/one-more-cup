@@ -27,7 +27,7 @@ export class RecordApi {
     return RecordTableHandler.delete(id)
   }
 
-  async updateRecord(data: IRecord): Promise<void> {
+  async updateRecord(data: Partial<IRecord>): Promise<void> {
     if (data.id === undefined) {
       return
     }

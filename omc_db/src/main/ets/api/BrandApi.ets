@@ -27,7 +27,7 @@ export class BrandApi {
     return BrandTableHandler.delete(id)
   }
 
-  async updateBrand(data: IBrand): Promise<void> {
+  async updateBrand(data: Partial<IBrand>): Promise<void> {
     if (data.id === undefined) {
       return
     }

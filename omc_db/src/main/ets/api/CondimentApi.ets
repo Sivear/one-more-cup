@@ -27,7 +27,7 @@ export class CondimentApi {
     return CondimentTableHandler.delete(id)
   }
 
-  async updateCondiment(data: ICondiment): Promise<void> {
+  async updateCondiment(data: Partial<ICondiment>): Promise<void> {
     if (data.id === undefined) {
       return
     }
