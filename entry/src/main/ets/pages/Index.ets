@@ -1,7 +1,13 @@
+import { DbHandler } from 'omc_db';
+
 @Entry
 @Component
 struct Index {
   @State message: string = 'Hello World';
+
+  aboutToAppear(): void {
+    DbHandler.initDbData()
+  }
 
   build() {
     RelativeContainer() {
@@ -17,7 +23,5 @@ struct Index {
           this.message = 'Welcome';
         })
     }
-    .height('100%')
-    .width('100%')
   }
 }

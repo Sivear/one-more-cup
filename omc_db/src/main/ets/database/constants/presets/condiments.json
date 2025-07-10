@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "珍珠",
+    "isPreset": true
+  },
+  {
+    "id": 2,
+    "name": "脆啵啵",
+    "isPreset": true
+  },
+  {
+    "id": 3,
+    "name": "茶冻",
+    "isPreset": true
+  },
+  {
+    "id": 4,
+    "name": "椰果",
+    "isPreset": true
+  },
+  {
+    "id": 5,
+    "name": "西米",
+    "isPreset": true
+  },
+  {
+    "id": 6,
+    "name": "布丁",
+    "isPreset": true
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "module": {
+    "name": "omc_db",
+    "type": "shared",
+    "description": "$string:shared_desc",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+  }
+}

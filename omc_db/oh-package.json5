@@ -1,12 +1,11 @@
 {
-  "name": "entry",
+  "name": "omc_db",
   "version": "1.0.0",
   "description": "Please describe the basic information.",
-  "main": "",
+  "main": "Index.ets",
   "author": "",
-  "license": "",
+  "license": "Apache-2.0",
+  "packageType": "InterfaceHar",
   "dependencies": {
-    "omc_db": "file:../omc_db"
   }
 }
-
