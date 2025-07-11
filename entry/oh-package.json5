@@ -6,7 +6,8 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "omc_db": "file:../omc_db"
+    "omc_db": "file:../omc_db",
+    "@hadss/hmrouter": "^1.2.0-beta.0"
   }
 }
 
