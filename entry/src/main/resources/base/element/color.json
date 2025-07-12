@@ -3,6 +3,18 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "omc_tab_shadow_color",
+      "value": "#29CED7C8"
+    },
+    {
+      "name": "omc_tab_inactive",
+      "value": "#bdbdbd"
+    },
+    {
+      "name": "omc_tab_active",
+      "value": "#333333"
     }
   ]
 }

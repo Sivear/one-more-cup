@@ -1,4 +1,7 @@
-import { HMRouter, HMRouterMgr } from '@hadss/hmrouter';
+import { HMRouter } from '@hadss/hmrouter';
+import { AddBeverageButton } from '../components/add_beverage_button/AddBeverageButton';
+import { TabData, TabItem } from '../components/omc_tab/TabData';
+import { TabContentTemplate } from '../components/omc_tab/TabTemplate';
 import { NavParams } from '../router/NavParams';
 
 @HMRouter({
@@ -7,17 +10,22 @@ import { NavParams } from '../router/NavParams';
 })
 @ComponentV2
 export struct HomePage {
+  @Local tabData: TabData = new TabData()
 
   build() {
     Column() {
-      Text("HomePage")
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-          HMRouterMgr.push({
-            pageUrl: NavParams.NEW_BEVERAGE_PAGE_URL
+      Tabs({
+        barPosition: BarPosition.End,
+        index: $$this.tabData.pickedIndex
+      }) {
+        ForEach(this.tabData.tabData, (item: TabItem) => {
+          TabContentTemplate({
+            tabData: item
           })
-        })
+        }, (item: TabItem) => item.type.toString())
+      }
+
+      AddBeverageButton()
     }
     .height('100%')
     .width('100%')

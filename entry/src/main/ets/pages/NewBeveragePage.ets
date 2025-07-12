@@ -9,7 +9,7 @@ import { NavParams } from '../router/NavParams';
 export struct NewBeveragePage {
   build() {
     Column() {
-      Text("NewBeveragePage")
+      Text("我是新建页面")
         .fontSize($r('app.float.page_text_font_size'))
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
