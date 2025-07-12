@@ -23,6 +23,13 @@
         "startWindowIcon": "$media:startIcon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
+        "metadata": [
+          {
+            "name": "router_map",
+            "value": "router_map",
+            "resource": "$profile:hm_router_map"
+          }
+        ],
         "skills": [
           {
             "entities": [

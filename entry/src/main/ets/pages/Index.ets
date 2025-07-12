@@ -1,27 +1,26 @@
+import { HMNavigation } from '@hadss/hmrouter';
 import { DbHandler } from 'omc_db';
+import { NavModifier } from '../router/NavModifier';
+import { NavParams } from '../router/NavParams';
 
 @Entry
-@Component
+@ComponentV2
 struct Index {
-  @State message: string = 'Hello World';
-
   aboutToAppear(): void {
     DbHandler.initDbData()
   }
 
   build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-        .onClick(() => {
-          this.message = 'Welcome';
-        })
+    Column() {
+      HMNavigation({
+        navigationId: NavParams.OMC_NAVIGATION_ID,
+        homePageUrl: NavParams.HOME_PAGE_URL,
+        options: {
+          modifier: new NavModifier()
+        }
+      })
     }
+    .width('100%')
+    .height('100%')
   }
 }
