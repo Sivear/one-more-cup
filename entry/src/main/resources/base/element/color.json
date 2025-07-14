@@ -3,6 +3,30 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "divider",
+      "value": "#E2E2E2"
+    },
+    {
+      "name": "bg_01",
+      "value": "#F1F1F1"
+    },
+    {
+      "name": "bg_02",
+      "value": "#F9F9F9"
+    },
+    {
+      "name": "text_01",
+      "value": "#868686"
+    },
+    {
+      "name": "text_02",
+      "value": "#bebebe"
+    },
+    {
+      "name": "shadow",
+      "value": "#29ced7c8"
     }
   ]
 }

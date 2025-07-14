@@ -1,6 +1,7 @@
 import { BeverageTableHandler } from "../database/tables/BeverageTable";
 import { BrandTableHandler } from "../database/tables/BrandTable";
 import { CondimentTableHandler } from "../database/tables/CondimentTable";
+import { RecordTableHandler } from "../database/tables/RecordTable";
 import { BeverageApi } from "./BeverageApi";
 import { BrandApi } from "./BrandApi";
 import { CondimentApi } from "./CondimentApi";
@@ -12,6 +13,7 @@ export namespace DbHandler {
     await BrandTableHandler.initData()
     await BeverageTableHandler.initData()
     await CondimentTableHandler.initData()
+    await RecordTableHandler.initData()
   }
 
   export const brandApi = BrandApi.getInstance()
