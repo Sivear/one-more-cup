@@ -9,7 +9,7 @@ export struct HomePanel {
   build() {
     Row() {
       Row({ space: 36 }) {
-        Column({ space: 24 }) {
+        Column() {
           Text($r("app.string.cup_count_in_this_month"))
             .fontSize(16)
             .fontColor($r("app.color.text_01"))
@@ -28,19 +28,23 @@ export struct HomePanel {
           }
           .alignItems(VerticalAlign.Bottom)
         }
+        .alignItems(HorizontalAlign.Center)
+        .justifyContent(FlexAlign.SpaceBetween)
+        .height(80)
 
         if (this.homePageViewModel.isThisMonth && this.homePageViewModel.recordList.length > 0 && this.homePageViewModel.latestRecord) {
-          Column({ space: 24 }) {
+          Column() {
             Text($r("app.string.the_last_time_drinking"))
               .fontSize(16)
               .fontColor($r("app.color.text_01"))
               .fontWeight(FontWeight.Bold)
             Row() {
-              // if (TimeUtil.isToday(this.homePageViewModel.latestRecord?.time)) {
-              //   Text($r("app.string.today"))
-              //     .fontSize(38)
-              //     .fontWeight(FontWeight.Medium)
-              // } else {
+              if (TimeUtil.isToday(this.homePageViewModel.latestRecord?.time)) {
+                Text($r("app.string.today"))
+                  .fontSize(24)
+                  .fontWeight(FontWeight.Medium)
+                  .lineHeight(48)
+              } else {
                 Text(TimeUtil.daysAgo(this.homePageViewModel.latestRecord?.time).toString().padEnd(2, " "))
                   .fontSize(38)
                   .fontWeight(FontWeight.Medium)
@@ -49,10 +53,13 @@ export struct HomePanel {
                   .fontColor($r("app.color.text_02"))
                   .fontWeight(FontWeight.Bold)
                   .lineHeight(48)
-              // }
+              }
             }
             .alignItems(VerticalAlign.Bottom)
           }
+          .alignItems(HorizontalAlign.Center)
+          .justifyContent(FlexAlign.SpaceBetween)
+          .height(80)
         }
 
       }
