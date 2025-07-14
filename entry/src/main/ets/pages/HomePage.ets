@@ -24,6 +24,7 @@ export struct HomePage {
           })
         }, (item: TabItem) => item.type.toString())
       }
+      .backgroundColor($r("app.color.bg_02"))
 
       AddBeverageButton()
     }

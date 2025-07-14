@@ -155,7 +155,7 @@ struct CalendarItem {
         count++
       } else {
         // 为+x留出空间
-        if (this.maxCount < this.recordList.length) {
+        if (this.maxCount < this.recordList.length && this.containerHeight - total < 6) {
           count --
         }
         break
@@ -187,7 +187,6 @@ struct CalendarItem {
                   Image(IconManager.getIconById(item.icon!!))
                     .width(7)
                     .height(7)
-                  // .margin({ right: 1 })
                   Row() {
                     Text(item.brandName)
 
@@ -212,7 +211,7 @@ struct CalendarItem {
             })
             if (this.maxCount < this.recordList.length) {
               Text(`+${this.recordList.length - this.maxCount}`)
-                .fontSize(7)
+                .fontSize(6)
                 .margin({ left: 2 })
             }
           }
