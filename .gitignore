@@ -11,3 +11,5 @@
 **/.test
 /.appanalyzer
 **/oh-package-lock.json5
+**/hm_router_map.json
+**/generated
