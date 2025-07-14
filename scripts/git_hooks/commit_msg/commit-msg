@@ -4,6 +4,16 @@ commit_msg=$(cat "$1")
 email=$(git config user.email)
 msg_re="^(feat|fix|docs|style|refactor|perf|test|workflow|build|ci|chore|release|workflow)(\(.+\))?: .{1,10}"
 
+# 允许 Merge 提交（解决冲突的提交通常以 "Merge" 开头）
+if [[ $commit_msg =~ ^Merge ]]; then
+  exit 0
+fi
+
+# 允许 Revert 提交（Git 自动生成的 Revert 消息）
+if [[ $commit_msg =~ ^Revert ]]; then
+  exit 0
+fi
+
 if [[ ! $commit_msg =~ $msg_re ]]; then
   echo -e "\n❌ 不合法的 commit 消息格式，请使用如下格式：\
       \n  ✅ feat: 新功能（feature）\

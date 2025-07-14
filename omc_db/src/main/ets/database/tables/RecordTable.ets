@@ -5,6 +5,7 @@ import { SqlConstants } from '../constants/db_config';
 import { IRecord } from '../types/record';
 import { relationalStore } from '@kit.ArkData';
 import { IconManager } from '../constants/presets/icons';
+import mockData from '../constants/presets/mockRecords.json'
 
 
 export class RecordTable extends AbsTableHandler<IRecord> {
@@ -19,7 +20,11 @@ export class RecordTable extends AbsTableHandler<IRecord> {
     return RecordTable._instance
   }
 
-  protected async insertDefaultData(): Promise<void> {}
+  protected async insertDefaultData(): Promise<void> {
+    for (let item of mockData) {
+      await this.insert(item)
+    }
+  }
 
   async insert(item: IRecord) {
     try {
@@ -100,6 +105,18 @@ export class RecordTable extends AbsTableHandler<IRecord> {
 
     } catch (e) {
       return []
+    }
+  }
+
+  async querySql(sql: string, callback: (resultSet: rdb.ResultSet) => void) {
+    try {
+      const db = await getRdbStore()
+
+      const resultSet = db.querySqlSync(sql)
+      callback(resultSet)
+      resultSet.close()
+    } catch (e) {
+
     }
   }
 }

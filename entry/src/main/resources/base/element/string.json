@@ -11,6 +11,62 @@
     {
       "name": "EntryAbility_label",
       "value": "label"
+    },
+    {
+      "name": "Sunday",
+      "value": "日"
+    },
+    {
+      "name": "Monday",
+      "value": "一"
+    },
+    {
+      "name": "Tuesday",
+      "value": "二"
+    },
+    {
+      "name": "Wednesday",
+      "value": "三"
+    },
+    {
+      "name": "Thursday",
+      "value": "四"
+    },
+    {
+      "name": "Friday",
+      "value": "五"
+    },
+    {
+      "name": "Saturday",
+      "value": "六"
+    },
+    {
+      "name": "date",
+      "value": "%d年%d月"
+    },
+    {
+      "name": "back_to_this_month",
+      "value": "回到本月"
+    },
+    {
+      "name": "cup_count_in_this_month",
+      "value": "本月共喝了"
+    },
+    {
+      "name": "cup",
+      "value": "杯"
+    },
+    {
+      "name": "the_last_time_drinking",
+      "value": "上次喝奶茶"
+    },
+    {
+      "name": "days_before",
+      "value": "天前"
+    },
+    {
+      "name": "today",
+      "value": "今天"
     }
   ]
 }

@@ -11,8 +11,8 @@ function commitMsgPlugin() {
   // console.log(HOOK_SOURCE, GIT_HOOK_TARGET)
 
   if (fs.existsSync(GIT_HOOK_TARGET)) {
-    // 已存在校验脚本则直接return
-    return;
+    // 已存在校验脚本先删除
+    fs.unlinkSync(GIT_HOOK_TARGET);
   }
 
   // 拷贝脚本到 hooks 目录

@@ -1,0 +1,64 @@
+[
+  {
+    "time": 1749528683222,
+    "remark": "随便说点什么吧",
+    "price": 12,
+    "size": "中杯",
+    "sweetness": "少糖",
+    "temperature": "冰",
+    "condiments": [],
+    "beverageId": 1
+  },
+  {
+    "time": 1752282683132,
+    "remark": "随便说点什么吧随便说点什么吧随便说点什么吧随便说点什么吧随便说点什么吧随便说点什么吧随便说点什么吧随便说点什么吧随便说点什么吧随便说点什么吧随便说点什么吧随便说点什么吧随便说点什么吧随便说点什么吧",
+    "price": 16,
+    "size": "中杯",
+    "sweetness": "少糖",
+    "temperature": "冰",
+    "condiments": [],
+    "color": 16443903,
+    "icon": "021_milkshake",
+    "beverageId": 2
+  },
+  {
+    "time": 1752286283132,
+    "remark": "随便说点什么吧",
+    "price": 15,
+    "size": "中杯",
+    "sweetness": "正常糖",
+    "temperature": "冰",
+    "condiments": [0],
+    "beverageId": 3
+  },
+  {
+    "time": 1752297083132,
+    "remark": "随便说点什么吧",
+    "price": 12,
+    "size": "中杯",
+    "sweetness": "少糖",
+    "temperature": "冰",
+    "condiments": [0, 1],
+    "beverageId": 4
+  },
+  {
+    "time": 1752307883132,
+    "remark": "随便说点什么吧",
+    "price": 19,
+    "size": "中杯",
+    "sweetness": "少糖",
+    "temperature": "冰",
+    "condiments": [],
+    "beverageId": 5
+  },
+  {
+    "time": 1752365663132,
+    "remark": "随便说点什么吧",
+    "price": 12,
+    "size": "中杯",
+    "sweetness": "少糖",
+    "temperature": "冰",
+    "condiments": [],
+    "beverageId": 6
+  }
+]

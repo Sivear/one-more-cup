@@ -25,21 +25,23 @@ function TabBarTemplate(params: TabItem) {
       .objectFit(ImageFit.Contain)
       .fillColor(params.isActive ? $r('app.color.omc_tab_active') : $r('app.color.omc_tab_inactive'))
   }
-  .shadow({
-    radius: 10,
-    color: '#000000',
-    offsetX: 0,
-    offsetY: 10
-  })
   .justifyContent(FlexAlign.Center)
   .alignItems(HorizontalAlign.Center)
   .border({
     radius: {
       topLeft: 16,
       topRight: 16
-    },
-    width: { top: 1 },
-    color: $r('app.color.omc_tab_shadow_color')
+    }
+  })
+  .linearGradient({
+    direction: GradientDirection.Bottom,
+    colors: [[Color.White, 0], [$r("app.color.bg_02"), 1]]
+  })
+  .shadow({
+    offsetX: 0,
+    offsetY: 2.5,
+    radius: 8,
+    color: $r("app.color.shadow")
   })
   .height('calc(100% - 1vp)')
   .width('100%')
