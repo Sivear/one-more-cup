@@ -28,7 +28,7 @@
     "size": "中杯",
     "sweetness": "正常糖",
     "temperature": "冰",
-    "condiments": [0],
+    "condiments": [1],
     "beverageId": 3
   },
   {
@@ -38,7 +38,7 @@
     "size": "中杯",
     "sweetness": "少糖",
     "temperature": "冰",
-    "condiments": [0, 1],
+    "condiments": [1, 2],
     "beverageId": 4
   },
   {

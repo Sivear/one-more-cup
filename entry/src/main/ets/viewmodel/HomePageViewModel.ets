@@ -1,4 +1,5 @@
 import { DbHandler } from "omc_db"
+import { ICondiment } from "omc_db/src/main/ets/database/types/condiment"
 import { Record } from "../model/Record"
 
 @ObservedV2
@@ -8,6 +9,9 @@ export class HomePageViewModel {
   @Trace recordList: Record[] = []
   @Trace private recordListByDay: Array<Record[]> = new Array(32)
   @Trace latestRecord: Record | undefined = undefined
+  condimentList: ICondiment[] = []
+  // id 与 name 的映射，便于处理数据
+  condimentMap: Map<number, string> = new Map()
 
   get isThisMonth() {
     return this.month === new Date().getMonth() && this.year === new Date().getFullYear()
@@ -19,20 +23,24 @@ export class HomePageViewModel {
   }
 
   @Monitor("year", "month")
-  async initRecords() {
+  private async initRecords() {
     try {
       this.recordList = await DbHandler.recordApi.getAllRecordsByMonth(this.year, this.month)
-      // 做一次处理，避免后面多次计算
-      this.recordListByDay = new Array(32)
-      this.recordList.forEach(item => {
-        const day = new Date(item.time).getDate()
-        if (this.recordListByDay[day]) {
-          this.recordListByDay[day].push(item)
-        } else {
-          this.recordListByDay[day] = [item]
-        }
+    } catch(e) {}
+  }
+
+  private async initCondiments() {
+    try {
+      this.condimentList = await DbHandler.condimentApi.getAllCondiments()
+      this.condimentList.forEach((condiment) => {
+        this.condimentMap.set(condiment.id!, condiment.name)
       })
     } catch(e) {}
+  }
+
+  async init() {
+    await this.initCondiments()
+    await this.initRecords()
   }
 
   /**
@@ -53,11 +61,36 @@ export class HomePageViewModel {
   }
 
   /**
-   * 获取最近的一次记录
+   *
    * @returns
    */
   @Monitor("recordList")
-  getLatestRecord() {
-    this.latestRecord = this.recordList.reduce((max, item) => (item.time > max.time ? item : max), this.recordList[0])
+  onRecordListChange() {
+    const temp: Record[][] = new Array(32)
+    this.recordList.forEach(item => {
+      const day = new Date(item.time).getDate()
+      if (temp[day]) {
+        temp[day].push(item)
+      } else {
+        temp[day] = [item]
+      }
+    })
+    this.recordListByDay = temp
+    if (this.recordList.length > 0) {
+      this.latestRecord = this.recordList.reduce((max, item) => (item.time > max.time ? item : max), this.recordList[0])
+    }
+  }
+
+  condimentIdToName(list: number[]) {
+    return list.map(item => this.condimentMap.get(item) ?? "")
+  }
+
+  /**
+   * 删除记录
+   * @param recordId
+   */
+  async deleteRecord(recordId: number) {
+    await DbHandler.recordApi.deleteRecord(recordId)
+    this.recordList = this.recordList.filter(item => item.id !== recordId)
   }
 }

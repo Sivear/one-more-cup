@@ -12,7 +12,8 @@ interface IRecord {
   beverageId: number
   brandId: number
   beverageName: string
-  brandName: string
+  brandName: string,
+  degree: number
 }
 
 @ObservedV2
@@ -31,6 +32,7 @@ export class Record {
   @Trace brandId: number
   @Trace beverageName: string
   @Trace brandName: string
+  @Trace degree: number
 
   constructor(data: IRecord) {
     this.id = data.id
@@ -47,6 +49,7 @@ export class Record {
     this.brandId = data.brandId
     this.beverageName = data.beverageName
     this.brandName = data.brandName
+    this.degree = data.degree
   }
 
 }

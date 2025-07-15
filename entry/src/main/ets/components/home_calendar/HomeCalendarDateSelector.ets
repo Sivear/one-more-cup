@@ -3,7 +3,7 @@ import { CustomDatePickerDialog } from "./DatePickerDialog"
 
 @ComponentV2
 export struct HomeCalendarDateSelector {
-  @Param @Require homePageViewModel: HomePageViewModel
+  @Consumer() homePageViewModel: HomePageViewModel = new HomePageViewModel()
   private dialogController: CustomDialogController = new CustomDialogController({
     builder: CustomDatePickerDialog({
       confirm: (year: number, month: number) => {

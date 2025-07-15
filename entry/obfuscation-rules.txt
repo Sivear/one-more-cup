@@ -24,9 +24,13 @@
 
 -keep-property-name
 getAllRecordsByMonth
+condimentApi
 getIconById
+getAllCondiments
 recordApi
+deleteRecord
 
 -keep-global-name
-DbHandler
 IconManager
+DbHandler
+

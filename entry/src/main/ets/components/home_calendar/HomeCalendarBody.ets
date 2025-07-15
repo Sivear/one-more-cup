@@ -1,5 +1,7 @@
+import { HMRouterMgr } from "@hadss/hmrouter"
 import { IconManager } from "omc_db"
 import { Record } from "../../model/Record"
+import { NavParams } from "../../router/NavParams"
 import { HomePageViewModel } from "../../viewmodel/HomePageViewModel"
 
 interface ICalendarItem {
@@ -21,7 +23,7 @@ const header: Resource[] = [
 @Preview
 @ComponentV2
 export struct HomeCalendarBody {
-  @Param @Require homePageViewModel: HomePageViewModel
+  @Consumer() homePageViewModel: HomePageViewModel = new HomePageViewModel()
   @Local calendarList: ICalendarItem[] = []
   @Local rowCount: number = 6
 
@@ -140,6 +142,7 @@ struct CalendarItem {
   // 计算每个日历格子最多能放多少项
   @Local containerHeight: number = 0
   @Local maxCount: number = 0
+  @Consumer() homePageViewModel: HomePageViewModel = new HomePageViewModel()
 
   @Monitor("containerHeight", "recordList")
   calcMaxVisibleItems() {
@@ -222,6 +225,16 @@ struct CalendarItem {
             this.containerHeight = parseInt((newValue.height ?? 0).toString())
           })
           .padding({ bottom: 2 })
+          .onClick(() => {
+            if (this.recordList.length === 0) return;
+            HMRouterMgr.push({
+              pageUrl: NavParams.DAILY_RECORDS_PAGE_URL,
+              param: {
+                date: this.calendarItem.date,
+                homeViewModel: this.homePageViewModel
+              }
+            })
+          })
         }
         .margin({
           top: 11,
