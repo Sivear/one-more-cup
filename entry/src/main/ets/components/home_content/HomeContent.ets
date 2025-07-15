@@ -8,12 +8,12 @@ import { HomePanel } from "./HomePanel"
  */
 @ComponentV2
 struct HomeContentComp {
-  @Local homePageViewModel: HomePageViewModel = new HomePageViewModel()
+  @Provider() homePageViewModel: HomePageViewModel = new HomePageViewModel()
 
   aboutToAppear(): void {
     // 避免首次安装时与初始化数据库操作存在时序上的问题
     setTimeout(() => {
-      this.homePageViewModel.initRecords()
+      this.homePageViewModel.init()
     }, 0)
   }
 
@@ -21,9 +21,9 @@ struct HomeContentComp {
     Column({
       space: 16
     }) {
-      HomeCalendarDateSelector({ homePageViewModel: this.homePageViewModel })
-      HomePanel({ homePageViewModel: this.homePageViewModel })
-      HomeCalendarBody({ homePageViewModel: this.homePageViewModel })
+      HomeCalendarDateSelector()
+      HomePanel()
+      HomeCalendarBody()
     }
     .width("100%")
     .height("100%")

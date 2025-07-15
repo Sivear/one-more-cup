@@ -4,7 +4,7 @@ import { HomePageViewModel } from "../../viewmodel/HomePageViewModel"
 
 @ComponentV2
 export struct HomePanel {
-  @Param @Require @Once homePageViewModel: HomePageViewModel
+  @Consumer() homePageViewModel: HomePageViewModel = new HomePageViewModel()
 
   build() {
     Row() {

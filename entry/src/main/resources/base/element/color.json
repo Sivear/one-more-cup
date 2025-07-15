@@ -39,6 +39,14 @@
     {
       "name": "omc_tab_active",
       "value": "#333333"
+    },
+    {
+      "name": "mask",
+      "value": "#33000000"
+    },
+    {
+      "name": "bg_03",
+      "value": "#f4f4f4"
     }
   ]
 }

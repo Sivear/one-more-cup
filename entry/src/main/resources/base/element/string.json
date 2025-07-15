@@ -41,6 +41,34 @@
       "value": "六"
     },
     {
+      "name": "weekday_0",
+      "value": "周日"
+    },
+    {
+      "name": "weekday_1",
+      "value": "周一"
+    },
+    {
+      "name": "weekday_2",
+      "value": "周二"
+    },
+    {
+      "name": "weekday_3",
+      "value": "周三"
+    },
+    {
+      "name": "weekday_4",
+      "value": "周四"
+    },
+    {
+      "name": "weekday_5",
+      "value": "周五"
+    },
+    {
+      "name": "weekday_6",
+      "value": "周六"
+    },
+    {
       "name": "date",
       "value": "%d年%d月"
     },
@@ -67,6 +95,47 @@
     {
       "name": "today",
       "value": "今天"
+    },
+    {
+      "name": "edit",
+      "value": "编辑"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "price",
+      "value": "价格"
+    },
+    {
+      "name": "time",
+      "value": "时间"
+    },
+    {
+      "name": "sweetness",
+      "value": "甜度"
+    },
+    {
+      "name": "temperature",
+      "value": "温度"
+    },
+    {
+      "name": "condiments",
+      "value": "小料"
+    },
+    {
+      "name": "remark",
+      "value": "备注"
+    },
+    {
+      "name": "none",
+      "value": "无"
+    },
+    {
+      "name": "delete_confirm_text",
+      "value": "确定删除这条数据？"
     }
+
   ]
 }

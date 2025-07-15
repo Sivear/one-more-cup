@@ -1,4 +1,9 @@
 export class TimeUtil {
+  /**
+   * 判断时间戳是不是在今天范围内
+   * @param time
+   * @returns
+   */
   static isToday(time: number): boolean {
     const now = new Date()
     const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0).getTime()
@@ -6,6 +11,11 @@ export class TimeUtil {
     return time <= end && time >= start
   }
 
+  /**
+   * 计算时间戳是几天前
+   * @param timestamp
+   * @returns
+   */
   static daysAgo(timestamp: number): number {
     const target = new Date(timestamp)
     const now = new Date()
@@ -18,5 +28,30 @@ export class TimeUtil {
     const diff = nowDate.getTime() - targetDate.getTime()
 
     return Math.floor(diff / msPerDay)
+  }
+
+  /**
+   * 将0~6转成周日到周六字符串
+   * @param day
+   */
+  static getWeekdayName(day: number): Resource {
+    switch (day % 7) {
+      case 0:
+        return $r('app.string.weekday_0')
+      case 1:
+        return $r('app.string.weekday_1')
+      case 2:
+        return $r('app.string.weekday_2')
+      case 3:
+        return $r('app.string.weekday_3')
+      case 4:
+        return $r('app.string.weekday_4')
+      case 5:
+        return $r('app.string.weekday_5')
+      case 6:
+        return $r('app.string.weekday_6')
+      default:
+        throw new Error(`Invalid day value: ${day}`)
+    }
   }
 }

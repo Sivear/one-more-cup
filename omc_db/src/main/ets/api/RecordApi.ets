@@ -8,6 +8,7 @@ interface IRecordRes extends IRecord {
   brandName: string,
   beverageId: number,
   beverageName: string,
+  degree: number
 }
 
 export class RecordApi {
@@ -28,7 +29,8 @@ export class RecordApi {
         r.*,
         b.name AS beverage_name,
         br.id AS brand_id,
-        br.name AS brand_name
+        br.name AS brand_name,
+        b.degree AS degree
       FROM
         RECORDS r
       INNER JOIN
@@ -48,7 +50,8 @@ export class RecordApi {
         r.*,
         b.name AS beverage_name,
         br.id AS brand_id,
-        br.name AS brand_name
+        br.name AS brand_name,
+        b.degree AS degree
       FROM
         RECORDS r
       INNER JOIN
@@ -83,7 +86,8 @@ export class RecordApi {
               beverageId: resultSet.getLong(resultSet.getColumnIndex("beverage_id")),
               brandId: resultSet.getLong(resultSet.getColumnIndex("brand_id")),
               beverageName: resultSet.getString(resultSet.getColumnIndex("beverage_name")),
-              brandName: resultSet.getString(resultSet.getColumnIndex("brand_name"))
+              brandName: resultSet.getString(resultSet.getColumnIndex("brand_name")),
+              degree: resultSet.getLong(resultSet.getColumnIndex("degree"))
             }
           )
         }
