@@ -231,7 +231,6 @@ struct CalendarItem {
               pageUrl: NavParams.DAILY_RECORDS_PAGE_URL,
               param: {
                 date: this.calendarItem.date,
-                recordList: this.recordList,
                 homeViewModel: this.homePageViewModel
               }
             })
