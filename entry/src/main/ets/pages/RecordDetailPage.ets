@@ -184,6 +184,9 @@ export struct RecordDetailPage {
             .height("100%")
             .backgroundColor($r("app.color.primary"))
             .borderRadius(12)
+            .onClick(() => {
+              // todo: 接编辑页面
+            })
         }
         .width("100%")
         .height(54)

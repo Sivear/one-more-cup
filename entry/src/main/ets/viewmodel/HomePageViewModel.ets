@@ -76,7 +76,9 @@ export class HomePageViewModel {
       }
     })
     this.recordListByDay = temp
-    this.latestRecord = this.recordList.reduce((max, item) => (item.time > max.time ? item : max), this.recordList[0])
+    if (this.recordList.length > 0) {
+      this.latestRecord = this.recordList.reduce((max, item) => (item.time > max.time ? item : max), this.recordList[0])
+    }
   }
 
   condimentIdToName(list: number[]) {
