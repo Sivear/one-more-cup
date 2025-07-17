@@ -236,5 +236,19 @@
     "isPreset": true,
     "brandId": 1,
     "degree": 0
+  },
+  {
+    "id": 35,
+    "name": "杨枝甘露酸奶昔",
+    "isPreset": true,
+    "brandId": 2,
+    "degree": 0
+  },
+  {
+    "id": 36,
+    "name": "霸气杨枝甘露",
+    "isPreset": true,
+    "brandId": 2,
+    "degree": 0
   }
 ]

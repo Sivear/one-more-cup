@@ -1,12 +1,13 @@
-import { relationalStore } from "@kit.ArkData"
-import { QueryResult } from "../database/types/common"
-import { IBeverage } from "../database/types/beverage"
-import { BeverageTableHandler } from "../database/tables/BeverageTable"
+import { relationalStore } from '@kit.ArkData'
+import { QueryResult } from '../database/types/common'
+import { IBeverage } from '../database/types/beverage'
+import { BeverageTableHandler } from '../database/tables/BeverageTable'
 
 export class BeverageApi {
   private static _instance: BeverageApi | undefined
 
-  private constructor() {}
+  private constructor() {
+  }
 
   public static getInstance() {
     if (!BeverageApi._instance) {
@@ -17,6 +18,12 @@ export class BeverageApi {
 
   getAllBeverages(): QueryResult<IBeverage> {
     return BeverageTableHandler.query(new relationalStore.RdbPredicates(BeverageTableHandler.tableName))
+  }
+
+  getBeverageByBrand(brandId: number): QueryResult<IBeverage> {
+    let predicates: relationalStore.RdbPredicates = new relationalStore.RdbPredicates(BeverageTableHandler.tableName)
+    predicates.equalTo('brand_id', brandId)
+    return BeverageTableHandler.query(predicates)
   }
 
   addBeverage(data: IBeverage): Promise<void> {
@@ -37,5 +44,4 @@ export class BeverageApi {
   clear(): Promise<void> {
     return BeverageTableHandler.clear()
   }
-
 }
