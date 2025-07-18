@@ -1,8 +1,8 @@
 import { HomePageViewModel } from "../../viewmodel/HomePageViewModel"
 import { HomeCalendarDateSelector } from "../home_calendar/HomeCalendarDateSelector"
 import { StatisticPageConsumption } from "./StatisticPageConsumption"
-import { StatisticPagePanel1 } from "./StatisticPagePanel1"
-import { StatisticPagePanel2 } from "./StatisticPagePanel2"
+import { StatisticPagePanel1 } from "./StatisticPageHeader"
+import { StatisticPagePanel2 } from "./StatisticPageOverallPanel"
 import { StatisticPageRanking } from "./StatisticPageRanking"
 
 /**
