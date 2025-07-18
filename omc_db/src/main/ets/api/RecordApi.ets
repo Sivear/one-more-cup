@@ -1,7 +1,7 @@
-import { relationalStore } from "@kit.ArkData"
-import { RecordTableHandler } from "../database/tables/RecordTable"
-import { QueryResult } from "../database/types/common"
-import { IRecord } from "../database/types/record"
+import { relationalStore } from '@kit.ArkData'
+import { RecordTableHandler } from '../database/tables/RecordTable'
+import { QueryResult } from '../database/types/common'
+import { IRecord } from '../database/types/record'
 
 interface IRecordRes extends IRecord {
   brandId: number,
@@ -14,7 +14,8 @@ interface IRecordRes extends IRecord {
 export class RecordApi {
   private static _instance: RecordApi | undefined
 
-  private constructor() {}
+  private constructor() {
+  }
 
   public static getInstance() {
     if (!RecordApi._instance) {
@@ -39,6 +40,28 @@ export class RecordApi {
         BRANDS br ON b.brand_id = br.id
     `
 
+    return this._getAllRecords(SQL)
+  }
+
+  // 查询最近30条记录
+  getLatest30Records(): QueryResult<IRecordRes> {
+    const SQL = `
+    SELECT
+      r.*,
+      b.name AS beverage_name,
+      br.id AS brand_id,
+      br.name AS brand_name,
+      b.degree AS degree
+    FROM
+      RECORDS r
+    INNER JOIN
+      BEVERAGES b ON r.beverage_id = b.id
+    INNER JOIN
+      BRANDS br ON b.brand_id = br.id
+    ORDER BY
+      r.time DESC
+    LIMIT 30
+  `
     return this._getAllRecords(SQL)
   }
 
@@ -114,5 +137,4 @@ export class RecordApi {
   clear(): Promise<void> {
     return RecordTableHandler.clear()
   }
-
 }
