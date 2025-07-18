@@ -66,7 +66,7 @@ export class BrandBeverageService {
       return beverage[0];
     } catch (e) {
       console.error(`Error in getting beverage by id: ${beverageId}`, e);
-      return { id: beverageId, name: 'unknow', brandId: -1 };
+      return { id: beverageId, name: 'unknown', brandId: -1 };
     }
   }
 }
