@@ -135,6 +135,14 @@
     {
       "name": "delete_confirm_text",
       "value": "确定删除这条数据？"
+    },
+    {
+      "name": "beverage_choose",
+      "value": "饮品选择"
+    },
+    {
+      "name": "input_brand",
+      "value":"请输入品牌"
     }
 
   ]

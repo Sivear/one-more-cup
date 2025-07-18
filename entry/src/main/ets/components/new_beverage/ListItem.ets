@@ -1,6 +1,6 @@
 import { IBeverage } from 'omc_db'
 
-export class brandSelectInfo {
+export class BrandSelectInfo {
   brandName: string = ''
   isChosen: boolean = false
   cb: () => void = () => {
@@ -9,7 +9,7 @@ export class brandSelectInfo {
 
 // 左侧品牌列表列表项
 @Builder
-export function BrandListItem(info: brandSelectInfo) {
+export function BrandListItem(info: BrandSelectInfo) {
   Column() {
     Image($r('app.media.cat_drinking'))
       .width(48)

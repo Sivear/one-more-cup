@@ -12,13 +12,13 @@ export struct NewBeveragePage {
 
   build() {
     Column() {
-      Text("饮品选择")
+      Text($r('app.string.beverage_choose'))
         .fontSize($r('app.float.page_text_font_size'))
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
           HMRouterMgr.pop()
         })
-      Search({ value: this.searchValue, placeholder: '请输入品牌' })
+      Search({ value: this.searchValue, placeholder: $r('app.string.input_brand') })
         .borderRadius(0)
         .searchIcon({
           src: $r('sys.media.ohos_ic_public_search_filled'),
