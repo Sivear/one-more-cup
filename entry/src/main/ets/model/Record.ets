@@ -53,3 +53,10 @@ export class Record {
   }
 
 }
+
+export interface IRanking {
+  id: number,
+  name: string,
+  count: number,
+  consumption: number
+}

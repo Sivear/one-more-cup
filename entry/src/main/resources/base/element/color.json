@@ -47,6 +47,14 @@
     {
       "name": "bg_03",
       "value": "#f4f4f4"
+    },
+    {
+      "name": "bg_04",
+      "value": "#F8F4F2"
+    },
+    {
+      "name": "border_01",
+      "value": "#E9DBD4"
     }
   ]
 }
