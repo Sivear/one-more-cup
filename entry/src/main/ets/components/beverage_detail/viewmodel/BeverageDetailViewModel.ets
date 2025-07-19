@@ -12,7 +12,7 @@ export class BeverageDetailViewModel {
       time: Date.now(),
       remark: '',
       price: 11,
-      size: BeverageSize.MEDIUM,
+      size: BeverageSize.SMALL,
       sweetness: BeverageSweetness.NO_SUGAR,
       temperature: BeverageTemperature.HOT,
       condiments: [],
@@ -41,6 +41,13 @@ export class BeverageDetailViewModel {
   public onTimeChange(newTime: number): void {
     if (this.drinkRecord && newTime > 0) {
       this.drinkRecord.time = newTime
+    }
+  }
+
+  // 更新奶茶杯型
+  public onBeverageCupSizeChange(newSize: BeverageSize): void {
+    if (this.drinkRecord) {
+      this.drinkRecord.size = newSize
     }
   }
 }
