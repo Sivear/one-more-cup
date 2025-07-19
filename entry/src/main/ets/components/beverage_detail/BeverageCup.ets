@@ -5,6 +5,8 @@ import { BeverageSizeUtil } from './utils/BeverageSizeUtil'
 @ComponentV2
 export struct BeverageCup {
   @Param @Require beverageSize: BeverageSize
+  @Event onCupSizeChange: (newSize: BeverageSize) => void = () => {
+  }
 
   build() {
     Row() {
@@ -23,11 +25,20 @@ export struct BeverageCup {
               .borderRadius(6)
               .fontFamily('SF Pro')
               .fontWeight(400)
-              .fontSize(12)
+              .fontSize(10)
               .lineHeight(12)
               .textAlign(TextAlign.Center)
-              .fontColor($r('app.color.text_01'))
+              .fontColor(this.beverageSize === item ? $r('app.color.text_03') : $r('app.color.text_01'))
+              .backgroundColor(
+                this.beverageSize === item ?
+                $r('app.color.divider') : $r('app.color.start_window_background')
+              )
           }
+          .onClick(() => {
+            if (this.beverageSize !== item) {
+              this.onCupSizeChange(item)
+            }
+          })
         }, (item: BeverageSize) => item)
       }
       .constraintSize({

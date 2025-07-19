@@ -43,8 +43,12 @@ struct BeverageDetailSheet {
         }
       })
 
+      // 杯型
       BeverageCup({
-        beverageSize: this.drinkRecord?.size as BeverageSize ?? BeverageSize.SMALL
+        beverageSize: this.drinkRecord?.size as BeverageSize,
+        onCupSizeChange: (newSize: BeverageSize) => {
+          this.beverageDetailViewModel.onBeverageCupSizeChange(newSize)
+        }
       })
 
       BeverageSatisfactionDegree({
