@@ -50,4 +50,11 @@ export class BeverageDetailViewModel {
       this.drinkRecord.size = newSize
     }
   }
+
+  // 更新评分
+  public onBeverageDegreeChange(newDegree: number): void {
+    if (this.drinkRecord && newDegree >= 0) {
+      this.drinkRecord.degree = newDegree
+    }
+  }
 }

@@ -51,8 +51,12 @@ struct BeverageDetailSheet {
         }
       })
 
+      // 评价
       BeverageSatisfactionDegree({
-        degree: this.drinkRecord?.degree
+        degree: this.drinkRecord?.degree,
+        onDegreeChange: (newDegree: number) => {
+          this.beverageDetailViewModel.onBeverageDegreeChange(newDegree)
+        }
       })
 
       BeveragePrice({
