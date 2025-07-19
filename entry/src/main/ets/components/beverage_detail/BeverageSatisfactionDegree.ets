@@ -1,4 +1,4 @@
-import { BeverageParamName } from './BeverageParamName'
+import { BeverageParamName } from './common_ui/BeverageParamName'
 
 @ComponentV2
 export struct BeverageSatisfactionDegree {

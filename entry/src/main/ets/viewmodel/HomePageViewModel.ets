@@ -1,14 +1,13 @@
-import { DbHandler } from "omc_db"
-import { ICondiment } from "omc_db/src/main/ets/database/types/condiment"
-import { IRanking, Record } from "../model/Record"
+import { DbHandler, ICondiment } from "omc_db"
+import { IRanking, DrinkRecord } from "../model/Record"
 
 @ObservedV2
 export class HomePageViewModel {
   @Trace year: number = new Date().getFullYear()
   @Trace month: number = new Date().getMonth()
-  @Trace recordList: Record[] = []
-  @Trace private recordListByDay: Array<Record[]> = new Array(32)
-  @Trace latestRecord: Record | undefined = undefined
+  @Trace recordList: DrinkRecord[] = []
+  @Trace private recordListByDay: Array<DrinkRecord[]> = new Array(32)
+  @Trace latestRecord: DrinkRecord | undefined = undefined
   @Trace rankListByBrand: IRanking[] = []
   @Trace rankListByBeverage: IRanking[] = []
   condimentList: ICondiment[] = []
@@ -76,7 +75,7 @@ export class HomePageViewModel {
   @Monitor("recordList")
   onRecordListChange() {
     // 将记录按日期存放在map中
-    const temp: Record[][] = new Array(32)
+    const temp: DrinkRecord[][] = new Array(32)
     this.recordList.forEach(item => {
       const day = new Date(item.time).getDate()
       if (temp[day]) {

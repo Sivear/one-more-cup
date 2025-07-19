@@ -1,92 +1,118 @@
-import { IRecord } from '../../model/Record'
 import { BeverageCup } from './BeverageCup'
 import { BeverageName } from './BeverageName'
-import { BeverageSize } from 'omc_db'
+import { BeverageSize, IBeverage, IBrand } from 'omc_db'
 import { BeverageSatisfactionDegree } from './BeverageSatisfactionDegree'
 import { BeveragePrice } from './BeveragePrice'
 import { BeverageTemperature } from './BeverageTemperature'
 import { BeverageSweetness } from './BeverageSweetness'
 import { BeverageCondiment } from './BeverageCondiment'
 import { BeverageNote } from './BeverageNote'
+import { BeverageDetailViewModel } from './viewmodel/BeverageDetailViewModel'
+import { DrinkRecord } from '../../model/Record'
 
-@Builder
-function BeverageDetailSheet(params: IRecord) {
-  Column({ space: 24 }) {
-    // 饮品详情
-    Text($r('app.string.beverage_detail'))
-      .fontSize($r('app.float.font_size_20'))
-      .fontWeight(800)
-      .textAlign(TextAlign.Center)
+@ComponentV2
+struct BeverageDetailSheet {
+  @Param @Once @Require beverage: IBeverage
+  @Param @Once @Require brand: IBrand
+  @Local drinkRecord?: DrinkRecord
+  private beverageDetailViewModel: BeverageDetailViewModel = new BeverageDetailViewModel()
+
+  aboutToAppear(): void {
+    this.beverageDetailViewModel.initRecord(this.beverage, this.brand)
+    this.drinkRecord = this.beverageDetailViewModel.getDrinkRecord()
+  }
+
+  build() {
+    Column({ space: 24 }) {
+      // 饮品详情
+      Text($r('app.string.beverage_detail'))
+        .fontSize($r('app.float.font_size_20'))
+        .fontWeight(800)
+        .textAlign(TextAlign.Center)
+        .width('100%')
+        .height(20)
+
+      BeverageName({
+        brandId: this.drinkRecord?.id,
+        brandName: this.drinkRecord?.brandName,
+        beverageName: this.drinkRecord?.beverageName
+      })
+
+      BeverageCup({
+        beverageSize: this.drinkRecord?.size as BeverageSize ?? BeverageSize.SMALL
+      })
+
+      BeverageSatisfactionDegree({
+        degree: this.drinkRecord?.degree
+      })
+
+      BeveragePrice({
+        price: this.drinkRecord?.price
+      })
+
+      BeverageTemperature()
+
+      BeverageSweetness()
+
+      BeverageCondiment()
+
+      BeverageNote()
+
+      Row() {
+        Text($r('app.string.cancel'))
+          .width(120)
+          .height(54)
+          .borderRadius(12)
+          .padding(10)
+          .backgroundColor($r('app.color.bg_03'))
+          .fontWeight(400)
+          .fontColor($r('app.color.text_03'))
+          .fontSize(16)
+          .lineHeight('100%')
+          .textAlign(TextAlign.Center)
+
+        Text($r('app.string.confirm'))
+          .width(120)
+          .height(54)
+          .borderRadius(12)
+          .padding(10)
+          .backgroundColor($r('app.color.bg_04'))
+          .fontWeight(400)
+          .fontColor($r('app.color.start_window_background'))
+          .fontSize(16)
+          .lineHeight('100%')
+          .textAlign(TextAlign.Center)
+      }
       .width('100%')
-      .height(20)
-
-    BeverageName({
-      brandId: params.id,
-      brandName: params.brandName,
-      beverageName: params.beverageName
-    })
-
-    BeverageCup({
-      beverageSize: params.size as BeverageSize ?? BeverageSize.SMALL
-    })
-
-    BeverageSatisfactionDegree({
-      degree: params.degree
-    })
-
-    BeveragePrice({
-      price: params.price
-    })
-
-    BeverageTemperature()
-
-    BeverageSweetness()
-
-    BeverageCondiment()
-
-    BeverageNote()
-
-    Row() {
-      Text($r('app.string.cancel'))
-        .width(120)
-        .height(54)
-        .borderRadius(12)
-        .padding(10)
-        .backgroundColor($r('app.color.bg_03'))
-        .fontWeight(400)
-        .fontColor($r('app.color.text_03'))
-        .fontSize(16)
-        .lineHeight('100%')
-        .textAlign(TextAlign.Center)
-
-      Text($r('app.string.confirm'))
-        .width(120)
-        .height(54)
-        .borderRadius(12)
-        .padding(10)
-        .backgroundColor($r('app.color.bg_04'))
-        .fontWeight(400)
-        .fontColor($r('app.color.start_window_background'))
-        .fontSize(16)
-        .lineHeight('100%')
-        .textAlign(TextAlign.Center)
+      .height(54)
+      .justifyContent(FlexAlign.SpaceBetween)
+      .padding({
+        left: 8,
+        right: 8
+      })
     }
-    .width('100%')
-    .height(54)
-    .justifyContent(FlexAlign.SpaceBetween)
+    .backgroundColor($r('app.color.start_window_background'))
+    .justifyContent(FlexAlign.Center)
     .padding({
-      left: 8,
-      right: 8
+      top: 32,
+      bottom: 32,
+      left: 24,
+      right: 24
     })
   }
-  .backgroundColor($r('app.color.start_window_background'))
-  .justifyContent(FlexAlign.Center)
-  .padding({
-    top: 32,
-    bottom: 32,
-    left: 24,
-    right: 24
+}
+
+export interface IBeverageDetailParams {
+  beverage: IBeverage
+  brand: IBrand
+}
+
+@Builder
+function BeverageDetailSheetBuilder(params: IBeverageDetailParams) {
+  BeverageDetailSheet({
+    beverage: params.beverage,
+    brand: params.brand
   })
 }
 
-export const BeverageDetail: WrappedBuilder<[IRecord]> = wrapBuilder(BeverageDetailSheet)
+export const BeverageDetail: WrappedBuilder<[IBeverageDetailParams]> = wrapBuilder(BeverageDetailSheetBuilder)

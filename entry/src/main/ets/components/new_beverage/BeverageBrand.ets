@@ -42,7 +42,10 @@ export struct BeverageBrand {
           ListItem() {
             RecentBeverageItem(item)
           }
-        }, (item: IBrand) => JSON.stringify(item))
+          .onClick(() => {
+            this.beverageChooseVM.chooseBeverage(this.getUIContext(), this.getUniqueId(), item)
+          })
+        }, (item: IBeverage) => JSON.stringify(item))
       }
       .layoutWeight(1)
       .height('100%')
