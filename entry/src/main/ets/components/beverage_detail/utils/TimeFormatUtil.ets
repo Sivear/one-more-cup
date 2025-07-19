@@ -2,7 +2,9 @@ export class TimeFormatUtil {
   // todo:补充获取各种格式的时间逻辑
   public static transferTimeToString(time: number): string {
     const date = new Date(time)
-    return `${date.getHours()}: ${date.getMinutes()}`
+    const h: number = date.getHours()
+    const m: number = date.getMinutes()
+    return `${h < 10 ? '0' + h : h.toString()}: ${m < 10 ? '0' + m : m.toString()}`
   }
 }
 
