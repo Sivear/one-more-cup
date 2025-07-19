@@ -32,10 +32,15 @@ struct BeverageDetailSheet {
         .width('100%')
         .height(20)
 
+      // 品牌名称，饮品名称，记录时间
       BeverageName({
         brandId: this.drinkRecord?.id,
         brandName: this.drinkRecord?.brandName,
-        beverageName: this.drinkRecord?.beverageName
+        beverageName: this.drinkRecord?.beverageName,
+        time: Date.now(),
+        onTimeChange: (newTime: number) => {
+          this.beverageDetailViewModel.onTimeChange(newTime)
+        }
       })
 
       BeverageCup({

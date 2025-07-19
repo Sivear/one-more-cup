@@ -1,3 +1,4 @@
+import { IconManager } from 'omc_db'
 import { BeverageTime } from './BeverageTime'
 
 @ComponentV2
@@ -5,11 +6,17 @@ export struct BeverageName {
   @Param @Require brandId: number
   @Param @Require brandName: string
   @Param @Require beverageName: string
+  @Param @Require time: number
+  @Event onTimeChange: (newTime: number) => void = () => {}
+
+  aboutToAppear(): void {
+    // todo: 根据brandId获取brand logo
+  }
 
   build() {
     RelativeContainer() {
       Row({ space: 20 }) {
-        Image($r('app.media.omc_time_icon'))
+        Image(IconManager.getIconById(IconManager.getRandomIcon()))
           .width(60)
           .height(60)
           .borderRadius(10)
@@ -49,7 +56,12 @@ export struct BeverageName {
           left: { 'anchor': '__container__', 'align': HorizontalAlign.Start }
         })
 
-      BeverageTime()
+      BeverageTime({
+        time: this.time,
+        onTimeChange: (newTime: number) => {
+          this.onTimeChange(newTime)
+        }
+      })
         .alignRules({
           top: { 'anchor': '__container__', 'align': VerticalAlign.Top },
           right: { 'anchor': '__container__', 'align': HorizontalAlign.End }
