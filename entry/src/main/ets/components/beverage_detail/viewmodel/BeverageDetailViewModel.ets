@@ -5,6 +5,7 @@ import { DrinkRecord } from '../../../model/Record'
 export class BeverageDetailViewModel {
   @Trace private drinkRecord?: DrinkRecord
 
+  // 初始化奶茶记录
   public initRecord(beverage: IBeverage, brand: IBrand): void {
     this.drinkRecord = new DrinkRecord({
       id: Math.random(),
@@ -23,6 +24,7 @@ export class BeverageDetailViewModel {
     })
   }
 
+  // 获取奶茶记录
   public getDrinkRecord(): DrinkRecord {
     return this.drinkRecord ?? new DrinkRecord({
       time: Date.now(),
@@ -33,5 +35,12 @@ export class BeverageDetailViewModel {
       brandName: '',
       degree: 0
     })
+  }
+
+  // 更新记录时间
+  public onTimeChange(newTime: number): void {
+    if (this.drinkRecord && newTime > 0) {
+      this.drinkRecord.time = newTime
+    }
   }
 }
