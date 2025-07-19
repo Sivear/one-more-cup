@@ -143,7 +143,62 @@
     {
       "name": "input_brand",
       "value":"请输入品牌"
+    },
+    {
+      "name": "beverage_detail",
+      "value": "饮品详情"
+    },
+    {
+      "name": "beverage_size",
+      "value": "杯型"
+    },
+    {
+      "name": "beverage_size_small",
+      "value": "小杯"
+    },
+    {
+      "name": "beverage_size_medium",
+      "value": "中杯"
+    },
+    {
+      "name": "beverage_size_large",
+      "value": "大杯"
+    },
+    {
+      "name": "beverage_size_extra_large",
+      "value": "超大杯"
+    },
+    {
+      "name": "beverage_satisfaction_degree",
+      "value": "评价"
+    },
+    {
+      "name": "beverage_price_placeholder",
+      "value": "请输入价格"
+    },
+    {
+      "name": "beverage_temperature_placeholder",
+      "value": "请输入温度"
+    },
+    {
+      "name": "beverage_sweetness_placeholder",
+      "value": "请输入甜度"
+    },
+    {
+      "name": "beverage_condiments_placeholder",
+      "value": "请输入小料"
+    },
+    {
+      "name": "beverage_note_placeHolder",
+      "value": "请输入备注"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "confirm",
+      "value": "确认"
     }
-
   ]
 }

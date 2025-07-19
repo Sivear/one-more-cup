@@ -1,4 +1,4 @@
-interface IRecord {
+export interface IRecord {
   id?: number
   time: number
   remark?: string

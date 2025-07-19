@@ -25,6 +25,10 @@
       "value": "#bebebe"
     },
     {
+      "name": "text_03",
+      "value": "#000000"
+    },
+    {
       "name": "shadow",
       "value": "#29ced7c8"
     },
@@ -41,12 +45,28 @@
       "value": "#333333"
     },
     {
+      "name": "omc_beverage_detail_sheet_shadow",
+      "value": "#0000002B"
+    },
+    {
+      "name": "omc_star_gold",
+      "value": "#F4E56E"
+    },
+    {
+      "name": "omc_star_gray",
+      "value": "#D9D9D9"
+    },
+    {
       "name": "mask",
       "value": "#33000000"
     },
     {
       "name": "bg_03",
       "value": "#f4f4f4"
+    },
+    {
+      "name": "bg_04",
+      "value": "#6F4C37"
     }
   ]
 }
