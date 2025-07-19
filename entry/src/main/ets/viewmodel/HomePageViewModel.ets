@@ -1,14 +1,14 @@
-import { DbHandler } from "omc_db"
-import { ICondiment } from "omc_db/src/main/ets/database/types/condiment"
-import { Record } from "../model/Record"
+import { DbHandler } from 'omc_db'
+import { ICondiment } from 'omc_db/src/main/ets/database/types/condiment'
+import { DrinkRecord } from '../model/Record'
 
 @ObservedV2
 export class HomePageViewModel {
   @Trace year: number = new Date().getFullYear()
   @Trace month: number = new Date().getMonth()
-  @Trace recordList: Record[] = []
-  @Trace private recordListByDay: Array<Record[]> = new Array(32)
-  @Trace latestRecord: Record | undefined = undefined
+  @Trace recordList: DrinkRecord[] = []
+  @Trace private recordListByDay: Array<DrinkRecord[]> = new Array(32)
+  @Trace latestRecord: DrinkRecord | undefined = undefined
   condimentList: ICondiment[] = []
   // id 与 name 的映射，便于处理数据
   condimentMap: Map<number, string> = new Map()
@@ -66,7 +66,7 @@ export class HomePageViewModel {
    */
   @Monitor("recordList")
   onRecordListChange() {
-    const temp: Record[][] = new Array(32)
+    const temp: DrinkRecord[][] = new Array(32)
     this.recordList.forEach(item => {
       const day = new Date(item.time).getDate()
       if (temp[day]) {

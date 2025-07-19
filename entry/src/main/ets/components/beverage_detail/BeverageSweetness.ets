@@ -1,5 +1,5 @@
-import { BeverageParamName } from './BeverageParamName'
-import { CommonInput } from './CommonInput'
+import { BeverageParamName } from './common_ui/BeverageParamName'
+import { CommonInput } from './common_ui/CommonInput'
 
 @ComponentV2
 export struct BeverageSweetness {

@@ -1,8 +1,8 @@
-import { HMRouterMgr } from "@hadss/hmrouter"
-import { IconManager } from "omc_db"
-import { Record } from "../../model/Record"
-import { NavParams } from "../../router/NavParams"
-import { HomePageViewModel } from "../../viewmodel/HomePageViewModel"
+import { HMRouterMgr } from '@hadss/hmrouter'
+import { IconManager } from 'omc_db'
+import { DrinkRecord } from '../../model/Record'
+import { NavParams } from '../../router/NavParams'
+import { HomePageViewModel } from '../../viewmodel/HomePageViewModel'
 
 interface ICalendarItem {
   day: number
@@ -137,7 +137,7 @@ export struct HomeCalendarBody {
 @ComponentV2
 struct CalendarItem {
   @Param @Require calendarItem: ICalendarItem
-  @Param @Require recordList: Record[]
+  @Param @Require recordList: DrinkRecord[]
   @Param @Require hasDivider: boolean
   // 计算每个日历格子最多能放多少项
   @Local containerHeight: number = 0
@@ -184,7 +184,7 @@ struct CalendarItem {
 
           // 饮品list
           Column({ space: 3 }) {
-            ForEach(this.recordList, (item: Record, index) => {
+            ForEach(this.recordList, (item: DrinkRecord, index) => {
               if (index < this.maxCount) {
                 Row() {
                   Image(IconManager.getIconById(item.icon!!))

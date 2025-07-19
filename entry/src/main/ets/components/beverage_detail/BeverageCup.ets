@@ -1,5 +1,5 @@
 import { BeverageSize } from 'omc_db'
-import { BeverageParamName } from './BeverageParamName'
+import { BeverageParamName } from './common_ui/BeverageParamName'
 import { BeverageSizeUtil } from './utils/BeverageSizeUtil'
 
 @ComponentV2

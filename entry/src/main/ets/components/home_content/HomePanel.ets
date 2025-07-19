@@ -1,6 +1,5 @@
-import { Record } from "../../model/Record"
-import { TimeUtil } from "../../utils/TimeUtil"
-import { HomePageViewModel } from "../../viewmodel/HomePageViewModel"
+import { TimeUtil } from '../../utils/TimeUtil'
+import { HomePageViewModel } from '../../viewmodel/HomePageViewModel'
 
 @ComponentV2
 export struct HomePanel {

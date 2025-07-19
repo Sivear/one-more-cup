@@ -1,12 +1,11 @@
 import { ComponentContent } from '@kit.ArkUI'
-import { IRecord } from '../../model/Record'
-import { BeverageDetail } from './BeverageDetailSheet'
+import { BeverageDetail, IBeverageDetailParams } from './BeverageDetailSheet'
 
 export function OpenBeverageDetailSheet(uiCtx: UIContext, uniqueId: number) {
   const node: FrameNode | null = uiCtx.getFrameNodeByUniqueId(uniqueId)
   const targetId = node?.getFirstChild()?.getUniqueId()
 
-  return (args: IRecord) => {
+  return (args: IBeverageDetailParams) => {
     const compContent = new ComponentContent(uiCtx, BeverageDetail, args)
     node && uiCtx.openBindSheet(compContent, {
       maskColor: $r('app.color.mask'),
