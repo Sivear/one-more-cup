@@ -9,3 +9,9 @@ export { IBrand } from './src/main/ets/database/types/brand'
 export { ICondiment } from './src/main/ets/database/types/condiment'
 
 export { IRecord } from './src/main/ets/database/types/record'
+
+export {
+  BeverageSize,
+  BeverageSweetness,
+  BeverageTemperature
+} from './src/main/ets/database/constants/presets/preference'
