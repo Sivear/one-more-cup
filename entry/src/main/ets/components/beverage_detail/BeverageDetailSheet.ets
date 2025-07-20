@@ -91,7 +91,13 @@ struct BeverageDetailSheet {
         }
       })
 
-      BeverageNote()
+      // 备注
+      BeverageNote({
+        remark: this.drinkRecord?.remark,
+        onRemarkChange: (newRemark: string) => {
+          this.beverageDetailViewModel.onBeverageRemarkChange(newRemark)
+        }
+      })
 
       Row() {
         Text($r('app.string.cancel'))

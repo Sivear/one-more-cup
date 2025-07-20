@@ -85,4 +85,11 @@ export class BeverageDetailViewModel {
       this.drinkRecord.condiments = newCondiments
     }
   }
+
+  // 备注
+  public onBeverageRemarkChange(newRemark: string): void {
+    if (this.drinkRecord) {
+      this.drinkRecord.remark = newRemark
+    }
+  }
 }
