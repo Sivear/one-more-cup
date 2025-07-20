@@ -193,6 +193,30 @@
       "value": "请输入备注"
     },
     {
+      "name": "beverage_temperature_hot",
+      "value": "热"
+    },
+    {
+      "name": "beverage_temperature_warm",
+      "value": "温热"
+    },
+    {
+      "name": "beverage_temperature_normal",
+      "value": "常温"
+    },
+    {
+      "name": "beverage_temperature_no_ice",
+      "value": "去冰"
+    },
+    {
+      "name": "beverage_temperature_less_cold",
+      "value": "少冰"
+    },
+    {
+      "name": "beverage_temperature_cold",
+      "value": "正常冰"
+    },
+    {
       "name": "cancel",
       "value": "取消"
     },

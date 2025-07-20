@@ -1,9 +1,9 @@
 import { BeverageCup } from './BeverageCup'
 import { BeverageName } from './BeverageName'
-import { BeverageSize, IBeverage, IBrand } from 'omc_db'
+import { BeverageSize, BeverageTemperature, IBeverage, IBrand } from 'omc_db'
 import { BeverageSatisfactionDegree } from './BeverageSatisfactionDegree'
 import { BeveragePrice } from './BeveragePrice'
-import { BeverageTemperature } from './BeverageTemperature'
+import { BeverageTemperatureComp } from './BeverageTemperature'
 import { BeverageSweetness } from './BeverageSweetness'
 import { BeverageCondiment } from './BeverageCondiment'
 import { BeverageNote } from './BeverageNote'
@@ -67,7 +67,13 @@ struct BeverageDetailSheet {
         }
       })
 
-      BeverageTemperature()
+      // 温度
+      BeverageTemperatureComp({
+        temperature: this.drinkRecord?.temperature as BeverageTemperature,
+        onTemperatureChange: (newTemperature: BeverageTemperature) => {
+          this.beverageDetailViewModel.onBeverageTemperatureChange(newTemperature)
+        }
+      })
 
       BeverageSweetness()
 
