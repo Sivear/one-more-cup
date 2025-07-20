@@ -57,4 +57,11 @@ export class BeverageDetailViewModel {
       this.drinkRecord.degree = newDegree
     }
   }
+
+  // 更新价格
+  public onBeveragePriceChange(newPrice: number): void {
+    if (this.drinkRecord && newPrice >= 0) {
+      this.drinkRecord.price = newPrice
+    }
+  }
 }
