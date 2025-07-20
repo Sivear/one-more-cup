@@ -83,7 +83,13 @@ struct BeverageDetailSheet {
         }
       })
 
-      BeverageCondiment()
+      // 小料
+      BeverageCondiment({
+        condiments: this.drinkRecord?.condiments,
+        onCondimentsChange: (newCondiments: number[]) => {
+          this.beverageDetailViewModel.onBeverageCondimentsChange(newCondiments)
+        }
+      })
 
       BeverageNote()
 
