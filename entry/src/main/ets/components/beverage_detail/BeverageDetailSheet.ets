@@ -1,10 +1,10 @@
 import { BeverageCup } from './BeverageCup'
 import { BeverageName } from './BeverageName'
-import { BeverageSize, BeverageTemperature, IBeverage, IBrand } from 'omc_db'
+import { BeverageSize, BeverageSweetness, BeverageTemperature, IBeverage, IBrand } from 'omc_db'
 import { BeverageSatisfactionDegree } from './BeverageSatisfactionDegree'
 import { BeveragePrice } from './BeveragePrice'
 import { BeverageTemperatureComp } from './BeverageTemperature'
-import { BeverageSweetness } from './BeverageSweetness'
+import { BeverageSweetnessComp } from './BeverageSweetness'
 import { BeverageCondiment } from './BeverageCondiment'
 import { BeverageNote } from './BeverageNote'
 import { BeverageDetailViewModel } from './viewmodel/BeverageDetailViewModel'
@@ -75,7 +75,13 @@ struct BeverageDetailSheet {
         }
       })
 
-      BeverageSweetness()
+      // 甜度
+      BeverageSweetnessComp({
+        sweetness: this.drinkRecord?.sweetness as BeverageSweetness,
+        onSweetnessChange: (newSweetness: BeverageSweetness) => {
+          this.beverageDetailViewModel.onBeverageSweetnessChange(newSweetness)
+        }
+      })
 
       BeverageCondiment()
 

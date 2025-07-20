@@ -71,4 +71,11 @@ export class BeverageDetailViewModel {
       this.drinkRecord.temperature = newTemperature
     }
   }
+
+  // 更新甜度
+  public onBeverageSweetnessChange(newSweetness: BeverageSweetness): void {
+    if (this.drinkRecord) {
+      this.drinkRecord.sweetness = newSweetness
+    }
+  }
 }
