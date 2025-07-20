@@ -1,3 +1,5 @@
+import condimentsList from './src/main/ets/database/constants/presets/condiments.json'
+
 export { DbHandler } from './src/main/ets/api/index'
 
 export { IconManager } from './src/main/ets/database/constants/presets/icons'
@@ -15,3 +17,5 @@ export {
   BeverageSweetness,
   BeverageTemperature
 } from './src/main/ets/database/constants/presets/preference'
+
+export { condimentsList }

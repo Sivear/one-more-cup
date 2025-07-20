@@ -78,4 +78,11 @@ export class BeverageDetailViewModel {
       this.drinkRecord.sweetness = newSweetness
     }
   }
+
+  // 更新小料
+  public onBeverageCondimentsChange(newCondiments: number[]): void {
+    if (this.drinkRecord) {
+      this.drinkRecord.condiments = newCondiments
+    }
+  }
 }
