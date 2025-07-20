@@ -269,6 +269,26 @@
       "value": "正常冰"
     },
     {
+      "name": "beverage_sweetness_no_sugar",
+      "value": "不额外加糖"
+    },
+    {
+      "name": "beverage_sweetness_light_sugar",
+      "value": "三分糖"
+    },
+    {
+      "name": "beverage_sweetness_half_sugar",
+      "value": "五分糖"
+    },
+    {
+      "name": "beverage_sweetness_less_sugar",
+      "value": "七分糖"
+    },
+    {
+      "name": "beverage_sweetness_full_sugar",
+      "value": "全糖"
+    },
+    {
       "name": "cancel",
       "value": "取消"
     },
