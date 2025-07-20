@@ -1,13 +1,14 @@
 @ComponentV2
 export struct CommonInput {
   @Param @Require placeHolderContent: ResourceStr
-  @Param inputValue: string = ''
+  @Param inputValue: ResourceStr = ''
   @Param image: ResourceStr = ''
   @Param inputType: InputType = InputType.Normal
   @Param textAlign: TextAlign = TextAlign.Start
+  @Param isUserEditable: boolean = true
   @Event onInputValueChange: (newVal: string) => void = () => {
   }
-  public onIconClick?: () => void
+  @Event onIconClick?: () => void
 
   build() {
     Row() {
@@ -18,6 +19,7 @@ export struct CommonInput {
         .backgroundColor($r('app.color.bg_03'))
         .type(this.inputType)
         .textAlign(this.textAlign)
+        .focusable(this.isUserEditable)
         .onChange((val: string) => {
           this.onInputValueChange(val)
         })

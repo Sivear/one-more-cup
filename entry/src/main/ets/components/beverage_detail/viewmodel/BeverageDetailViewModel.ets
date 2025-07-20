@@ -64,4 +64,11 @@ export class BeverageDetailViewModel {
       this.drinkRecord.price = newPrice
     }
   }
+
+  // 更新温度
+  public onBeverageTemperatureChange(newTemperature: BeverageTemperature): void {
+    if (this.drinkRecord) {
+      this.drinkRecord.temperature = newTemperature
+    }
+  }
 }
