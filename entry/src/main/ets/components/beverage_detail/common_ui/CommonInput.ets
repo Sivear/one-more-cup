@@ -1,13 +1,45 @@
 @ComponentV2
 export struct CommonInput {
-  @Param placeHolderContent: ResourceStr = ''
+  @Param @Require placeHolderContent: ResourceStr
+  @Param inputValue: string = ''
+  @Param image: ResourceStr = ''
+  @Param inputType: InputType = InputType.Normal
+  @Param textAlign: TextAlign = TextAlign.Start
+  @Event onInputValueChange: (newVal: string) => void = () => {
+  }
+  public onIconClick?: () => void
 
   build() {
-    TextInput({ placeholder: this.placeHolderContent })
-      .width(231)
-      .height(47)
-      .padding(10)
-      .borderRadius(6)
-      .backgroundColor($r('app.color.bg_03'))
+    Row() {
+      TextInput({ placeholder: this.placeHolderContent, text: this.inputValue })
+        .width(this.image ? 231 - 47 : 231)
+        .height(47)
+        .padding(10)
+        .backgroundColor($r('app.color.bg_03'))
+        .type(this.inputType)
+        .textAlign(this.textAlign)
+        .onChange((val: string) => {
+          this.onInputValueChange(val)
+        })
+
+      if (this.image) {
+        Row() {
+          Image(this.image)
+            .width(24)
+            .height(24)
+            .onClick(() => {
+              this.onIconClick && this.onIconClick()
+            })
+        }
+        .justifyContent(FlexAlign.Center)
+        .alignItems(VerticalAlign.Center)
+        .width(47)
+        .height(47)
+      }
+    }
+    .borderRadius(6)
+    .width(231)
+    .height(47)
+    .backgroundColor($r('app.color.bg_03'))
   }
 }

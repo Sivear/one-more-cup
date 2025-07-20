@@ -3,16 +3,22 @@ import { CommonInput } from './common_ui/CommonInput'
 
 @ComponentV2
 export struct BeveragePrice {
-  @Param @Once price: number = 0
+  @Param price: number = 0
+  @Event onPriceChange: (newPrice: number) => void = () => {
+  }
 
   build() {
     Row() {
       BeverageParamName($r('app.string.price'))
 
       CommonInput({
-        placeHolderContent: $r('app.string.beverage_price_placeholder')
+        inputValue: this.price.toString(),
+        placeHolderContent: $r('app.string.beverage_price_placeholder'),
+        inputType: InputType.NUMBER_DECIMAL,
+        onInputValueChange: (newPrice: string) => {
+          this.onPriceChange(parseFloat(newPrice))
+        }
       })
-
     }
     .width('100%')
     .height(47)

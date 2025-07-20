@@ -59,8 +59,12 @@ struct BeverageDetailSheet {
         }
       })
 
+      // 价格
       BeveragePrice({
-        price: this.drinkRecord?.price
+        price: this.drinkRecord?.price,
+        onPriceChange: (newPrice: number) => {
+          this.beverageDetailViewModel.onBeveragePriceChange(newPrice)
+        }
       })
 
       BeverageTemperature()
