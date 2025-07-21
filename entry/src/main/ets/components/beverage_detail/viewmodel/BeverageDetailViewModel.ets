@@ -1,4 +1,4 @@
-import { BeverageSize, BeverageSweetness, BeverageTemperature, IBeverage, IBrand } from 'omc_db'
+import { BeverageSize, BeverageSweetness, BeverageTemperature } from 'omc_db'
 import { DrinkRecord } from '../../../model/Record'
 
 @ObservedV2
@@ -6,21 +6,21 @@ export class BeverageDetailViewModel {
   @Trace private drinkRecord?: DrinkRecord
 
   // 初始化奶茶记录
-  public initRecord(beverage: IBeverage, brand: IBrand): void {
+  public initRecord(drinkRecord: DrinkRecord): void {
     this.drinkRecord = new DrinkRecord({
-      id: Math.random(),
-      time: Date.now(),
-      remark: '',
-      price: 11,
-      size: BeverageSize.SMALL,
-      sweetness: BeverageSweetness.NO_SUGAR,
-      temperature: BeverageTemperature.HOT,
-      condiments: [],
-      beverageId: beverage.id ?? 0,
-      brandId: brand.id ?? 0,
-      beverageName: beverage.name,
-      brandName: brand.name,
-      degree: beverage.degree ?? 0
+      id: drinkRecord.id ?? Math.random(),
+      time: drinkRecord.time ?? Date.now(), // 新建记录的时间为当前时间
+      remark: drinkRecord.remark ?? '',
+      price: drinkRecord.price ?? undefined,
+      size: drinkRecord.size ?? '',
+      sweetness: drinkRecord.sweetness ?? '',
+      temperature: drinkRecord.temperature ?? '',
+      condiments: drinkRecord.condiments ?? [],
+      beverageId: drinkRecord.beverageId,
+      brandId: drinkRecord.brandId,
+      beverageName: drinkRecord.beverageName,
+      brandName: drinkRecord.brandName,
+      degree: drinkRecord.degree
     })
   }
 

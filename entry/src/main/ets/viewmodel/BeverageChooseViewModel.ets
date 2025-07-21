@@ -2,6 +2,7 @@ import { LazyListModel } from '../model/LazyListModel';
 import { BrandBeverageService } from '../model/BrandBeverageService';
 import { IBeverage, IBrand } from 'omc_db';
 import { OpenBeverageDetailSheet } from '../components/beverage_detail/OpenBeverageDetailSheet';
+import { DrinkRecord } from '../model/Record';
 
 @ObservedV2
 export class BeverageChooseViewModel {
@@ -48,8 +49,21 @@ export class BeverageChooseViewModel {
 
   public chooseBeverage(uiCtx: UIContext, uniqueId: number, beverage: IBeverage): void {
     OpenBeverageDetailSheet(uiCtx, uniqueId)({
-      beverage,
-      brand: this.getChosenBrandData()
+      record: new DrinkRecord({
+        id: Math.random(),
+        time: Date.now(),
+        remark: '',
+        price: -1, // 新建金额使用负数标识
+        size: '',
+        sweetness: '',
+        temperature: '',
+        condiments: [],
+        beverageId: beverage.id ?? 0,
+        brandId: this.getChosenBrandData().id ?? 0,
+        beverageName: beverage.name,
+        brandName: this.getChosenBrandData().name,
+        degree: beverage.degree ?? 0
+      })
     })
   }
 }

@@ -1,4 +1,5 @@
 import { HMRouter, HMRouterMgr } from '@hadss/hmrouter';
+import { OpenBeverageDetailSheet } from '../components/beverage_detail/OpenBeverageDetailSheet';
 import { DrinkRecord } from '../model/Record';
 import { NavParams } from '../router/NavParams';
 import { HomePageViewModel } from '../viewmodel/HomePageViewModel';
@@ -185,7 +186,7 @@ export struct RecordDetailPage {
             .backgroundColor($r("app.color.primary"))
             .borderRadius(12)
             .onClick(() => {
-              // todo: 接编辑页面
+              this.record && OpenBeverageDetailSheet(this.getUIContext(), this.getUniqueId())({ record: this.record })
             })
         }
         .width("100%")
