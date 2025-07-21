@@ -10,7 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "再来一杯"
     },
     {
       "name": "Sunday",
@@ -194,8 +194,7 @@
     },
     {
       "name": "input_brand",
-      "value":"请输入品牌"
+      "value": "请输入品牌"
     }
-
   ]
 }
