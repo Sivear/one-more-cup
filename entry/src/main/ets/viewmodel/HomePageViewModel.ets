@@ -1,5 +1,5 @@
-import { DbHandler, ICondiment } from "omc_db"
-import { IRanking, DrinkRecord } from "../model/Record"
+import { DbHandler, ICondiment } from 'omc_db'
+import { DrinkRecord, IRanking } from '../model/Record'
 
 @ObservedV2
 export class HomePageViewModel {
@@ -66,7 +66,7 @@ export class HomePageViewModel {
    * @returns
    */
   getConsumptionInThisMonth(): number {
-    return this.recordList.reduce((res: number, item: Record) => res + item.price, 0)
+    return this.recordList.reduce((res: number, item: DrinkRecord) => res + item.price, 0)
   }
 
   /**
@@ -134,7 +134,7 @@ export class HomePageViewModel {
    */
   getRankingListByBrand(): IRanking[] {
     // 1. 按 brandId 分组
-    const grouped = this.recordList.reduce<Map<number, Record[]>>((acc, item) => {
+    const grouped = this.recordList.reduce<Map<number, DrinkRecord[]>>((acc, item) => {
       if (!acc.get(item.brandId)) {
         acc.set(item.brandId, [])
       }
@@ -151,7 +151,7 @@ export class HomePageViewModel {
         id: item,
         name: grouped.get(item)![0].brandName,
         count: grouped.get(item)!.length ?? 0,
-        consumption: grouped.get(item)!.reduce((res: number, item: Record) => res + item.price, 0)
+        consumption: grouped.get(item)!.reduce((res: number, item: DrinkRecord) => res + item.price, 0)
       }
       return data
     })
@@ -162,7 +162,7 @@ export class HomePageViewModel {
    * 获取饮品排行
    */
   getRankingListByBeverage(): IRanking[] {
-    const grouped = this.recordList.reduce<Map<number, Record[]>>((acc, item) => {
+    const grouped = this.recordList.reduce<Map<number, DrinkRecord[]>>((acc, item) => {
       if (!acc.get(item.beverageId)) {
         acc.set(item.beverageId, [])
       }
@@ -178,7 +178,7 @@ export class HomePageViewModel {
         id: item,
         name: grouped.get(item)![0].beverageName,
         count: grouped.get(item)!.length ?? 0,
-        consumption: grouped.get(item)!.reduce((res: number, item: Record) => res + item.price, 0)
+        consumption: grouped.get(item)!.reduce((res: number, item: DrinkRecord) => res + item.price, 0)
       }
       return data
     })

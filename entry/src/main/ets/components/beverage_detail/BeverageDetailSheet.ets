@@ -117,7 +117,7 @@ struct BeverageDetailSheet {
           .height(54)
           .borderRadius(12)
           .padding(10)
-          .backgroundColor($r('app.color.bg_04'))
+          .backgroundColor($r('app.color.bg_05'))
           .fontWeight(400)
           .fontColor($r('app.color.start_window_background'))
           .fontSize(16)
