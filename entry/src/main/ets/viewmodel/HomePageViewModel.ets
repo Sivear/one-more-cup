@@ -1,14 +1,13 @@
-import { DbHandler } from "omc_db"
-import { ICondiment } from "omc_db/src/main/ets/database/types/condiment"
-import { IRanking, Record } from "../model/Record"
+import { DbHandler, ICondiment } from 'omc_db'
+import { DrinkRecord, IRanking } from '../model/Record'
 
 @ObservedV2
 export class HomePageViewModel {
   @Trace year: number = new Date().getFullYear()
   @Trace month: number = new Date().getMonth()
-  @Trace recordList: Record[] = []
-  @Trace private recordListByDay: Array<Record[]> = new Array(32)
-  @Trace latestRecord: Record | undefined = undefined
+  @Trace recordList: DrinkRecord[] = []
+  @Trace private recordListByDay: Array<DrinkRecord[]> = new Array(32)
+  @Trace latestRecord: DrinkRecord | undefined = undefined
   @Trace rankListByBrand: IRanking[] = []
   @Trace rankListByBeverage: IRanking[] = []
   condimentList: ICondiment[] = []
@@ -67,7 +66,7 @@ export class HomePageViewModel {
    * @returns
    */
   getConsumptionInThisMonth(): number {
-    return this.recordList.reduce((res: number, item: Record) => res + item.price, 0)
+    return this.recordList.reduce((res: number, item: DrinkRecord) => res + item.price, 0)
   }
 
   /**
@@ -76,7 +75,7 @@ export class HomePageViewModel {
   @Monitor("recordList")
   onRecordListChange() {
     // 将记录按日期存放在map中
-    const temp: Record[][] = new Array(32)
+    const temp: DrinkRecord[][] = new Array(32)
     this.recordList.forEach(item => {
       const day = new Date(item.time).getDate()
       if (temp[day]) {
@@ -135,7 +134,7 @@ export class HomePageViewModel {
    */
   getRankingListByBrand(): IRanking[] {
     // 1. 按 brandId 分组
-    const grouped = this.recordList.reduce<Map<number, Record[]>>((acc, item) => {
+    const grouped = this.recordList.reduce<Map<number, DrinkRecord[]>>((acc, item) => {
       if (!acc.get(item.brandId)) {
         acc.set(item.brandId, [])
       }
@@ -152,7 +151,7 @@ export class HomePageViewModel {
         id: item,
         name: grouped.get(item)![0].brandName,
         count: grouped.get(item)!.length ?? 0,
-        consumption: grouped.get(item)!.reduce((res: number, item: Record) => res + item.price, 0)
+        consumption: grouped.get(item)!.reduce((res: number, item: DrinkRecord) => res + item.price, 0)
       }
       return data
     })
@@ -163,7 +162,7 @@ export class HomePageViewModel {
    * 获取饮品排行
    */
   getRankingListByBeverage(): IRanking[] {
-    const grouped = this.recordList.reduce<Map<number, Record[]>>((acc, item) => {
+    const grouped = this.recordList.reduce<Map<number, DrinkRecord[]>>((acc, item) => {
       if (!acc.get(item.beverageId)) {
         acc.set(item.beverageId, [])
       }
@@ -179,7 +178,7 @@ export class HomePageViewModel {
         id: item,
         name: grouped.get(item)![0].beverageName,
         count: grouped.get(item)!.length ?? 0,
-        consumption: grouped.get(item)!.reduce((res: number, item: Record) => res + item.price, 0)
+        consumption: grouped.get(item)!.reduce((res: number, item: DrinkRecord) => res + item.price, 0)
       }
       return data
     })

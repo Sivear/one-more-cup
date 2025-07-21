@@ -1,8 +1,8 @@
-import { HMRouter, HMRouterMgr } from "@hadss/hmrouter";
-import { Record } from "../model/Record";
-import { NavParams } from "../router/NavParams";
-import { TimeUtil } from "../utils/TimeUtil";
-import { HomePageViewModel } from "../viewmodel/HomePageViewModel";
+import { HMRouter, HMRouterMgr } from '@hadss/hmrouter';
+import { DrinkRecord } from '../model/Record';
+import { NavParams } from '../router/NavParams';
+import { TimeUtil } from '../utils/TimeUtil';
+import { HomePageViewModel } from '../viewmodel/HomePageViewModel';
 
 interface IDailyRecordsParamType {
   date: Date,
@@ -18,7 +18,7 @@ interface IDailyRecordsParamType {
 export struct DailyRecordsPage {
   date: Date = new Date()
   @Local homeViewModel?: HomePageViewModel
-  @Local recordList: Record[] = []
+  @Local recordList: DrinkRecord[] = []
 
   aboutToAppear(): void {
     let param = HMRouterMgr.getCurrentParam() as IDailyRecordsParamType;
@@ -55,7 +55,7 @@ export struct DailyRecordsPage {
 
         Column() {
           List({ space: 36 }) {
-            ForEach(this.recordList, (record: Record) => {
+            ForEach(this.recordList, (record: DrinkRecord) => {
               ListItem() {
                 Row() {
                   Row({ space: 12 }) {

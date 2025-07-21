@@ -1,4 +1,4 @@
-import { HMRouter, HMRouterMgr } from '@hadss/hmrouter';
+import { HMRouter } from '@hadss/hmrouter';
 import { BeverageBrand } from '../components/new_beverage/BeverageBrand';
 import { NavParams } from '../router/NavParams';
 
@@ -15,9 +15,6 @@ export struct NewBeveragePage {
       Text($r('app.string.beverage_choose'))
         .fontSize($r('app.float.page_text_font_size'))
         .fontWeight(FontWeight.Bold)
-        .onClick(() => {
-          HMRouterMgr.pop()
-        })
       Search({ value: this.searchValue, placeholder: $r('app.string.input_brand') })
         .borderRadius(0)
         .searchIcon({

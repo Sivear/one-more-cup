@@ -1,4 +1,4 @@
-interface IRecord {
+export interface IRecord {
   id?: number
   time: number
   remark?: string
@@ -17,7 +17,7 @@ interface IRecord {
 }
 
 @ObservedV2
-export class Record {
+export class DrinkRecord {
   id?: number
   @Trace time: number
   @Trace remark?: string

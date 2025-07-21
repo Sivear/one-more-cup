@@ -195,7 +195,106 @@
     {
       "name": "input_brand",
       "value":"请输入品牌"
+    },
+    {
+      "name": "beverage_detail",
+      "value": "饮品详情"
+    },
+    {
+      "name": "beverage_size",
+      "value": "杯型"
+    },
+    {
+      "name": "beverage_size_small",
+      "value": "小杯"
+    },
+    {
+      "name": "beverage_size_medium",
+      "value": "中杯"
+    },
+    {
+      "name": "beverage_size_large",
+      "value": "大杯"
+    },
+    {
+      "name": "beverage_size_extra_large",
+      "value": "超大杯"
+    },
+    {
+      "name": "beverage_satisfaction_degree",
+      "value": "评价"
+    },
+    {
+      "name": "beverage_price_placeholder",
+      "value": "请输入价格"
+    },
+    {
+      "name": "beverage_temperature_placeholder",
+      "value": "请输入温度"
+    },
+    {
+      "name": "beverage_sweetness_placeholder",
+      "value": "请输入甜度"
+    },
+    {
+      "name": "beverage_condiments_placeholder",
+      "value": "请输入小料"
+    },
+    {
+      "name": "beverage_note_placeHolder",
+      "value": "请输入备注"
+    },
+    {
+      "name": "beverage_temperature_hot",
+      "value": "热"
+    },
+    {
+      "name": "beverage_temperature_warm",
+      "value": "温热"
+    },
+    {
+      "name": "beverage_temperature_normal",
+      "value": "常温"
+    },
+    {
+      "name": "beverage_temperature_no_ice",
+      "value": "去冰"
+    },
+    {
+      "name": "beverage_temperature_less_cold",
+      "value": "少冰"
+    },
+    {
+      "name": "beverage_temperature_cold",
+      "value": "正常冰"
+    },
+    {
+      "name": "beverage_sweetness_no_sugar",
+      "value": "不额外加糖"
+    },
+    {
+      "name": "beverage_sweetness_light_sugar",
+      "value": "三分糖"
+    },
+    {
+      "name": "beverage_sweetness_half_sugar",
+      "value": "五分糖"
+    },
+    {
+      "name": "beverage_sweetness_less_sugar",
+      "value": "七分糖"
+    },
+    {
+      "name": "beverage_sweetness_full_sugar",
+      "value": "全糖"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "confirm",
+      "value": "确认"
     }
-
   ]
 }

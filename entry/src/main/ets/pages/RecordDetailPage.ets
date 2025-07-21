@@ -1,10 +1,10 @@
-import { HMRouter, HMRouterMgr } from "@hadss/hmrouter";
-import { Record } from "../model/Record";
-import { NavParams } from "../router/NavParams";
-import { HomePageViewModel } from "../viewmodel/HomePageViewModel";
+import { HMRouter, HMRouterMgr } from '@hadss/hmrouter';
+import { DrinkRecord } from '../model/Record';
+import { NavParams } from '../router/NavParams';
+import { HomePageViewModel } from '../viewmodel/HomePageViewModel';
 
 interface IRecordDetailParamType {
-  record: Record,
+  record: DrinkRecord,
   homeViewModel?: HomePageViewModel
 }
 
@@ -15,7 +15,7 @@ interface IRecordDetailParamType {
 })
 @ComponentV2
 export struct RecordDetailPage {
-  record?: Record
+  record?: DrinkRecord
   homeViewModel?: HomePageViewModel
   deleteDialogController: CustomDialogController = new CustomDialogController({
     builder: DeleteConfirmDialog({
