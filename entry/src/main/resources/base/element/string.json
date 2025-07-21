@@ -81,6 +81,10 @@
       "value": "本月共喝了"
     },
     {
+      "name": "cup_count_in_this_month1",
+      "value": "本月杯数"
+    },
+    {
       "name": "cup",
       "value": "杯"
     },
@@ -135,6 +139,54 @@
     {
       "name": "delete_confirm_text",
       "value": "确定删除这条数据？"
+    },
+    {
+      "name": "total_count_of_cups",
+      "value": "累计杯数"
+    },
+    {
+      "name": "total_consumption_of_cups",
+      "value": "累计消费"
+    },
+    {
+      "name": "average_number_of_days_between",
+      "value": "平均间隔天数"
+    },
+    {
+      "name": "consumption_in_this_month",
+      "value": "本月花费"
+    },
+    {
+      "name": "average_consumption_per_day",
+      "value": "平均每天金额"
+    },
+    {
+      "name": "ranking_list",
+      "value": "排行"
+    },
+    {
+      "name": "consumption",
+      "value": "支出"
+    },
+    {
+      "name": "total_consumption",
+      "value": "总支出"
+    },
+    {
+      "name": "brand",
+      "value": "品牌"
+    },
+    {
+      "name": "beverage",
+      "value": "饮品"
+    },
+    {
+      "name": "others",
+      "value": "其他"
+    },
+    {
+      "name": "how_many_expenses",
+      "value": "%d笔"
     },
     {
       "name": "beverage_choose",
