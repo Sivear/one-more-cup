@@ -20,5 +20,26 @@ export function OpenBeverageDetailSheet(uiCtx: UIContext, uniqueId: number) {
       },
       uiContext: uiCtx
     }, targetId)
+      .then(() => {
+        OmcSheetHolder.setSheet(compContent)
+      })
+  }
+}
+
+export function CloseBeverageDetailSheet(uiCtx: UIContext) {
+  const sheet: ComponentContent<ESObject> = OmcSheetHolder.getSheet()
+  sheet && uiCtx.closeBindSheet(sheet)
+}
+
+// todo: 暂时使用，后续维护一套统一的sheet创建管理类
+class OmcSheetHolder {
+  private static sheetCompContent: ComponentContent<ESObject>
+
+  public static getSheet(): ComponentContent<ESObject> {
+    return OmcSheetHolder.sheetCompContent
+  }
+
+  public static setSheet(sheet: ComponentContent<ESObject>): void {
+    OmcSheetHolder.sheetCompContent = sheet
   }
 }

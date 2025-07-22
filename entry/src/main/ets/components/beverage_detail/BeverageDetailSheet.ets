@@ -17,6 +17,7 @@ struct BeverageDetailSheet {
   private beverageDetailViewModel: BeverageDetailViewModel = new BeverageDetailViewModel()
 
   aboutToAppear(): void {
+    this.beverageDetailViewModel.initUIContext(this.getUIContext())
     this.beverageDetailViewModel.initRecord(this.drinkRecordParam)
     this.drinkRecord = this.beverageDetailViewModel.getDrinkRecord()
   }
@@ -110,6 +111,9 @@ struct BeverageDetailSheet {
           .fontSize(16)
           .lineHeight('100%')
           .textAlign(TextAlign.Center)
+          .onClick(() => {
+            this.beverageDetailViewModel.closeBeverageDetailSheet(this.getUIContext())
+          })
 
         Text($r('app.string.confirm'))
           .width(120)
@@ -122,6 +126,9 @@ struct BeverageDetailSheet {
           .fontSize(16)
           .lineHeight('100%')
           .textAlign(TextAlign.Center)
+          .onClick(() => {
+            this.beverageDetailViewModel.updateDrinkRecord()
+          })
       }
       .width('100%')
       .height(54)

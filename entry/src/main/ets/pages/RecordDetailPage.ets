@@ -1,5 +1,8 @@
 import { HMRouter, HMRouterMgr } from '@hadss/hmrouter';
+import { BeverageSweetness, BeverageTemperature } from 'omc_db';
 import { OpenBeverageDetailSheet } from '../components/beverage_detail/OpenBeverageDetailSheet';
+import { BeverageSweetnessUtil } from '../components/beverage_detail/utils/BeverageSweetnessUtil';
+import { BeverageTemperatureUtil } from '../components/beverage_detail/utils/BeverageTemperatureUtil';
 import { DrinkRecord } from '../model/Record';
 import { NavParams } from '../router/NavParams';
 import { HomePageViewModel } from '../viewmodel/HomePageViewModel';
@@ -106,7 +109,7 @@ export struct RecordDetailPage {
         Text($r("app.string.sweetness"))
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
-        Text(this.record?.sweetness ?? "")
+        Text(BeverageSweetnessUtil.transferSweetnessToString(this.record?.sweetness as BeverageSweetness))
           .fontSize(18)
       }
       .justifyContent(FlexAlign.SpaceBetween)
@@ -117,7 +120,7 @@ export struct RecordDetailPage {
         Text($r("app.string.temperature"))
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
-        Text(this.record?.temperature ?? "")
+        Text(BeverageTemperatureUtil.transferTemperatureToString(this.record?.temperature as BeverageTemperature))
           .fontSize(18)
       }
       .justifyContent(FlexAlign.SpaceBetween)
