@@ -50,7 +50,6 @@ export class BeverageChooseViewModel {
   public chooseBeverage(uiCtx: UIContext, uniqueId: number, beverage: IBeverage): void {
     OpenBeverageDetailSheet(uiCtx, uniqueId)({
       record: new DrinkRecord({
-        id: Math.floor(Math.random() * 100000),
         time: Date.now(),
         remark: '',
         price: -1, // 新建金额使用负数标识
@@ -58,7 +57,7 @@ export class BeverageChooseViewModel {
         sweetness: '',
         temperature: '',
         condiments: [],
-        beverageId: Math.floor(Math.random() * 100000),
+        beverageId: beverage.id ?? -1,
         brandId: this.getChosenBrandData().id ?? 0,
         beverageName: beverage.name,
         brandName: this.getChosenBrandData().name,

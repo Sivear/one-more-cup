@@ -15,7 +15,7 @@ export class BeverageDetailViewModel {
   // 初始化奶茶记录
   public initRecord(drinkRecord: DrinkRecord): void {
     this.drinkRecord = new DrinkRecord({
-      id: drinkRecord.id ?? Math.floor(Math.random() * 100000),
+      id: drinkRecord.id ?? undefined,
       time: drinkRecord.time ?? Date.now(), // 新建记录的时间为当前时间
       remark: drinkRecord.remark ?? '',
       price: drinkRecord.price ?? undefined,
@@ -113,6 +113,7 @@ export class BeverageDetailViewModel {
     const isUpdate: boolean = await DbHandler.recordApi.hasRecord(this.drinkRecord.id ?? -1)
     if (isUpdate) {
       await DbHandler.recordApi.updateRecord({
+        id: this.drinkRecord.id,
         time: this.drinkRecord.time,
         remark: this.drinkRecord.remark,
         price: this.drinkRecord.price,
@@ -121,12 +122,8 @@ export class BeverageDetailViewModel {
         temperature: this.drinkRecord.temperature,
         condiments: this.drinkRecord.condiments
       })
-      await DbHandler.beverageApi.updateBeverage({
-        degree: this.drinkRecord.degree
-      })
     } else {
       await DbHandler.recordApi.addRecord({
-        id: this.drinkRecord.id,
         time: this.drinkRecord.time,
         remark: this.drinkRecord.remark,
         price: this.drinkRecord.price,
@@ -136,13 +133,11 @@ export class BeverageDetailViewModel {
         condiments: this.drinkRecord.condiments,
         beverageId: this.drinkRecord.beverageId
       })
-      await DbHandler.beverageApi.addBeverage({
-        id: this.drinkRecord.beverageId,
-        name: this.drinkRecord.beverageName,
-        degree: this.drinkRecord.degree,
-        brandId: this.drinkRecord.brandId
-      })
     }
+    await DbHandler.beverageApi.updateBeverage({
+      id: this.drinkRecord.beverageId,
+      degree: this.drinkRecord.degree
+    })
     this.uiCtx && this.closeBeverageDetailSheet(this.uiCtx)
   }
 }
