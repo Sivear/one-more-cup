@@ -1,6 +1,8 @@
 import { BeverageSize, BeverageSweetness, BeverageTemperature, DbHandler } from 'omc_db'
 import { DrinkRecord } from '../../../model/Record'
-import { CloseBeverageDetailSheet } from '../OpenBeverageDetailSheet'
+import { BeverageDetailSheetContext } from '../strategy/BeverageDetailSheetContext'
+import { NewBeverageStrategy } from '../strategy/implement/NewBeverageStrategy'
+import { UpdateBeverageStrategy } from '../strategy/implement/UpdateBeverageStrategy'
 
 @ObservedV2
 export class BeverageDetailViewModel {
@@ -101,8 +103,14 @@ export class BeverageDetailViewModel {
   }
 
   // 关闭详情面板
-  public closeBeverageDetailSheet(uiCtx: UIContext): void {
-    CloseBeverageDetailSheet(uiCtx)
+  public async closeBeverageDetailSheet(uiCtx: UIContext): Promise<void> {
+    if (!this.drinkRecord) {
+      return
+    }
+    const isUpdate: boolean = await DbHandler.recordApi.hasRecord(this.drinkRecord.id ?? -1)
+    this.uiCtx &&
+    new BeverageDetailSheetContext(isUpdate ? new UpdateBeverageStrategy() : new NewBeverageStrategy())
+      .close(this.uiCtx)
   }
 
   // 更新数据库记录
@@ -111,33 +119,8 @@ export class BeverageDetailViewModel {
       return
     }
     const isUpdate: boolean = await DbHandler.recordApi.hasRecord(this.drinkRecord.id ?? -1)
-    if (isUpdate) {
-      await DbHandler.recordApi.updateRecord({
-        id: this.drinkRecord.id,
-        time: this.drinkRecord.time,
-        remark: this.drinkRecord.remark,
-        price: this.drinkRecord.price,
-        size: this.drinkRecord.size,
-        sweetness: this.drinkRecord.sweetness,
-        temperature: this.drinkRecord.temperature,
-        condiments: this.drinkRecord.condiments
-      })
-    } else {
-      await DbHandler.recordApi.addRecord({
-        time: this.drinkRecord.time,
-        remark: this.drinkRecord.remark,
-        price: this.drinkRecord.price,
-        size: this.drinkRecord.size,
-        sweetness: this.drinkRecord.sweetness,
-        temperature: this.drinkRecord.temperature,
-        condiments: this.drinkRecord.condiments,
-        beverageId: this.drinkRecord.beverageId
-      })
-    }
-    await DbHandler.beverageApi.updateBeverage({
-      id: this.drinkRecord.beverageId,
-      degree: this.drinkRecord.degree
-    })
-    this.uiCtx && this.closeBeverageDetailSheet(this.uiCtx)
+    this.uiCtx &&
+    new BeverageDetailSheetContext(isUpdate ? new UpdateBeverageStrategy() : new NewBeverageStrategy())
+      .executeAndClose(this.uiCtx, this.drinkRecord)
   }
 }
