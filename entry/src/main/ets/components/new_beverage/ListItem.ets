@@ -70,7 +70,7 @@ export function BeverageListItem(brInfo: BeverageManageInfo) {
     .justifyContent(FlexAlign.Start)
     .layoutWeight(1)
     .onClick(() => {
-      brInfo.cb(BeverageItemType.ITEM)
+      brInfo.cb(BeverageItemType.ITEM, brInfo.beverageItem)
     })
 
     // 非系统预设的饮品可以进行编辑和删除

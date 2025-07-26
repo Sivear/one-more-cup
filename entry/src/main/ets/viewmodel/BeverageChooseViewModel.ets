@@ -34,13 +34,15 @@ export class BeverageChooseViewModel {
   @Trace curBrand: number = 1;
   @Trace private presetMode: PresetMode = PresetMode.NONE
   private uiContext: UIContext | undefined = undefined
+  private uniqueId: number | undefined = undefined
   // 注入数据服务
   private dataService = new BrandBeverageService();
   private openDialogEvent: (key: PresetDialogKey, presetInfo?: IBeverage) => void = () => {
   }
 
-  initData(uiContext: UIContext, openPresetDialog: (key: PresetDialogKey) => void) {
+  initData(uiContext: UIContext, uniqueId: number, openPresetDialog: (key: PresetDialogKey) => void) {
     this.uiContext = uiContext
+    this.uniqueId = uniqueId
     this.loadBrandData();
     this.loadBeverages(this.curBrand);
     // 注入打开饮品预设相关弹窗事件
@@ -186,9 +188,10 @@ export class BeverageChooseViewModel {
   beveragePresetEventHandler(type: BeverageItemType, presetInfo?: IBeverage) {
     switch (type) {
       case BeverageItemType.ITEM:
-        // todo 接入新页面
-        this.presetMode = PresetMode.NONE
-        this.uiContext?.getPromptAction().showToast({ message: '跳转至详情页' })
+        if (this.uiContext && this.uniqueId !== undefined && presetInfo) {
+          this.presetMode = PresetMode.NONE
+          this.chooseBeverage(this.uiContext, this.uniqueId, presetInfo)
+        }
         break
       case BeverageItemType.EDIT:
         this.openDialogEvent(PresetDialogKey.EDIT_PRESET, presetInfo)

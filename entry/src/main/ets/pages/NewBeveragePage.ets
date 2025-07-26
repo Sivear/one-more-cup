@@ -22,7 +22,7 @@ export struct NewBeveragePage {
   })
 
   aboutToAppear(): void {
-    this.beverageChooseVM.initData(this.getUIContext(), (key: PresetDialogKey, curPresetInfo?: IBeverage) => {
+    this.beverageChooseVM.initData(this.getUIContext(),this.getUniqueId() ,(key: PresetDialogKey, curPresetInfo?: IBeverage) => {
       this.presetDialogVM.openDialog(key, curPresetInfo)
     })
     this.presetDialogVM.init(this.presetDialogCtl, this.beverageChooseVM)
