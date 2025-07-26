@@ -26,6 +26,10 @@ export class PresetDialogVM {
     return this.curDialog
   }
 
+  getCurBeverageInfo() {
+    return this.curPresetInfo
+  }
+
   openDialog(key: PresetDialogKey, curPresetInfo?: IBeverage) {
     this.curDialog = key
     this.dialogController?.open()

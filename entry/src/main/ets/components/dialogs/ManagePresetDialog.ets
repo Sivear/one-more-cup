@@ -13,6 +13,7 @@ export struct ManagePresetDialog {
       this.title = $r('app.string.add_beverage_preset')
     } else if (this.presetDialogVM.getCurDialog() === PresetDialogKey.EDIT_PRESET) {
       this.title = $r('app.string.edit_beverage_preset')
+      this.beverageName = this.presetDialogVM.getCurBeverageInfo()?.name ?? ''
     }
   }
 
