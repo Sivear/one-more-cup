@@ -55,7 +55,7 @@ export namespace SqlConstants {
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           time INTEGER NOT NULL,
           remark TEXT,
-          price INTEGER,
+          price REAL,
           size TEXT,
           sweetness TEXT,
           temperature TEXT,

@@ -119,6 +119,13 @@ export class RecordApi {
     })
   }
 
+  public async hasRecord(id: number): Promise<boolean> {
+    const predicts = new relationalStore.RdbPredicates(RecordTableHandler.tableName)
+    predicts.equalTo('id', id)
+    const res = await RecordTableHandler.query(predicts)
+    return !!(res.length)
+  }
+
   addRecord(data: IRecord): Promise<void> {
     return RecordTableHandler.insert(data)
   }

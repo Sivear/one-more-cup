@@ -1,6 +1,6 @@
 import { BeverageCup } from './BeverageCup'
 import { BeverageName } from './BeverageName'
-import { BeverageSize, BeverageSweetness, BeverageTemperature, IBeverage, IBrand } from 'omc_db'
+import { BeverageSize, BeverageSweetness, BeverageTemperature } from 'omc_db'
 import { BeverageSatisfactionDegree } from './BeverageSatisfactionDegree'
 import { BeveragePrice } from './BeveragePrice'
 import { BeverageTemperatureComp } from './BeverageTemperature'
@@ -12,13 +12,13 @@ import { DrinkRecord } from '../../model/Record'
 
 @ComponentV2
 struct BeverageDetailSheet {
-  @Param @Once @Require beverage: IBeverage
-  @Param @Once @Require brand: IBrand
+  @Param @Once @Require drinkRecordParam: DrinkRecord
   @Local drinkRecord?: DrinkRecord
   private beverageDetailViewModel: BeverageDetailViewModel = new BeverageDetailViewModel()
 
   aboutToAppear(): void {
-    this.beverageDetailViewModel.initRecord(this.beverage, this.brand)
+    this.beverageDetailViewModel.initUIContext(this.getUIContext())
+    this.beverageDetailViewModel.initRecord(this.drinkRecordParam)
     this.drinkRecord = this.beverageDetailViewModel.getDrinkRecord()
   }
 
@@ -37,7 +37,7 @@ struct BeverageDetailSheet {
         brandId: this.drinkRecord?.id,
         brandName: this.drinkRecord?.brandName,
         beverageName: this.drinkRecord?.beverageName,
-        time: Date.now(),
+        time: this.drinkRecord?.time,
         onTimeChange: (newTime: number) => {
           this.beverageDetailViewModel.onTimeChange(newTime)
         }
@@ -111,6 +111,9 @@ struct BeverageDetailSheet {
           .fontSize(16)
           .lineHeight('100%')
           .textAlign(TextAlign.Center)
+          .onClick(() => {
+            this.beverageDetailViewModel.closeBeverageDetailSheet(this.getUIContext())
+          })
 
         Text($r('app.string.confirm'))
           .width(120)
@@ -123,6 +126,9 @@ struct BeverageDetailSheet {
           .fontSize(16)
           .lineHeight('100%')
           .textAlign(TextAlign.Center)
+          .onClick(() => {
+            this.beverageDetailViewModel.updateDrinkRecord()
+          })
       }
       .width('100%')
       .height(54)
@@ -144,15 +150,13 @@ struct BeverageDetailSheet {
 }
 
 export interface IBeverageDetailParams {
-  beverage: IBeverage
-  brand: IBrand
+  record: DrinkRecord
 }
 
 @Builder
 function BeverageDetailSheetBuilder(params: IBeverageDetailParams) {
   BeverageDetailSheet({
-    beverage: params.beverage,
-    brand: params.brand
+    drinkRecordParam: params.record
   })
 }
 

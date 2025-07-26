@@ -1,26 +1,35 @@
-import { BeverageSize, BeverageSweetness, BeverageTemperature, IBeverage, IBrand } from 'omc_db'
+import { BeverageSize, BeverageSweetness, BeverageTemperature, DbHandler } from 'omc_db'
 import { DrinkRecord } from '../../../model/Record'
+import { BeverageDetailSheetContext } from '../strategy/BeverageDetailSheetContext'
+import { NewBeverageStrategy } from '../strategy/implement/NewBeverageStrategy'
+import { UpdateBeverageStrategy } from '../strategy/implement/UpdateBeverageStrategy'
 
 @ObservedV2
 export class BeverageDetailViewModel {
   @Trace private drinkRecord?: DrinkRecord
+  private uiCtx?: UIContext
+
+  // 初始化上下文环境
+  public initUIContext(uiCtx: UIContext): void {
+    this.uiCtx = uiCtx
+  }
 
   // 初始化奶茶记录
-  public initRecord(beverage: IBeverage, brand: IBrand): void {
+  public initRecord(drinkRecord: DrinkRecord): void {
     this.drinkRecord = new DrinkRecord({
-      id: Math.random(),
-      time: Date.now(),
-      remark: '',
-      price: 11,
-      size: BeverageSize.SMALL,
-      sweetness: BeverageSweetness.NO_SUGAR,
-      temperature: BeverageTemperature.HOT,
-      condiments: [],
-      beverageId: beverage.id ?? 0,
-      brandId: brand.id ?? 0,
-      beverageName: beverage.name,
-      brandName: brand.name,
-      degree: beverage.degree ?? 0
+      id: drinkRecord.id ?? undefined,
+      time: drinkRecord.time ?? Date.now(), // 新建记录的时间为当前时间
+      remark: drinkRecord.remark ?? '',
+      price: drinkRecord.price ?? undefined,
+      size: drinkRecord.size ?? '',
+      sweetness: drinkRecord.sweetness ?? '',
+      temperature: drinkRecord.temperature ?? '',
+      condiments: drinkRecord.condiments ?? [],
+      beverageId: drinkRecord.beverageId,
+      brandId: drinkRecord.brandId,
+      beverageName: drinkRecord.beverageName,
+      brandName: drinkRecord.brandName,
+      degree: drinkRecord.degree
     })
   }
 
@@ -91,5 +100,27 @@ export class BeverageDetailViewModel {
     if (this.drinkRecord) {
       this.drinkRecord.remark = newRemark
     }
+  }
+
+  // 关闭详情面板
+  public async closeBeverageDetailSheet(uiCtx: UIContext): Promise<void> {
+    if (!this.drinkRecord) {
+      return
+    }
+    const isUpdate: boolean = await DbHandler.recordApi.hasRecord(this.drinkRecord.id ?? -1)
+    this.uiCtx &&
+    new BeverageDetailSheetContext(isUpdate ? new UpdateBeverageStrategy() : new NewBeverageStrategy())
+      .close(this.uiCtx)
+  }
+
+  // 更新数据库记录
+  public async updateDrinkRecord(): Promise<void> {
+    if (!this.drinkRecord) {
+      return
+    }
+    const isUpdate: boolean = await DbHandler.recordApi.hasRecord(this.drinkRecord.id ?? -1)
+    this.uiCtx &&
+    new BeverageDetailSheetContext(isUpdate ? new UpdateBeverageStrategy() : new NewBeverageStrategy())
+      .executeAndClose(this.uiCtx, this.drinkRecord)
   }
 }

@@ -1,11 +1,11 @@
-import { getRdbStore } from '../db'
-import rdb from '@ohos.data.relationalStore'
+import { getRdbStore } from '../db';
+import rdb from '@ohos.data.relationalStore';
 import { AbsTableHandler } from './AbsTableHandler';
 import { SqlConstants } from '../constants/db_config';
 import { IRecord } from '../types/record';
 import { relationalStore } from '@kit.ArkData';
 import { IconManager } from '../constants/presets/icons';
-import mockData from '../constants/presets/mockRecords.json'
+import mockData from '../constants/presets/mockRecords.json';
 
 
 export class RecordTable extends AbsTableHandler<IRecord> {
@@ -46,6 +46,7 @@ export class RecordTable extends AbsTableHandler<IRecord> {
       }
       db.insertSync(this.tableName, valueBucket)
     } catch (e) {
+      console.log('insert row catch', JSON.stringify(e))
     }
   }
 

@@ -1,12 +1,6 @@
 import { BeverageParamName } from './common_ui/BeverageParamName'
 import { CommonInput } from './common_ui/CommonInput'
-import { condimentsList } from 'omc_db'
-
-interface ICondiment {
-  id: number
-  name: ResourceStr
-  isPreset: boolean
-}
+import { condimentsList, ICondiment } from 'omc_db'
 
 @ComponentV2
 export struct BeverageCondiment {
@@ -64,10 +58,10 @@ export struct BeverageCondiment {
             right: 15
           })
           .onClick(() => {
-            if (!this.condiments.includes(item.id)) {
-              this.condiments.push(item.id)
+            if (!this.condiments.includes(item.id ?? -1)) {
+              this.condiments.push(item.id ?? -1)
             } else {
-              const index = this.condiments.indexOf(item.id)
+              const index = this.condiments.indexOf(item.id ?? -1)
               this.condiments.splice(index, 1)
             }
             this.onCondimentsChange([...this.condiments])
@@ -78,7 +72,7 @@ export struct BeverageCondiment {
               .padding({ left: 10, right: 10 })
               .height(0.5)
           }
-        }, (item: ICondiment) => item.id.toString())
+        }, (item: ICondiment) => JSON.stringify(item))
       }
       .width(231)
       .borderRadius(6)
