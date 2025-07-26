@@ -69,4 +69,35 @@ export class BrandBeverageService {
       return { id: beverageId, name: 'unknown', brandId: -1 };
     }
   }
+
+  /**
+   * 添加自定义饮品数据
+   * @param brandID
+   * @param beverageName
+   */
+  addCustomBeverage(brandID: number, beverageName: string) {
+    const beverage: IBeverage = {
+      name: beverageName,
+      brandId: brandID,
+      isPreset: false
+    }
+    DbHandler.beverageApi.addBeverage(beverage)
+  }
+
+  /**
+   * 更新自定义饮品数据
+   * @param newName
+   * @param beverageInfo
+   */
+  updateCustomBeverage(beverageInfo: IBeverage) {
+    DbHandler.beverageApi.updateBeverage(beverageInfo)
+  }
+
+  /**
+   * 删除自定义预设饮品
+   * @param beverageId
+   */
+  deleteCustomBeverage(beverageId: number) {
+    DbHandler.beverageApi.deleteBeverage(beverageId)
+  }
 }
