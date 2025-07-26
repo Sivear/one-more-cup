@@ -1,5 +1,4 @@
 import { HMRouter } from '@hadss/hmrouter';
-import { BeverageBrand } from '../components/new_beverage/BeverageBrand';
 import { IBeverage, IBrand } from 'omc_db';
 import { PresetBeverageDialogMap } from '../components/dialogs/PresetBeverageDialogMap';
 import { BeverageListItem, BrandListItem, RecentBeverageItem } from '../components/new_beverage/ListItem';
