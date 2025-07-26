@@ -10,7 +10,7 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "label"
+      "value": "再来一杯"
     },
     {
       "name": "Sunday",
@@ -295,6 +295,34 @@
     {
       "name": "confirm",
       "value": "确认"
+    },
+    {
+      "name": "add_beverage",
+      "value": "添加饮品"
+    },
+    {
+      "name": "add_beverage_preset",
+      "value": "添加预设饮品"
+    },
+    {
+      "name": "input_beverage_name",
+      "value": "请输入饮品名"
+    },
+    {
+      "name": "edit_beverage_preset",
+      "value": "编辑预设饮品"
+    },
+    {
+      "name": "add_success",
+      "value": "添加成功"
+    },
+    {
+      "name": "edit_success",
+      "value": "修改成功"
+    },
+    {
+      "name": "delete_success",
+      "value": "删除成功"
     }
   ]
 }

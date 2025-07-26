@@ -1,10 +1,17 @@
 import { IBeverage } from 'omc_db'
+import { BeverageItemType, PresetMode } from '../../viewmodel/BeverageChooseViewModel'
 
 export class BrandSelectInfo {
   brandName: string = ''
   isChosen: boolean = false
   cb: () => void = () => {
   }
+}
+
+export interface BeverageManageInfo {
+  beverageItem: IBeverage
+  mode: PresetMode
+  cb: (type: BeverageItemType, itemInfo?: IBeverage) => void
 }
 
 // 左侧品牌列表列表项
@@ -14,7 +21,7 @@ export function BrandListItem(info: BrandSelectInfo) {
     Image($r('app.media.cat_drinking'))
       .width(48)
       .height(48)
-      .outline({ width: info.isChosen ? 2 : 0, color: $r('app.color.primary') })
+      .outline({ width: info.isChosen ? 2 : 0, color: $r('app.color.primary'), radius: 6 })
       .borderRadius(6)
       .margin({ bottom: 8 })
 
@@ -48,14 +55,63 @@ export function RecentBeverageItem(beverageItem: IBeverage) {
 
 // 饮品列表的列表项
 @Builder
-export function BeverageListItem(beverageItem: IBeverage) {
-  Row({ space: 10 }) {
-    // todo 图标映射
-    Image($r('app.media.omc_home_icon'))
-      .width(16)
+export function BeverageListItem(brInfo: BeverageManageInfo) {
+  Row() {
+    // 饮品名称和logo
+    Row({ space: 10 }) {
+      // todo 图标映射
+      Image($r('app.media.omc_home_icon'))
+        .width(16)
 
-    Text(beverageItem.name)
-      .fontSize(14)
+      Text(brInfo.beverageItem.name)
+        .fontSize(14)
+    }
+    .padding(1)
+    .justifyContent(FlexAlign.Start)
+    .layoutWeight(1)
+    .onClick(() => {
+      brInfo.cb(BeverageItemType.ITEM, brInfo.beverageItem)
+    })
+
+    // 非系统预设的饮品可以进行编辑和删除
+    if (!brInfo.beverageItem.isPreset) {
+      Row({ space: 9 }) {
+        if (brInfo.mode === PresetMode.EDIT) {
+          // 编辑饮品预设
+          Button({ buttonStyle: ButtonStyleMode.TEXTUAL }) {
+            Image($r('app.media.edit'))
+              .width(14)
+              .height(14)
+              .fillColor($r('app.color.omc_tab_active'))
+          }
+          .borderRadius(4)
+          .padding(2)
+          .onClick(() => {
+            brInfo.cb(BeverageItemType.EDIT, brInfo.beverageItem)
+          })
+        }
+
+        if (brInfo.mode === PresetMode.DELETE) {
+          // 删除饮品预设
+          Button({ buttonStyle: ButtonStyleMode.TEXTUAL }) {
+            Image($r('app.media.delete'))
+              .width(14)
+              .height(14)
+              .fillColor($r('app.color.omc_tab_active'))
+          }
+          .borderRadius(4)
+          .padding(2)
+          .onClick(() => {
+            brInfo.cb(BeverageItemType.DELETE, brInfo.beverageItem)
+          })
+        }
+      }
+      .justifyContent(FlexAlign.End)
+    }
+
   }
-  .justifyContent(FlexAlign.Start)
+  .width('100%')
+  .padding({ left: 4 })
+  .justifyContent(FlexAlign.SpaceBetween)
+
 }
