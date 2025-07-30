@@ -5,6 +5,7 @@ import { AbsTableHandler } from './AbsTableHandler';
 import { SqlConstants } from '../constants/db_config';
 import { IBeverage } from '../types/beverage';
 import { relationalStore } from '@kit.ArkData';
+import { IconManager } from '../constants/presets/icons';
 
 
 export class BeverageTable extends AbsTableHandler<IBeverage> {
@@ -32,6 +33,7 @@ export class BeverageTable extends AbsTableHandler<IBeverage> {
         name: item.name,
         degree: item.degree ?? 0,
         is_preset: item.isPreset ? 1 : 0,
+        icon: item.icon ?? IconManager.getRandomIcon(),
         brand_id: item.brandId
       }
       if (item.id !== undefined) {
@@ -55,6 +57,7 @@ export class BeverageTable extends AbsTableHandler<IBeverage> {
       if (item.name !== undefined) valueBucket.name = item.name;
       if (item.isPreset !== undefined) valueBucket.is_preset = item.isPreset ? 1 : 0;
       if (item.degree !== undefined) valueBucket.degree = item.degree;
+      if (item.icon !== undefined) valueBucket.icon = item.icon;
 
       const predicates = new rdb.RdbPredicates(this.tableName)
       predicates.equalTo("id", item.id)
@@ -76,6 +79,7 @@ export class BeverageTable extends AbsTableHandler<IBeverage> {
             name: resultSet.getString(resultSet.getColumnIndex("name")),
             isPreset: resultSet.getLong(resultSet.getColumnIndex("is_preset")) === 1,
             degree: resultSet.getLong(resultSet.getColumnIndex("degree")),
+            icon: resultSet.getString(resultSet.getColumnIndex("icon")),
             brandId: resultSet.getLong(resultSet.getColumnIndex("brand_id"))
           }
         )

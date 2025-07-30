@@ -8,6 +8,5 @@ export interface IRecord {
   temperature?: string,
   condiments?: Array<number>,
   color?: number,
-  icon?: string,
   beverageId: number
 }

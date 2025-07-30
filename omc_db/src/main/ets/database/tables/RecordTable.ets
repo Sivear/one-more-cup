@@ -38,7 +38,6 @@ export class RecordTable extends AbsTableHandler<IRecord> {
         temperature: item.temperature ?? "",
         condiments: item.condiments ? item.condiments.join(",") : "",
         color: item.color ?? 14221013,
-        icon: item.icon ?? IconManager.getRandomIcon(),
         beverage_id: item.beverageId
       }
       if (item.id !== undefined) {
@@ -67,7 +66,6 @@ export class RecordTable extends AbsTableHandler<IRecord> {
       if (item.temperature !== undefined) valueBucket.temperature = item.temperature;
       if (item.condiments !== undefined) valueBucket.condiments = item.condiments.join(",");
       if (item.color !== undefined) valueBucket.color = item.color;
-      if (item.icon !== undefined) valueBucket.icon = item.icon;
       if (item.beverageId !== undefined) valueBucket.beverage_id = item.beverageId;
 
       const predicates = new rdb.RdbPredicates(this.tableName)
@@ -96,7 +94,6 @@ export class RecordTable extends AbsTableHandler<IRecord> {
             temperature: resultSet.getString(resultSet.getColumnIndex("temperature")),
             condiments: condiments.length === 0 ? [] : condiments.split(",").map((num) => parseInt(num)),
             color: resultSet.getLong(resultSet.getColumnIndex("color")),
-            icon: resultSet.getString(resultSet.getColumnIndex("icon")),
             beverageId: resultSet.getLong(resultSet.getColumnIndex("beverage_id"))
           }
         )
