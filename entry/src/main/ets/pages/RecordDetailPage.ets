@@ -97,8 +97,8 @@ export struct RecordDetailPage {
         Text($r("app.string.time"))
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
-        Text($r("app.string.date", new Date(this.record?.time ?? 0).getFullYear(),
-          new Date(this.record?.time ?? 0).getMonth() + 1))
+        Text($r("app.string.date1", new Date(this.record?.time ?? 0).getFullYear(),
+          new Date(this.record?.time ?? 0).getMonth() + 1, new Date(this.record?.time ?? 0).getDate()))
           .fontSize(18)
       }
       .justifyContent(FlexAlign.SpaceBetween)
