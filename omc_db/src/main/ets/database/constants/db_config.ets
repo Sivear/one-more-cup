@@ -38,7 +38,6 @@ export namespace SqlConstants {
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT UNIQUE NOT NULL,
           is_preset INTEGER DEFAULT 0,
-          degree INTEGER,
           icon TEXT,
           brand_id INTEGER,
           FOREIGN KEY (brand_id) REFERENCES ${TableNames.BRAND_TABLE}(id)
@@ -56,6 +55,7 @@ export namespace SqlConstants {
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           time INTEGER NOT NULL,
           remark TEXT,
+          degree INTEGER,
           price REAL,
           size TEXT,
           sweetness TEXT,

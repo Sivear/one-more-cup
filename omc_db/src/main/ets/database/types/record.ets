@@ -1,6 +1,7 @@
 export interface IRecord {
   id?: number,
   time: number,
+  degree?: number
   remark?: string,
   price: number,
   size?: string,

@@ -32,6 +32,7 @@ export class RecordTable extends AbsTableHandler<IRecord> {
       const valueBucket: relationalStore.ValuesBucket = {
         time: item.time,
         remark: item.remark ?? "",
+        degree: item.degree ?? 0,
         price: item.price,
         size: item.size ?? "",
         sweetness: item.sweetness ?? "",
@@ -60,6 +61,7 @@ export class RecordTable extends AbsTableHandler<IRecord> {
       }
       if (item.time !== undefined) valueBucket.time = item.time;
       if (item.remark !== undefined) valueBucket.remark = item.remark;
+      if (item.degree !== undefined) valueBucket.degree = item.degree;
       if (item.price !== undefined) valueBucket.price = item.price;
       if (item.size !== undefined) valueBucket.size = item.size;
       if (item.sweetness !== undefined) valueBucket.sweetness = item.sweetness;
@@ -88,6 +90,7 @@ export class RecordTable extends AbsTableHandler<IRecord> {
             id: resultSet.getLong(resultSet.getColumnIndex("id")),
             time: resultSet.getLong(resultSet.getColumnIndex("time")),
             remark: resultSet.getString(resultSet.getColumnIndex("remark")),
+            degree: resultSet.getLong(resultSet.getColumnIndex("degree")),
             price: resultSet.getLong(resultSet.getColumnIndex("price")),
             size: resultSet.getString(resultSet.getColumnIndex("size")),
             sweetness: resultSet.getString(resultSet.getColumnIndex("sweetness")),
