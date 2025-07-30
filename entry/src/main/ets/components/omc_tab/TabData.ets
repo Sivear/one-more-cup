@@ -13,7 +13,7 @@ interface ITabItem {
 enum ETabType {
   INVALID = -1,
   HOME = 1,
-  MIME
+  STATISTICS
 }
 
 const TabDataJSON: ITabItem[] = [
@@ -23,8 +23,8 @@ const TabDataJSON: ITabItem[] = [
     content: HomeContent
   },
   {
-    type: ETabType.MIME,
-    icon: $r('app.media.omc_mine_icon'),
+    type: ETabType.STATISTICS,
+    icon: $r('app.media.omc_data_icon'),
     content: StatisticContent
   }
 ]
