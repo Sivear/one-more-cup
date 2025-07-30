@@ -119,14 +119,47 @@ export class HomePageViewModel {
    */
   getAverageInterval(): number {
     const dayCount = this.getDayCountInThisMonth()
-    return dayCount / (new Date(this.year, this.month + 1, 0).getDate())
+    let firstDay = -1
+    let lastDay = -1
+    this.recordListByDay.forEach((item, index) => {
+      if (item !== undefined) {
+        lastDay = index
+        firstDay === -1 && (firstDay = index)
+      }
+    })
+    let res = 0
+    if (dayCount === 0) {
+      // 该月没喝过奶茶
+      if (this.year === new Date().getFullYear() && this.month === new Date().getMonth()) {
+        // 情况一：是本月。返回今天的Date - 1
+        res = new Date().getDate() - 1
+      } else if (this.year <= new Date().getFullYear() && this.month <= new Date().getMonth()) {
+        // 情况二：在本月之前。返回该月的最大天数
+        res = new Date(this.year, this.month + 1, 0).getDate()
+      }
+      // 情况三：在本月之后。默认为0
+    } else if (dayCount === 1) {
+      // 该月没喝过奶茶
+      if (this.year === new Date().getFullYear() && this.month === new Date().getMonth()) {
+        // 情况一：是本月。返回今天的Date - 第一次喝奶茶的date
+        res = new Date().getDate() - firstDay
+      } else if (this.year <= new Date().getFullYear() && this.month <= new Date().getMonth()) {
+        // 情况二：在本月之前。返回该月的最大天数 - 第一次喝奶茶的date
+        res = new Date(this.year, this.month + 1, 0).getDate() - firstDay
+      }
+      // 不存在情况三
+    } else {
+      res = (lastDay - firstDay - 1) / (dayCount - 1)
+    }
+    return res
   }
 
   /**
    * 获取平均每天金额
    */
   getAveragePrice(): number {
-    return this.getConsumptionInThisMonth() / this.getDayCountInThisMonth()
+    const dayCount = this.getDayCountInThisMonth()
+    return !dayCount ? 0 : this.getConsumptionInThisMonth() / this.getDayCountInThisMonth()
   }
 
   /**
