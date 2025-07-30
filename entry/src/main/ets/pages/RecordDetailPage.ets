@@ -145,7 +145,7 @@ export struct RecordDetailPage {
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
         Row() {
-          Text(this.record?.remark ?? "")
+          Text(this.record?.remark)
             .fontSize(14)
             .maxLines(6)
             .textOverflow({
@@ -158,6 +158,7 @@ export struct RecordDetailPage {
       .justifyContent(FlexAlign.SpaceBetween)
       .alignItems(VerticalAlign.Top)
       .width("100%")
+      .visibility(!!this.record?.remark ? Visibility.Visible : Visibility.None)
     }
     .width("100%")
     .layoutWeight(1)
