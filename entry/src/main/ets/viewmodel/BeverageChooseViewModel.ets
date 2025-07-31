@@ -162,7 +162,6 @@ export class BeverageChooseViewModel {
     const newBeverage: IBeverage = {
       id: beverageInfo.id,
       name: newName,
-      degree: beverageInfo.degree,
       isPreset: beverageInfo.isPreset,
       brandId: beverageInfo.brandId
     }
@@ -223,7 +222,7 @@ export class BeverageChooseViewModel {
         brandId: this.getChosenBrandData().id ?? 0,
         beverageName: beverage.name,
         brandName: this.getChosenBrandData().name,
-        degree: beverage.degree ?? 0
+        degree: 0
       })
     })
   }

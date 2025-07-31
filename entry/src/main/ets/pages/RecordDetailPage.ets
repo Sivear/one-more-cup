@@ -19,8 +19,8 @@ interface IRecordDetailParamType {
 })
 @ComponentV2
 export struct RecordDetailPage {
-  record?: DrinkRecord
-  homeViewModel?: HomePageViewModel
+  @Local record?: DrinkRecord
+  @Local homeViewModel?: HomePageViewModel
   deleteDialogController: CustomDialogController = new CustomDialogController({
     builder: DeleteConfirmDialog({
       onConfirm: () => {
@@ -35,6 +35,11 @@ export struct RecordDetailPage {
     let param = HMRouterMgr.getCurrentParam() as IRecordDetailParamType;
     this.record = param.record
     this.homeViewModel = param.homeViewModel
+  }
+
+  @Monitor("homeViewModel.recordList")
+  private getRecord() {
+    this.record = this.homeViewModel?.recordList.find(item => item.id === this.record?.id) ?? this.record
   }
 
   @Builder
@@ -97,8 +102,8 @@ export struct RecordDetailPage {
         Text($r("app.string.time"))
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
-        Text($r("app.string.date", new Date(this.record?.time ?? 0).getFullYear(),
-          new Date(this.record?.time ?? 0).getMonth() + 1))
+        Text($r("app.string.date1", new Date(this.record?.time ?? 0).getFullYear(),
+          new Date(this.record?.time ?? 0).getMonth() + 1, new Date(this.record?.time ?? 0).getDate()))
           .fontSize(18)
       }
       .justifyContent(FlexAlign.SpaceBetween)
@@ -145,7 +150,7 @@ export struct RecordDetailPage {
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
         Row() {
-          Text(this.record?.remark ?? "")
+          Text(this.record?.remark)
             .fontSize(14)
             .maxLines(6)
             .textOverflow({
@@ -158,6 +163,7 @@ export struct RecordDetailPage {
       .justifyContent(FlexAlign.SpaceBetween)
       .alignItems(VerticalAlign.Top)
       .width("100%")
+      .visibility(!!this.record?.remark ? Visibility.Visible : Visibility.None)
     }
     .width("100%")
     .layoutWeight(1)

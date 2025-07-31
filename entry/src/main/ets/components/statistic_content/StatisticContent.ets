@@ -45,6 +45,7 @@ struct StatisticContentComp {
     .scrollable(ScrollDirection.Vertical)
     .scrollBarColor(0x20000000) // 滚动条颜色
     .scrollBarWidth(4) // 滚动条宽度
+    .align(Alignment.TopStart)
   }
 }
 

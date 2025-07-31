@@ -8,6 +8,7 @@ interface IRecordRes extends IRecord {
   brandName: string,
   beverageId: number,
   beverageName: string,
+  icon: string,
   degree: number
 }
 
@@ -31,7 +32,6 @@ export class RecordApi {
         b.name AS beverage_name,
         br.id AS brand_id,
         br.name AS brand_name,
-        b.degree AS degree
       FROM
         RECORDS r
       INNER JOIN
@@ -51,7 +51,6 @@ export class RecordApi {
       b.name AS beverage_name,
       br.id AS brand_id,
       br.name AS brand_name,
-      b.degree AS degree
     FROM
       RECORDS r
     INNER JOIN
@@ -74,7 +73,7 @@ export class RecordApi {
         b.name AS beverage_name,
         br.id AS brand_id,
         br.name AS brand_name,
-        b.degree AS degree
+        b.icon AS icon
       FROM
         RECORDS r
       INNER JOIN

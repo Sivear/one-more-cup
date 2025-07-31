@@ -1,6 +1,7 @@
 export interface IRecord {
   id?: number,
   time: number,
+  degree?: number
   remark?: string,
   price: number,
   size?: string,
@@ -8,6 +9,5 @@ export interface IRecord {
   temperature?: string,
   condiments?: Array<number>,
   color?: number,
-  icon?: string,
   beverageId: number
 }

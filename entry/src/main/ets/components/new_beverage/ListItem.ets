@@ -1,4 +1,4 @@
-import { IBeverage } from 'omc_db'
+import { IBeverage, IconManager } from 'omc_db'
 import { BeverageItemType, PresetMode } from '../../viewmodel/BeverageChooseViewModel'
 
 export class BrandSelectInfo {
@@ -60,7 +60,7 @@ export function BeverageListItem(brInfo: BeverageManageInfo) {
     // 饮品名称和logo
     Row({ space: 10 }) {
       // todo 图标映射
-      Image($r('app.media.omc_home_icon'))
+      Image(IconManager.getIconById(brInfo.beverageItem.icon ?? ""))
         .width(16)
 
       Text(brInfo.beverageItem.name)

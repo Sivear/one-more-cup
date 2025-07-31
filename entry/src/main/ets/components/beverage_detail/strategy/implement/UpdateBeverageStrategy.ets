@@ -16,15 +16,12 @@ export class UpdateBeverageStrategy implements IBeverageDetailSheetStrategy {
       id: drinkRecord.id,
       time: drinkRecord.time,
       remark: drinkRecord.remark,
+      degree: drinkRecord.degree,
       price: drinkRecord.price,
       size: drinkRecord.size,
       sweetness: drinkRecord.sweetness,
       temperature: drinkRecord.temperature,
       condiments: drinkRecord.condiments
-    })
-    await DbHandler.beverageApi.updateBeverage({
-      id: drinkRecord.beverageId,
-      degree: drinkRecord.degree
     })
     this.close(uiCtx)
   }

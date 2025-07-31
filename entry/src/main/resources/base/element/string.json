@@ -73,6 +73,10 @@
       "value": "%d年%d月"
     },
     {
+      "name": "date1",
+      "value": "%d年%d月%d日"
+    },
+    {
       "name": "back_to_this_month",
       "value": "回到本月"
     },
@@ -323,6 +327,10 @@
     {
       "name": "delete_success",
       "value": "删除成功"
+    },
+    {
+      "name": "no_data",
+      "value": "无数据"
     }
   ]
 }
