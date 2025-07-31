@@ -1,5 +1,6 @@
 import { IRanking } from "../../model/Record"
 import { HomePageViewModel } from "../../viewmodel/HomePageViewModel"
+import { StatisticPageNoData } from "./StatisticPageNoData"
 
 @ComponentV2
 export struct StatisticPageRanking {
@@ -57,41 +58,46 @@ export struct StatisticPageRanking {
       .justifyContent(FlexAlign.SpaceBetween)
       .alignItems(VerticalAlign.Center)
 
-
-      List({ space: 13 }) {
-        ForEach((this.isBrandRanking ? this.homePageViewModel.rankListByBrand : this.homePageViewModel.rankListByBeverage).slice(0, 4), (item: IRanking, index) => {
-          ListItem() {
-            Row({ space: 12 }) {
-              this.getRankIcon(index + 1)
-              Row() {
-                Text(item.name)
-                  .fontSize(12)
-                  .fontColor(Color.Black)
-                Text(item.count.toString())
-                  .fontSize(12)
-                  .fontColor(Color.Black)
+      if (this.homePageViewModel.getCountInThisMonth() === 0) {
+        StatisticPageNoData()
+      } else {
+        List({ space: 13 }) {
+          ForEach((this.isBrandRanking ? this.homePageViewModel.rankListByBrand : this.homePageViewModel.rankListByBeverage).slice(0, 4), (item: IRanking, index) => {
+            ListItem() {
+              Row({ space: 12 }) {
+                this.getRankIcon(index + 1)
+                Row() {
+                  Text(item.name)
+                    .fontSize(12)
+                    .fontColor(Color.Black)
+                  Text(item.count.toString())
+                    .fontSize(12)
+                    .fontColor(Color.Black)
+                }
+                .layoutWeight(1)
+                .justifyContent(FlexAlign.SpaceBetween)
+                .alignItems(VerticalAlign.Center)
               }
-              .layoutWeight(1)
-              .justifyContent(FlexAlign.SpaceBetween)
-              .alignItems(VerticalAlign.Center)
+              .width("100%")
             }
             .width("100%")
-          }
-          .width("100%")
-          .layoutWeight(1)
+            .layoutWeight(1)
+          })
+        }
+        .width("100%")
+        .height("auto")
+        .padding(12)
+        .borderRadius(4)
+        .backgroundColor(Color.White)
+        .shadow({
+          offsetX: 0,
+          offsetY: 2.5,
+          radius: 8,
+          color: $r("app.color.shadow")
         })
       }
-      .width("100%")
-      .height("auto")
-      .padding(12)
-      .borderRadius(4)
-      .backgroundColor(Color.White)
-      .shadow({
-        offsetX: 0,
-        offsetY: 2.5,
-        radius: 8,
-        color: $r("app.color.shadow")
-      })
+
+
 
     }
     .width("100%")

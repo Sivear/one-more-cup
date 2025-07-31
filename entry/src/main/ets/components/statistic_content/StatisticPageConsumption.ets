@@ -1,6 +1,7 @@
 import { IRanking } from "../../model/Record"
 import { HomePageViewModel } from "../../viewmodel/HomePageViewModel"
 import { PieChart, IPieData } from "../chart/PieChart"
+import { StatisticPageNoData } from "./StatisticPageNoData"
 
 const pieColors = [
   0X8979ff,
@@ -80,100 +81,104 @@ export struct StatisticPageConsumption {
       .justifyContent(FlexAlign.SpaceBetween)
       .alignItems(VerticalAlign.Center)
 
-      Column() {
-        Row() {
+      if (this.homePageViewModel.getCountInThisMonth() === 0) {
+        StatisticPageNoData()
+      } else {
+        Column() {
+          Row() {
 
-        }
-        .width("100%")
-        .onSizeChange((oldValue, newValue) => {
-          this.canvasWidth = parseInt((newValue.width ?? 0).toString())
-        })
-
-        PieChart({
-          canvasWidth: this.canvasWidth,
-          canvasHeight: this.canvasHeight,
-          data: this.pieData,
-          innerRadius: this.canvasWidth / 7,
-          colors: pieColors,
-          centerComp: () => {
-            this.innerPie()
           }
-        })
-        List({ space: 16 }) {
-          ForEach(this.homePageViewModel.rankListByBrand.slice(0, 4), (item: IRanking, index) => {
-            ListItem() {
-              Row({ space: 12 }) {
-                Stack() {
-                  Column()
-                    .height(32)
-                    .width(32)
-                    .borderRadius(8)
-                    .backgroundColor($r("app.color.primary"))
-                  // todo: 添加品牌logo
-                }
+          .width("100%")
+          .onSizeChange((oldValue, newValue) => {
+            this.canvasWidth = parseInt((newValue.width ?? 0).toString())
+          })
 
-                Row() {
-                  Column() {
-                    Row({ space: 12 }) {
-                      Text(item.name)
-                        .fontColor(Color.Black)
-                        .fontSize(12)
-                      Text(`${(item.consumption * 100 / this.totalConsumption).toFixed(1)}%`)
-                        .fontColor($r("app.color.text_02"))
-                        .fontSize(10.5)
+          PieChart({
+            canvasWidth: this.canvasWidth,
+            canvasHeight: this.canvasHeight,
+            data: this.pieData,
+            innerRadius: this.canvasWidth / 7,
+            colors: pieColors,
+            centerComp: () => {
+              this.innerPie()
+            }
+          })
+          List({ space: 16 }) {
+            ForEach(this.homePageViewModel.rankListByBrand.slice(0, 4), (item: IRanking, index) => {
+              ListItem() {
+                Row({ space: 12 }) {
+                  Stack() {
+                    Column()
+                      .height(32)
+                      .width(32)
+                      .borderRadius(8)
+                      .backgroundColor($r("app.color.primary"))
+                    // todo: 添加品牌logo
+                  }
+
+                  Row() {
+                    Column() {
+                      Row({ space: 12 }) {
+                        Text(item.name)
+                          .fontColor(Color.Black)
+                          .fontSize(12)
+                        Text(`${(item.consumption * 100 / this.totalConsumption).toFixed(1)}%`)
+                          .fontColor($r("app.color.text_02"))
+                          .fontSize(10.5)
+                      }
+                      .alignItems(VerticalAlign.Bottom)
+
+                      Progress({
+                        value: item.consumption,
+                        total: this.totalConsumption,
+                      })
+                        .color(pieColors[index % pieColors.length])
+                        .height(4.5)
+                        .width("100%")
                     }
-                    .alignItems(VerticalAlign.Bottom)
+                    .justifyContent(FlexAlign.SpaceBetween)
+                    .alignItems(HorizontalAlign.Start)
+                    .height("100%")
+                    .width("60%")
 
-                    Progress({
-                      value: item.consumption,
-                      total: this.totalConsumption,
-                    })
-                      .color(pieColors[index % pieColors.length])
-                      .height(4.5)
-                      .width("100%")
+                    Column() {
+                      Text(`¥${item.consumption.toFixed(2)}`)
+                        .fontSize(10.5)
+                        .fontColor(Color.Black)
+                      Text($r("app.string.how_many_expenses", item.count))
+                        .fontSize(10.5)
+                        .fontColor($r("app.color.text_02"))
+                    }
+                    .alignItems(HorizontalAlign.End)
+                    .justifyContent(FlexAlign.SpaceBetween)
+                    .height("100%")
                   }
+                  .height(40)
+                  .padding({ bottom: 8 })
                   .justifyContent(FlexAlign.SpaceBetween)
-                  .alignItems(HorizontalAlign.Start)
-                  .height("100%")
-                  .width("60%")
+                  .layoutWeight(1)
 
-                  Column() {
-                    Text(`¥${item.consumption.toFixed(2)}`)
-                      .fontSize(10.5)
-                      .fontColor(Color.Black)
-                    Text($r("app.string.how_many_expenses", item.count))
-                      .fontSize(10.5)
-                      .fontColor($r("app.color.text_02"))
-                  }
-                  .alignItems(HorizontalAlign.End)
-                  .justifyContent(FlexAlign.SpaceBetween)
-                  .height("100%")
                 }
-                .height(40)
-                .padding({ bottom: 8 })
-                .justifyContent(FlexAlign.SpaceBetween)
-                .layoutWeight(1)
-
+                .width("100%")
+                .alignItems(VerticalAlign.Center)
               }
               .width("100%")
-              .alignItems(VerticalAlign.Center)
-            }
-            .width("100%")
-          })
+            })
+          }
+          .width("100%")
+          .height("auto")
         }
         .width("100%")
-        .height("auto")
+        .padding(12)
+        .borderRadius(4)
+        .backgroundColor(Color.White)
+        .shadow({
+          offsetX: 0,
+          offsetY: 2.5,
+          radius: 8,
+          color: $r("app.color.shadow")
+        })
       }
-      .width("100%")
-      .padding(12)
-      .borderRadius(4)
-      .backgroundColor(Color.White)
-      .shadow({
-        offsetX: 0,
-        offsetY: 2.5,
-        radius: 8,
-        color: $r("app.color.shadow")
-      })
 
     }
     .width("100%")

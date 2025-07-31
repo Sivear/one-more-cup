@@ -327,6 +327,10 @@
     {
       "name": "delete_success",
       "value": "删除成功"
+    },
+    {
+      "name": "no_data",
+      "value": "无数据"
     }
   ]
 }
