@@ -19,8 +19,8 @@ interface IRecordDetailParamType {
 })
 @ComponentV2
 export struct RecordDetailPage {
-  record?: DrinkRecord
-  homeViewModel?: HomePageViewModel
+  @Local record?: DrinkRecord
+  @Local homeViewModel?: HomePageViewModel
   deleteDialogController: CustomDialogController = new CustomDialogController({
     builder: DeleteConfirmDialog({
       onConfirm: () => {
@@ -35,6 +35,11 @@ export struct RecordDetailPage {
     let param = HMRouterMgr.getCurrentParam() as IRecordDetailParamType;
     this.record = param.record
     this.homeViewModel = param.homeViewModel
+  }
+
+  @Monitor("homeViewModel.recordList")
+  private getRecord() {
+    this.record = this.homeViewModel?.recordList.find(item => item.id === this.record?.id) ?? this.record
   }
 
   @Builder

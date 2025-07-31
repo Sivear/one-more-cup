@@ -1,3 +1,5 @@
+import { EventBusHandler } from "../../utils/EventBus/EventBus"
+import { Events } from "../../utils/EventBus/Events"
 import { HomePageViewModel } from "../../viewmodel/HomePageViewModel"
 import { HomeCalendarBody } from "../home_calendar/HomeCalendarBody"
 import { HomeCalendarDateSelector } from "../home_calendar/HomeCalendarDateSelector"
@@ -10,11 +12,20 @@ import { HomePanel } from "./HomePanel"
 struct HomeContentComp {
   @Provider() homePageViewModel: HomePageViewModel = new HomePageViewModel()
 
+  init = () => {
+    this.homePageViewModel.init()
+  }
+
   aboutToAppear(): void {
     // 避免首次安装时与初始化数据库操作存在时序上的问题
     setTimeout(() => {
-      this.homePageViewModel.init()
+      this.init()
     }, 0)
+    EventBusHandler.on(Events.RECORD_LIST_CHANGE, this.init)
+  }
+
+  aboutToDisappear(): void {
+    EventBusHandler.off(Events.RECORD_LIST_CHANGE, this.init)
   }
 
   build() {
