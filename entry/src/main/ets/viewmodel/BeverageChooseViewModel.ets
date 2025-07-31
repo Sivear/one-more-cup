@@ -141,6 +141,19 @@ export class BeverageChooseViewModel {
   }
 
   /**
+   * 搜索品牌并将索引切换至该品牌
+   * @param brandName
+   */
+  searchBrand(brandName: string) {
+    const brand = this.brandData.getAllData()?.find(item => item.name.includes(brandName))
+    if (brand && brand.id) {
+      this.curBrand = brand.id
+    } else {
+      this.uiContext?.getPromptAction().showToast({ message: $r('app.string.search_failed') })
+    }
+  }
+
+  /**
    * 添加用户自定义饮品
    * @param name: 饮品名
    */
@@ -208,6 +221,12 @@ export class BeverageChooseViewModel {
     return this.brandData.getData(this.curBrand)
   }
 
+  /**
+   * 点击饮品后跳转至饮品详情页
+   * @param uiCtx
+   * @param uniqueId
+   * @param beverage
+   */
   public chooseBeverage(uiCtx: UIContext, uniqueId: number, beverage: IBeverage): void {
     OpenBeverageDetailSheet(uiCtx, uniqueId)({
       record: new DrinkRecord({

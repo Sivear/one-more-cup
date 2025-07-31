@@ -3,6 +3,7 @@ import { IBeverage, IBrand } from 'omc_db';
 import { PresetBeverageDialogMap } from '../components/dialogs/PresetBeverageDialogMap';
 import { BeverageListItem, BrandListItem, RecentBeverageItem } from '../components/new_beverage/ListItem';
 import { NavParams } from '../router/NavParams';
+import { debounce } from '../utils/debounce';
 import { BeverageChooseViewModel, BeverageItemType, PresetMode } from '../viewmodel/BeverageChooseViewModel';
 import { PresetDialogKey, PresetDialogVM } from '../viewmodel/PresetDialogViewModel';
 
@@ -20,12 +21,18 @@ export struct NewBeveragePage {
       presetDialogVM: this.presetDialogVM
     })
   })
+  private debounceSearch = (brandName: string) => {
+  }
 
   aboutToAppear(): void {
-    this.beverageChooseVM.initData(this.getUIContext(),this.getUniqueId() ,(key: PresetDialogKey, curPresetInfo?: IBeverage) => {
-      this.presetDialogVM.openDialog(key, curPresetInfo)
-    })
+    this.beverageChooseVM.initData(this.getUIContext(), this.getUniqueId(),
+      (key: PresetDialogKey, curPresetInfo?: IBeverage) => {
+        this.presetDialogVM.openDialog(key, curPresetInfo)
+      })
     this.presetDialogVM.init(this.presetDialogCtl, this.beverageChooseVM)
+    this.debounceSearch = debounce((name: string) => {
+      this.beverageChooseVM.searchBrand(name)
+    })
   }
 
   @Builder
@@ -55,7 +62,7 @@ export struct NewBeveragePage {
         .placeholderFont({ size: 14, weight: 400 })
         .textFont({ size: 14, weight: 400 })
         .onChange((value: string) => {
-          //todo 节流
+          this.debounceSearch(value)
         })
         .margin(20)
     }
