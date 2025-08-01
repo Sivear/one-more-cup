@@ -39,14 +39,14 @@ export struct NewBeveragePage {
   PageHeader() {
     Column() {
       Text($r('app.string.beverage_choose'))
-        .fontSize($r('app.float.page_text_font_size'))
+        .fontSize($r('app.float.font_size_20'))
         .fontWeight(FontWeight.Bold)
       Search({ value: this.searchValue!!, placeholder: $r('app.string.input_brand') })
-        .borderRadius(0)
+        .borderRadius(6)
         .searchIcon({
           src: $r('sys.media.ohos_ic_public_search_filled'),
-          size: '14vp',
-          color: '#99000000'
+          size: '20vp',
+          color: $r('app.color.text_02')
         })
         .cancelButton({
           style: CancelButtonStyle.INPUT,
@@ -55,10 +55,10 @@ export struct NewBeveragePage {
           },
         })
         .width('90%')
-        .height(40)
+        .height(52)
         .maxLength(20)
         .backgroundColor('#F5F5F5')
-        .placeholderColor(Color.Grey)
+        .placeholderColor($r('app.color.text_02'))
         .placeholderFont({ size: 14, weight: 400 })
         .textFont({ size: 14, weight: 400 })
         .onChange((value: string) => {
@@ -66,6 +66,7 @@ export struct NewBeveragePage {
         })
         .margin(20)
     }
+    .padding({ top: 24 })
   }
 
   // 饮品预设管理按钮-编辑/删除 (选择非“最近”列表时,默认在饮品列表置顶显示)
@@ -148,7 +149,7 @@ export struct NewBeveragePage {
             }
           }, (item: IBrand) => JSON.stringify(item))
         }
-        .width('25%')
+        .width(52)
         .friction(0.6)
         .alignListItem(ListItemAlign.Center)
         .scrollBar(BarState.Off)

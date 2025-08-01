@@ -23,7 +23,7 @@ export function BrandListItem(info: BrandSelectInfo) {
       .height(48)
       .outline({ width: info.isChosen ? 2 : 0, color: $r('app.color.primary'), radius: 6 })
       .borderRadius(6)
-      .margin({ bottom: 8 })
+      .margin({ top: 4, bottom: 4 })
 
     Text(info.brandName)
       .fontSize(12)
