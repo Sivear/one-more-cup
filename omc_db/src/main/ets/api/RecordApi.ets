@@ -50,7 +50,7 @@ export class RecordApi {
       r.*,
       b.name AS beverage_name,
       br.id AS brand_id,
-      br.name AS brand_name,
+      br.name AS brand_name
     FROM
       RECORDS r
     INNER JOIN
