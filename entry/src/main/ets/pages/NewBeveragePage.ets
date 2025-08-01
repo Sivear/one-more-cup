@@ -1,4 +1,4 @@
-import { HMRouter } from '@hadss/hmrouter';
+import { HMRouter, HMRouterMgr } from '@hadss/hmrouter';
 import { IBeverage, IBrand } from 'omc_db';
 import { PresetBeverageDialogMap } from '../components/dialogs/PresetBeverageDialogMap';
 import { BeverageListItem, BrandListItem, RecentBeverageItem } from '../components/new_beverage/ListItem';
@@ -38,9 +38,22 @@ export struct NewBeveragePage {
   @Builder
   PageHeader() {
     Column() {
-      Text($r('app.string.beverage_choose'))
-        .fontSize($r('app.float.font_size_20'))
-        .fontWeight(FontWeight.Bold)
+      Row() {
+        Image($r('app.media.left_arrow'))
+          .width(36)
+          .height(36)
+          .position({ x: 0, y: -6 })
+          .onClick(() => {
+            HMRouterMgr.pop()
+          })
+        Text($r('app.string.beverage_choose'))
+          .fontSize($r('app.float.font_size_20'))
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+      .padding({ left: 24, right: 24 })
+      .justifyContent(FlexAlign.Center)
+
       Search({ value: this.searchValue!!, placeholder: $r('app.string.input_brand') })
         .borderRadius(6)
         .searchIcon({
