@@ -40,6 +40,15 @@ export class BeverageChooseViewModel {
   private openDialogEvent: (key: PresetDialogKey, presetInfo?: IBeverage) => void = () => {
   }
 
+  /**
+   * 是否显示“添加饮品”后方的编辑和删除按钮
+   */
+  @Computed
+  get isHasCustomBeverage(): boolean {
+    const isHaveCustomBeverage = this.beverageData.getAllData().some((item: IBeverage) => !item.isPreset)
+    return (this.curBrand > 0 && isHaveCustomBeverage)
+  }
+
   initData(uiContext: UIContext, uniqueId: number, openPresetDialog: (key: PresetDialogKey) => void) {
     this.uiContext = uiContext
     this.uniqueId = uniqueId

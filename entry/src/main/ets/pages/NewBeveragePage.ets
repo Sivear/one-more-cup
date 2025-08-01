@@ -117,6 +117,7 @@ export struct NewBeveragePage {
             this.beverageChooseVM.changePresetMode(PresetMode.DELETE)
           })
         }
+        .visibility(this.beverageChooseVM.isHasCustomBeverage ? Visibility.Visible : Visibility.Hidden)
       }
       .width('100%')
       .justifyContent(FlexAlign.SpaceBetween)
