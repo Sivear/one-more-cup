@@ -11,6 +11,7 @@ import { BeverageDetailViewModel } from './viewmodel/BeverageDetailViewModel'
 import { DrinkRecord } from '../../model/Record'
 import { EventBusHandler } from '../../utils/EventBus/EventBus'
 import { Events } from '../../utils/EventBus/Events'
+import { HMRouterMgr } from '@hadss/hmrouter'
 
 @ComponentV2
 struct BeverageDetailSheet {
@@ -131,6 +132,7 @@ struct BeverageDetailSheet {
           .onClick(() => {
             this.beverageDetailViewModel.updateDrinkRecord()
             EventBusHandler.emit(Events.RECORD_LIST_CHANGE)
+            HMRouterMgr.pop()
           })
       }
       .width('100%')
