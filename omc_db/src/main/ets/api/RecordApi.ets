@@ -32,6 +32,7 @@ export class RecordApi {
         b.name AS beverage_name,
         br.id AS brand_id,
         br.name AS brand_name,
+        b.icon AS icon
       FROM
         RECORDS r
       INNER JOIN
@@ -50,7 +51,8 @@ export class RecordApi {
       r.*,
       b.name AS beverage_name,
       br.id AS brand_id,
-      br.name AS brand_name
+      br.name AS brand_name,
+      b.icon AS icon
     FROM
       RECORDS r
     INNER JOIN
