@@ -28,6 +28,9 @@ export function BrandListItem(info: BrandSelectInfo) {
     Text(info.brandName)
       .fontSize(12)
       .fontColor(info.isChosen ? $r('app.color.omc_tab_active') : $r('app.color.text_02'))
+      .maxLines(3)
+      .textOverflow({ overflow: TextOverflow.Ellipsis })
+      .padding({ left: 4, right: 4 })
   }
   .width('100%')
   .justifyContent(FlexAlign.Center)

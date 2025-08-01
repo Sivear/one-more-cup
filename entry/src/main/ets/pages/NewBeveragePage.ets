@@ -148,7 +148,7 @@ export struct NewBeveragePage {
   build() {
     Column() {
       this.PageHeader()
-      Row({ space: 30 }) {
+      Row() {
         // 左侧品牌的懒加载列表
         List({ space: 20, initialIndex: 0 }) {
           LazyForEach(this.beverageChooseVM.brandData, (item: IBrand, index: number) => {
@@ -163,7 +163,7 @@ export struct NewBeveragePage {
             }
           }, (item: IBrand) => JSON.stringify(item))
         }
-        .width(52)
+        .width('25%')
         .friction(0.6)
         .alignListItem(ListItemAlign.Center)
         .scrollBar(BarState.Off)
@@ -204,11 +204,12 @@ export struct NewBeveragePage {
           .scrollBar(BarState.Off)
         }
         .layoutWeight(1)
+        .margin({ left: 24 })
       }
       .width('100%')
       .layoutWeight(1)
       .padding({
-        left: 24,
+        left: 0,
         right: 24,
         top: 12,
         bottom: 12
