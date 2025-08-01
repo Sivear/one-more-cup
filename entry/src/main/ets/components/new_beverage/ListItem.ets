@@ -42,7 +42,7 @@ export function BrandListItem(info: BrandSelectInfo) {
 
 // “最近”列表的列表项
 @Builder
-export function RecentBeverageItem(beverageItem: IBeverage) {
+export function RecentBeverageItem(brInfo: BeverageManageInfo) {
   Row({ space: 10 }) {
     // todo 品牌logo
     Image($r('app.media.cat_drinking'))
@@ -50,10 +50,13 @@ export function RecentBeverageItem(beverageItem: IBeverage) {
       .height(36)
       .borderRadius(6)
 
-    Text(beverageItem.name)
+    Text(brInfo.beverageItem.name)
       .fontSize(14)
   }
   .justifyContent(FlexAlign.Start)
+  .onClick(() => {
+    brInfo.cb(BeverageItemType.ITEM, brInfo.beverageItem)
+  })
 }
 
 // 饮品列表的列表项

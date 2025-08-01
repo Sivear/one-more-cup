@@ -193,7 +193,13 @@ export struct NewBeveragePage {
                   })
                 } else {
                   // 最近列表
-                  RecentBeverageItem(item)
+                  RecentBeverageItem({
+                    beverageItem: item,
+                    mode: this.beverageChooseVM.getPresetMode(),
+                    cb: (type: BeverageItemType, presetInfo?: IBeverage) => {
+                      this.beverageChooseVM.beveragePresetEventHandler(type, presetInfo)
+                    }
+                  })
                 }
               }
             }, (item: IBrand) => JSON.stringify(item))
