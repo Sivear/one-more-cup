@@ -68,7 +68,12 @@ export class BeverageDetailViewModel {
   }
 
   // 更新价格
+  // -1 表示用户未填写价格
   public onBeveragePriceChange(newPrice: number): void {
+    if (this.drinkRecord && isNaN(newPrice)) {
+      this.drinkRecord.price = -1
+      return
+    }
     if (this.drinkRecord && newPrice >= 0) {
       this.drinkRecord.price = newPrice
     }
