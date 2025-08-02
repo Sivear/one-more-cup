@@ -1,6 +1,7 @@
 // 懒加载列表数据model
+@ObservedV2
 export class LazyListModel<T> {
-  private _data: T[] = [];
+  @Trace private _data: T[] = [];
   private _listeners: DataChangeListener[] = [];
 
   getAllData(): T[] {

@@ -1,8 +1,9 @@
-import { HMRouter } from '@hadss/hmrouter';
+import { HMRouter, HMRouterMgr } from '@hadss/hmrouter';
 import { IBeverage, IBrand } from 'omc_db';
 import { PresetBeverageDialogMap } from '../components/dialogs/PresetBeverageDialogMap';
 import { BeverageListItem, BrandListItem, RecentBeverageItem } from '../components/new_beverage/ListItem';
 import { NavParams } from '../router/NavParams';
+import { debounce } from '../utils/debounce';
 import { BeverageChooseViewModel, BeverageItemType, PresetMode } from '../viewmodel/BeverageChooseViewModel';
 import { PresetDialogKey, PresetDialogVM } from '../viewmodel/PresetDialogViewModel';
 
@@ -20,26 +21,45 @@ export struct NewBeveragePage {
       presetDialogVM: this.presetDialogVM
     })
   })
+  private debounceSearch = (brandName: string) => {
+  }
 
   aboutToAppear(): void {
-    this.beverageChooseVM.initData(this.getUIContext(),this.getUniqueId() ,(key: PresetDialogKey, curPresetInfo?: IBeverage) => {
-      this.presetDialogVM.openDialog(key, curPresetInfo)
-    })
+    this.beverageChooseVM.initData(this.getUIContext(), this.getUniqueId(),
+      (key: PresetDialogKey, curPresetInfo?: IBeverage) => {
+        this.presetDialogVM.openDialog(key, curPresetInfo)
+      })
     this.presetDialogVM.init(this.presetDialogCtl, this.beverageChooseVM)
+    this.debounceSearch = debounce((name: string) => {
+      this.beverageChooseVM.searchBrand(name)
+    })
   }
 
   @Builder
   PageHeader() {
     Column() {
-      Text($r('app.string.beverage_choose'))
-        .fontSize($r('app.float.page_text_font_size'))
-        .fontWeight(FontWeight.Bold)
+      Row() {
+        Image($r('app.media.left_arrow'))
+          .width(36)
+          .height(36)
+          .position({ x: 0, y: -6 })
+          .onClick(() => {
+            HMRouterMgr.pop()
+          })
+        Text($r('app.string.beverage_choose'))
+          .fontSize($r('app.float.font_size_20'))
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+      .padding({ left: 24, right: 24 })
+      .justifyContent(FlexAlign.Center)
+
       Search({ value: this.searchValue!!, placeholder: $r('app.string.input_brand') })
-        .borderRadius(0)
+        .borderRadius(6)
         .searchIcon({
           src: $r('sys.media.ohos_ic_public_search_filled'),
-          size: '14vp',
-          color: '#99000000'
+          size: '20vp',
+          color: $r('app.color.text_02')
         })
         .cancelButton({
           style: CancelButtonStyle.INPUT,
@@ -48,17 +68,18 @@ export struct NewBeveragePage {
           },
         })
         .width('90%')
-        .height(40)
+        .height(52)
         .maxLength(20)
         .backgroundColor('#F5F5F5')
-        .placeholderColor(Color.Grey)
+        .placeholderColor($r('app.color.text_02'))
         .placeholderFont({ size: 14, weight: 400 })
         .textFont({ size: 14, weight: 400 })
         .onChange((value: string) => {
-          //todo 节流
+          this.debounceSearch(value)
         })
         .margin(20)
     }
+    .padding({ top: 24 })
   }
 
   // 饮品预设管理按钮-编辑/删除 (选择非“最近”列表时,默认在饮品列表置顶显示)
@@ -109,6 +130,7 @@ export struct NewBeveragePage {
             this.beverageChooseVM.changePresetMode(PresetMode.DELETE)
           })
         }
+        .visibility(this.beverageChooseVM.isHasCustomBeverage ? Visibility.Visible : Visibility.Hidden)
       }
       .width('100%')
       .justifyContent(FlexAlign.SpaceBetween)
@@ -126,7 +148,7 @@ export struct NewBeveragePage {
   build() {
     Column() {
       this.PageHeader()
-      Row({ space: 30 }) {
+      Row() {
         // 左侧品牌的懒加载列表
         List({ space: 20, initialIndex: 0 }) {
           LazyForEach(this.beverageChooseVM.brandData, (item: IBrand, index: number) => {
@@ -171,7 +193,13 @@ export struct NewBeveragePage {
                   })
                 } else {
                   // 最近列表
-                  RecentBeverageItem(item)
+                  RecentBeverageItem({
+                    beverageItem: item,
+                    mode: this.beverageChooseVM.getPresetMode(),
+                    cb: (type: BeverageItemType, presetInfo?: IBeverage) => {
+                      this.beverageChooseVM.beveragePresetEventHandler(type, presetInfo)
+                    }
+                  })
                 }
               }
             }, (item: IBrand) => JSON.stringify(item))
@@ -182,11 +210,12 @@ export struct NewBeveragePage {
           .scrollBar(BarState.Off)
         }
         .layoutWeight(1)
+        .margin({ left: 24 })
       }
       .width('100%')
       .layoutWeight(1)
       .padding({
-        left: 24,
+        left: 0,
         right: 24,
         top: 12,
         bottom: 12

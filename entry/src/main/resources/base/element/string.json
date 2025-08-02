@@ -331,6 +331,10 @@
     {
       "name": "no_data",
       "value": "无数据"
+    },
+    {
+      "name": "search_failed",
+      "value": "没有找到该品牌"
     }
   ]
 }

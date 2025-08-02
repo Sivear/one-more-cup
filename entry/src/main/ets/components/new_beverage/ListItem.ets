@@ -23,11 +23,14 @@ export function BrandListItem(info: BrandSelectInfo) {
       .height(48)
       .outline({ width: info.isChosen ? 2 : 0, color: $r('app.color.primary'), radius: 6 })
       .borderRadius(6)
-      .margin({ bottom: 8 })
+      .margin({ top: 4, bottom: 4 })
 
     Text(info.brandName)
       .fontSize(12)
       .fontColor(info.isChosen ? $r('app.color.omc_tab_active') : $r('app.color.text_02'))
+      .maxLines(3)
+      .textOverflow({ overflow: TextOverflow.Ellipsis })
+      .padding({ left: 4, right: 4 })
   }
   .width('100%')
   .justifyContent(FlexAlign.Center)
@@ -39,7 +42,7 @@ export function BrandListItem(info: BrandSelectInfo) {
 
 // “最近”列表的列表项
 @Builder
-export function RecentBeverageItem(beverageItem: IBeverage) {
+export function RecentBeverageItem(brInfo: BeverageManageInfo) {
   Row({ space: 10 }) {
     // todo 品牌logo
     Image($r('app.media.cat_drinking'))
@@ -47,10 +50,13 @@ export function RecentBeverageItem(beverageItem: IBeverage) {
       .height(36)
       .borderRadius(6)
 
-    Text(beverageItem.name)
+    Text(brInfo.beverageItem.name)
       .fontSize(14)
   }
   .justifyContent(FlexAlign.Start)
+  .onClick(() => {
+    brInfo.cb(BeverageItemType.ITEM, brInfo.beverageItem)
+  })
 }
 
 // 饮品列表的列表项

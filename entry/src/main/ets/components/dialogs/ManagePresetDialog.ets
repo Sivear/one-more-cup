@@ -61,11 +61,6 @@ export struct ManagePresetDialog {
     }
     .width("100%")
     .alignItems(HorizontalAlign.Center)
-    .padding({
-      left: 12,
-      right: 12,
-      top: 24,
-      bottom: 24
-    })
+    .padding(24)
   }
 }
