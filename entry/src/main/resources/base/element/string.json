@@ -335,6 +335,10 @@
     {
       "name": "search_failed",
       "value": "没有找到该品牌"
+    },
+    {
+      "name": "text_unfold",
+      "value": "展开"
     }
   ]
 }
