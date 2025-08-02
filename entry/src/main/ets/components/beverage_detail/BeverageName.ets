@@ -1,18 +1,21 @@
-import { IconManager } from 'omc_db'
+import { DbHandler, IBrand, IconManager } from 'omc_db'
 import { BeverageTime } from './BeverageTime'
 
 @ComponentV2
 export struct BeverageName {
   @Param @Require brandId: number
-  @Param @Require brandName: string
   @Param @Require beverageName: string
   @Param @Require time: number
   @Event onTimeChange: (newTime: number) => void = () => {}
   @Local private showBeverageNamePopup: boolean = false
+  @Local private brandName: string = ''
   private isTextOverflow: boolean = false
 
   aboutToAppear(): void {
     // todo: 根据brandId获取brand logo
+    DbHandler.brandApi.getBrandById(this.brandId).then((res: IBrand[]) => {
+      (res.length == 1) && (this.brandName = res[0].name)
+    })
     const textWidth = this.getUIContext().getMeasureUtils().measureTextSize({
       textContent: this.beverageName,
       fontSize: 18,

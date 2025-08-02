@@ -1,7 +1,7 @@
-import { BrandTableHandler } from "../database/tables/BrandTable"
-import { relationalStore } from "@kit.ArkData"
-import { QueryResult } from "../database/types/common"
-import { IBrand } from "../database/types/brand"
+import { BrandTableHandler } from '../database/tables/BrandTable'
+import { relationalStore } from '@kit.ArkData'
+import { QueryResult } from '../database/types/common'
+import { IBrand } from '../database/types/brand'
 
 export class BrandApi {
   private static _instance: BrandApi | undefined
@@ -17,6 +17,12 @@ export class BrandApi {
 
   getAllBrands(): QueryResult<IBrand> {
     return BrandTableHandler.query(new relationalStore.RdbPredicates(BrandTableHandler.tableName))
+  }
+
+  getBrandById(brandId: number): QueryResult<IBrand> {
+    const predicate = new relationalStore.RdbPredicates(BrandTableHandler.tableName)
+    predicate.equalTo('id', brandId)
+    return BrandTableHandler.query(predicate)
   }
 
   addBrand(data: IBrand): Promise<void> {

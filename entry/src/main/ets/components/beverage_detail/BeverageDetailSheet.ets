@@ -37,8 +37,7 @@ struct BeverageDetailSheet {
 
       // 品牌名称，饮品名称，记录时间
       BeverageName({
-        brandId: this.drinkRecord?.id,
-        brandName: this.drinkRecord?.brandName,
+        brandId: this.drinkRecord?.brandId,
         beverageName: this.drinkRecord?.beverageName,
         time: this.drinkRecord?.time,
         onTimeChange: (newTime: number) => {

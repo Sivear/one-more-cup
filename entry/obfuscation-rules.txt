@@ -33,6 +33,7 @@ beverageApi
 LARGE
 addBeverage
 getAllBrands
+getBrandById
 getBeverageById
 getAllCondiments
 EXTRA_LARGE
