@@ -32,51 +32,57 @@ export struct BeverageSweetnessComp {
       .justifyContent(FlexAlign.SpaceBetween)
       .alignItems(VerticalAlign.Center)
 
-      Column({ space: 5 }) {
-        ForEach(Object.values(BeverageSweetness), (item: BeverageSweetness, index: number) => {
-          Row() {
-            Text(BeverageSweetnessUtil.transferSweetnessToString(item))
-              .fontFamily('SF Pro')
-              .fontWeight(400)
-              .fontSize(10)
-              .lineHeight(12)
-              .fontColor($r('app.color.text_01'))
+      if (this.isExpand) {
+        Column({ space: 5 }) {
+          ForEach(Object.values(BeverageSweetness), (item: BeverageSweetness, index: number) => {
+            Row() {
+              Text(BeverageSweetnessUtil.transferSweetnessToString(item))
+                .fontFamily('SF Pro')
+                .fontWeight(400)
+                .fontSize(10)
+                .lineHeight(12)
+                .fontColor($r('app.color.text_01'))
 
-            Image($r('app.media.omc_right_icon'))
-              .width(16)
-              .height(16)
-              .visibility(item === this.sweetness ? Visibility.Visible : Visibility.Hidden)
-          }
-          .width('100%')
-          .justifyContent(FlexAlign.SpaceBetween)
-          .alignItems(VerticalAlign.Center)
-          .padding({
-            left: 10,
-            right: 15
-          })
-          .onClick(() => {
-            if (this.sweetness !== item) {
-              this.onSweetnessChange(item)
-              animateToImmediately({ duration: 300 }, () => {
-                this.isExpand = false
-              })
+              Image($r('app.media.omc_right_icon'))
+                .width(16)
+                .height(16)
+                .visibility(item === this.sweetness ? Visibility.Visible : Visibility.Hidden)
             }
-          })
+            .width('100%')
+            .justifyContent(FlexAlign.SpaceBetween)
+            .alignItems(VerticalAlign.Center)
+            .padding({
+              left: 10,
+              right: 15
+            })
+            .onClick(() => {
+              if (this.sweetness !== item) {
+                this.onSweetnessChange(item)
+                animateToImmediately({ duration: 300 }, () => {
+                  this.isExpand = false
+                })
+              }
+            })
 
-          if (index !== Object.keys(BeverageSweetness).length - 1) {
-            Divider()
-              .padding({ left: 10, right: 10 })
-              .height(0.5)
-          }
-        }, (item: BeverageSweetness) => item)
+            if (index !== Object.keys(BeverageSweetness).length - 1) {
+              Divider()
+                .padding({ left: 10, right: 10 })
+                .height(0.5)
+            }
+          }, (item: BeverageSweetness) => item)
+        }
+        .width(231)
+        .borderRadius(6)
+        .margin({
+          top: 10
+        })
+        .backgroundColor($r('app.color.bg_03'))
+        .visibility(this.isExpand ? Visibility.Visible : Visibility.None)
+        .transition(
+          TransitionEffect.OPACITY.animation({ duration: 500 })
+            .combine(TransitionEffect.opacity(0.1))
+        )
       }
-      .width(231)
-      .borderRadius(6)
-      .margin({
-        top: 10
-      })
-      .backgroundColor($r('app.color.bg_03'))
-      .visibility(this.isExpand ? Visibility.Visible : Visibility.None)
     }
     .width('100%')
     .alignItems(HorizontalAlign.End)
