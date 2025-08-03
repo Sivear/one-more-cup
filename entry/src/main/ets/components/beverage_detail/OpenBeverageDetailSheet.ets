@@ -10,7 +10,7 @@ export function OpenBeverageDetailSheet(uiCtx: UIContext, uniqueId: number) {
     node && uiCtx.openBindSheet(compContent, {
       maskColor: $r('app.color.mask'),
       enableOutsideInteractive: false,
-      showClose: true,
+      showClose: false,
       height: '90%',
       width: '100%',
       shadow: {
