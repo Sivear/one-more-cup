@@ -247,7 +247,7 @@ export class BeverageChooseViewModel {
         temperature: '',
         condiments: [],
         beverageId: beverage.id ?? -1,
-        brandId: this.getChosenBrandData().id ?? 0,
+        brandId: beverage.brandId ?? 0, // 最近列表的brand数据是应用层额外定义的，并非数据库存储信息
         beverageName: beverage.name,
         brandName: this.getChosenBrandData().name,
         degree: 0

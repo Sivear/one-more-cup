@@ -84,6 +84,13 @@ export struct RecordDetailPage {
     .alignItems(VerticalAlign.Bottom)
   }
 
+  private formatPrice(): string {
+    if (!this.record || this.record.price === undefined || this.record.price < 0) {
+      return ''
+    }
+    return this.record.price.toString()
+  }
+
   @Builder
   details() {
     Column({ space: 20 }) {
@@ -91,7 +98,7 @@ export struct RecordDetailPage {
         Text($r("app.string.price"))
           .fontSize(18)
           .fontWeight(FontWeight.Bold)
-        Text((this.record?.price ?? 0).toString())
+        Text(this.formatPrice())
           .fontSize(18)
       }
       .justifyContent(FlexAlign.SpaceBetween)

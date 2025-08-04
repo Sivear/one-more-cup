@@ -12,6 +12,7 @@ import { DrinkRecord } from '../../model/Record'
 import { EventBusHandler } from '../../utils/EventBus/EventBus'
 import { Events } from '../../utils/EventBus/Events'
 import { HMRouterMgr } from '@hadss/hmrouter'
+import { CloseBeverageDetailSheet } from './OpenBeverageDetailSheet'
 
 @ComponentV2
 struct BeverageDetailSheet {
@@ -27,18 +28,37 @@ struct BeverageDetailSheet {
 
   build() {
     Column({ space: 24 }) {
-      // 饮品详情
-      Text($r('app.string.beverage_detail'))
-        .fontSize($r('app.float.font_size_20'))
-        .fontWeight(800)
-        .textAlign(TextAlign.Center)
-        .width('100%')
-        .height(20)
+      Row() {
+        // 饮品详情
+        Text($r('app.string.beverage_detail'))
+          .fontSize($r('app.float.font_size_20'))
+          .fontWeight(800)
+          .textAlign(TextAlign.Center)
+          .width('100%')
+          .height(40)
+        Row() {
+          Image($r('app.media.omc_close_icon'))
+            .width(18)
+            .height(18)
+        }
+        .position({ x: '100%' })
+        .translate({ x: '-100%' })
+        .justifyContent(FlexAlign.Center)
+        .alignItems(VerticalAlign.Center)
+        .width(40)
+        .height(40)
+        .borderRadius(20)
+        .backgroundColor($r('app.color.bg_03'))
+        .onClick(() => {
+          CloseBeverageDetailSheet(this.getUIContext())
+        })
+      }
+      .width('100%')
+      .height(40)
 
       // 品牌名称，饮品名称，记录时间
       BeverageName({
-        brandId: this.drinkRecord?.id,
-        brandName: this.drinkRecord?.brandName,
+        brandId: this.drinkRecord?.brandId,
         beverageName: this.drinkRecord?.beverageName,
         time: this.drinkRecord?.time,
         onTimeChange: (newTime: number) => {
