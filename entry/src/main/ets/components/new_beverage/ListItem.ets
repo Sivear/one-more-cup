@@ -1,11 +1,10 @@
-import { IBeverage, IconManager } from 'omc_db'
+import { getLogoByBrandId, IBeverage, IBrand, IconManager } from 'omc_db'
 import { BeverageItemType, PresetMode } from '../../viewmodel/BeverageChooseViewModel'
 
-export class BrandSelectInfo {
-  brandName: string = ''
-  isChosen: boolean = false
-  cb: () => void = () => {
-  }
+export interface BrandSelectInfo {
+  brandInfo: IBrand
+  isChosen: boolean
+  cb: () => void
 }
 
 export interface BeverageManageInfo {
@@ -18,14 +17,14 @@ export interface BeverageManageInfo {
 @Builder
 export function BrandListItem(info: BrandSelectInfo) {
   Column() {
-    Image($r('app.media.cat_drinking'))
+    Image(getLogoByBrandId(info.brandInfo.id ?? 0))
       .width(48)
       .height(48)
       .outline({ width: info.isChosen ? 2 : 0, color: $r('app.color.primary'), radius: 6 })
       .borderRadius(6)
       .margin({ top: 4, bottom: 4 })
 
-    Text(info.brandName)
+    Text(info.brandInfo.name)
       .fontSize(12)
       .fontColor(info.isChosen ? $r('app.color.omc_tab_active') : $r('app.color.text_02'))
       .maxLines(3)
@@ -45,7 +44,7 @@ export function BrandListItem(info: BrandSelectInfo) {
 export function RecentBeverageItem(brInfo: BeverageManageInfo) {
   Row({ space: 10 }) {
     // todo 品牌logo
-    Image($r('app.media.cat_drinking'))
+    Image(getLogoByBrandId(brInfo.beverageItem.brandId))
       .width(36)
       .height(36)
       .borderRadius(6)

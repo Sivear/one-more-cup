@@ -1,4 +1,4 @@
-import { DbHandler, IBrand, IconManager } from 'omc_db'
+import { DbHandler, getLogoByBrandId, IBrand } from 'omc_db'
 import { BeverageTime } from './BeverageTime'
 
 @ComponentV2
@@ -6,7 +6,8 @@ export struct BeverageName {
   @Param @Require brandId: number
   @Param @Require beverageName: string
   @Param @Require time: number
-  @Event onTimeChange: (newTime: number) => void = () => {}
+  @Event onTimeChange: (newTime: number) => void = () => {
+  }
   @Local private showBeverageNamePopup: boolean = false
   @Local private brandName: string = ''
   private isTextOverflow: boolean = false
@@ -28,7 +29,7 @@ export struct BeverageName {
   build() {
     RelativeContainer() {
       Row({ space: 20 }) {
-        Image(IconManager.getIconById(IconManager.getRandomIcon()))
+        Image(getLogoByBrandId(this.brandId))
           .width(60)
           .height(60)
           .borderRadius(10)
@@ -56,22 +57,22 @@ export struct BeverageName {
               width: 160
             })
             .width(160)
-          .height(42)
+            .height(42)
             .padding({
               left: 10,
               right: 15
             })
-          .borderRadius(6)
-          .textAlign(TextAlign.Center)
-          .textOverflow({
-            overflow: TextOverflow.Ellipsis
-          })
-          .fontFamily('SF Pro')
-          .fontColor($r('app.color.text_03'))
-          .fontWeight(400)
-          .fontSize(18)
-          .maxLines(1)
-          .backgroundColor($r('app.color.bg_03'))
+            .borderRadius(6)
+            .textAlign(TextAlign.Center)
+            .textOverflow({
+              overflow: TextOverflow.Ellipsis
+            })
+            .fontFamily('SF Pro')
+            .fontColor($r('app.color.text_03'))
+            .fontWeight(400)
+            .fontSize(18)
+            .maxLines(1)
+            .backgroundColor($r('app.color.bg_03'))
 
           if (this.isTextOverflow) {
             Text($r('app.string.text_unfold'))

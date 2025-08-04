@@ -154,7 +154,7 @@ export struct NewBeveragePage {
           LazyForEach(this.beverageChooseVM.brandData, (item: IBrand, index: number) => {
             ListItem() {
               BrandListItem({
-                brandName: item.name,
+                brandInfo: item,
                 isChosen: this.beverageChooseVM.curBrand === index,
                 cb: () => {
                   this.beverageChooseVM.changeBrand(index)
