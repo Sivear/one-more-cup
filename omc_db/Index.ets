@@ -19,3 +19,5 @@ export {
 } from './src/main/ets/database/constants/presets/preference'
 
 export { condimentsList }
+
+export { getLogoByBrandId } from './src/main/ets/database/constants/presets/brandsLogoMap'

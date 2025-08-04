@@ -86,6 +86,7 @@ initDbData
 BeverageSize
 condimentsList
 recordApi
+getLogoByBrandId
 
 -keep
 .\Index.ets
