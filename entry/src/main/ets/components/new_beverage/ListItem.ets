@@ -20,12 +20,16 @@ export function BrandListItem(info: BrandSelectInfo) {
     Image(getLogoByBrandId(info.brandInfo.id ?? 0))
       .width(48)
       .height(48)
-      .outline({ width: info.isChosen ? 2 : 0, color: $r('app.color.primary'), radius: 6 })
-      .borderRadius(6)
-      .margin({ top: 4, bottom: 4 })
+      .outline({
+        width: 2,
+        color: info.isChosen ? $r('app.color.border_02') : $r('app.color.border_03'),
+        radius: 12
+      })
+      .borderRadius(12)
+      .margin({ top: 4, bottom: 8 })
 
     Text(info.brandInfo.name)
-      .fontSize(12)
+      .fontSize(13)
       .fontColor(info.isChosen ? $r('app.color.omc_tab_active') : $r('app.color.text_02'))
       .maxLines(3)
       .textOverflow({ overflow: TextOverflow.Ellipsis })

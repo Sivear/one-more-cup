@@ -36,19 +36,19 @@ struct BeverageDetailSheet {
           .textAlign(TextAlign.Center)
           .width('100%')
           .height(40)
-        Row() {
+        Button({ buttonStyle: ButtonStyleMode.TEXTUAL }) {
           Image($r('app.media.omc_close_icon'))
             .width(18)
             .height(18)
+            .fillColor($r('app.color.omc_tab_active'))
         }
+        .borderRadius(4)
+        .padding(2)
         .position({ x: '100%' })
         .translate({ x: '-100%' })
-        .justifyContent(FlexAlign.Center)
-        .alignItems(VerticalAlign.Center)
         .width(40)
         .height(40)
         .borderRadius(20)
-        .backgroundColor($r('app.color.bg_03'))
         .onClick(() => {
           CloseBeverageDetailSheet(this.getUIContext())
         })

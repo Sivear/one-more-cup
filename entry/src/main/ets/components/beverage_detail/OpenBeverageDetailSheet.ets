@@ -8,6 +8,7 @@ export function OpenBeverageDetailSheet(uiCtx: UIContext, uniqueId: number) {
   return (args: IBeverageDetailParams) => {
     const compContent = new ComponentContent(uiCtx, BeverageDetail, args)
     node && uiCtx.openBindSheet(compContent, {
+      backgroundColor: ($r('app.color.start_window_background')),
       maskColor: $r('app.color.mask'),
       enableOutsideInteractive: false,
       showClose: false,

@@ -6,7 +6,7 @@
     },
     {
       "name": "divider",
-      "value": "#E2E2E2"
+      "value": "#FFF3F3F3"
     },
     {
       "name": "bg_01",
@@ -71,6 +71,14 @@
     {
       "name": "border_01",
       "value": "#E9DBD4"
+    },
+    {
+      "name": "border_02",
+      "value": "#FFD4AB94"
+    },
+    {
+      "name": "border_03",
+      "value": "#A9EEE6E3"
     },
     {
       "name": "bg_05",

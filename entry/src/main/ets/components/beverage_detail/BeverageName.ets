@@ -34,6 +34,7 @@ export struct BeverageName {
           .height(60)
           .borderRadius(10)
           .alt('brand image')
+          .margin({ bottom: 6 })
         Row() {
           Text(this.beverageName)
             .bindPopup(this.showBeverageNamePopup, {
