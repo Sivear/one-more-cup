@@ -1,6 +1,6 @@
 const logoMap: Map<number, Resource> =
   new Map([
-    [0, $r('app.media.009_coffeecup')],
+    [0, $r('app.media.beverage_009_coffeecup')],
     [1, $r('app.media.Chagee')], [2, $r('app.media.Naixue')],
     [3, $r('app.media.HeyTea')], [4, $r('app.media.GoodMe')],
     [5, $r('app.media.Luckin')], [6, $r('app.media.Xingyunka')],
@@ -18,5 +18,5 @@ const logoMap: Map<number, Resource> =
     [29, $r('app.media.Yeyebupaocha')]])
 
 export function getLogoByBrandId(id: number) {
-  return logoMap.get(id) ?? $r("app.media.009_coffeecup")
+  return logoMap.get(id) ?? $r("app.media.beverage_009_coffeecup")
 }
