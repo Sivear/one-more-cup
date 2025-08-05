@@ -6,6 +6,7 @@ import { IRecord } from '../types/record';
 import { relationalStore } from '@kit.ArkData';
 import { IconManager } from '../constants/presets/icons';
 import mockData from '../constants/presets/mockRecords.json';
+import BuildProfile from 'BuildProfile';
 
 
 export class RecordTable extends AbsTableHandler<IRecord> {
@@ -21,8 +22,10 @@ export class RecordTable extends AbsTableHandler<IRecord> {
   }
 
   protected async insertDefaultData(): Promise<void> {
-    for (let item of mockData) {
-      await this.insert(item)
+    if (BuildProfile.DEBUG) {
+      for (let item of mockData) {
+        await this.insert(item)
+      }
     }
   }
 
