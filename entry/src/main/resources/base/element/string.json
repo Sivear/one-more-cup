@@ -343,6 +343,10 @@
     {
       "name": "note_length_limit",
       "value": "(200字内)"
+    },
+    {
+      "name": "confirm_submit",
+      "value": "确认提交?"
     }
   ]
 }
