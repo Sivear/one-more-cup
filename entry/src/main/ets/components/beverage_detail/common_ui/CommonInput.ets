@@ -6,6 +6,8 @@ export struct CommonInput {
   @Param inputType: InputType = InputType.Normal
   @Param textAlign: TextAlign = TextAlign.Start
   @Param isUserEditable: boolean = true
+  @Param maxLength: number = Infinity
+  @Param showCounter: boolean = false
   @Event onInputValueChange: (newVal: string) => void = () => {
   }
   @Event onIconClick?: () => void
@@ -20,6 +22,8 @@ export struct CommonInput {
         .type(this.inputType)
         .textAlign(this.textAlign)
         .focusable(this.isUserEditable)
+        .maxLength(this.maxLength)
+        .showCounter(this.showCounter)
         .onChange((val: string) => {
           this.onInputValueChange(val)
         })
