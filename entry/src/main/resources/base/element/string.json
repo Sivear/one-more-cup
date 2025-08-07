@@ -246,7 +246,7 @@
     },
     {
       "name": "beverage_note_placeHolder",
-      "value": "请输入备注"
+      "value": "请输入备注%s"
     },
     {
       "name": "beverage_temperature_hot",
@@ -339,6 +339,14 @@
     {
       "name": "text_unfold",
       "value": "展开"
+    },
+    {
+      "name": "note_length_limit",
+      "value": "(200字内)"
+    },
+    {
+      "name": "confirm_submit",
+      "value": "确认提交?"
     }
   ]
 }

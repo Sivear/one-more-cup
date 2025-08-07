@@ -1,5 +1,10 @@
+import { HMRouterMgr } from '@hadss/hmrouter'
 import { DbHandler } from 'omc_db'
 import { DrinkRecord } from '../../../../model/Record'
+import { EventBusHandler } from '../../../../utils/EventBus/EventBus'
+import { Events } from '../../../../utils/EventBus/Events'
+import { OmcDialog } from '../../../omc_dialog/OmcDialog'
+import { ConfirmDialogIdStore } from '../../BeverageDetailSheet'
 import { CloseBeverageDetailSheet } from '../../OpenBeverageDetailSheet'
 import { IBeverageDetailSheetStrategy } from '../interface/IBeverageDetailSheetStrategy'
 
@@ -23,6 +28,13 @@ export class UpdateBeverageStrategy implements IBeverageDetailSheetStrategy {
       temperature: drinkRecord.temperature,
       condiments: drinkRecord.condiments
     })
+    // 关确认弹窗
+    OmcDialog.closeDialog(uiCtx, ConfirmDialogIdStore.confirmDialogId)
+    // 通知首页数据刷新
+    EventBusHandler.emit(Events.RECORD_LIST_CHANGE)
+    // 关sheet菜单
     this.close(uiCtx)
+    // 路由跳转
+    HMRouterMgr.pop()
   }
 }
