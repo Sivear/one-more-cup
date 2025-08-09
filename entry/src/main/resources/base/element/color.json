@@ -29,6 +29,10 @@
       "value": "#000000"
     },
     {
+      "name": "text_04",
+      "value": "#80000000"
+    },
+    {
       "name": "shadow",
       "value": "#29ced7c8"
     },
