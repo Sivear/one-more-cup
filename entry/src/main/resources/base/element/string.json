@@ -77,6 +77,10 @@
       "value": "%d年%d月%d日"
     },
     {
+      "name": "date2",
+      "value": "%d月%d日"
+    },
+    {
       "name": "back_to_this_month",
       "value": "回到本月"
     },
