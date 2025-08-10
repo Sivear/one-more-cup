@@ -4,7 +4,6 @@ import { AbsTableHandler } from './AbsTableHandler';
 import { SqlConstants } from '../constants/db_config';
 import { IRecord } from '../types/record';
 import { relationalStore } from '@kit.ArkData';
-import { IconManager } from '../constants/presets/icons';
 import mockData from '../constants/presets/mockRecords.json';
 
 
@@ -91,7 +90,7 @@ export class RecordTable extends AbsTableHandler<IRecord> {
             time: resultSet.getLong(resultSet.getColumnIndex("time")),
             remark: resultSet.getString(resultSet.getColumnIndex("remark")),
             degree: resultSet.getLong(resultSet.getColumnIndex("degree")),
-            price: resultSet.getLong(resultSet.getColumnIndex("price")),
+            price: resultSet.getDouble(resultSet.getColumnIndex("price")),
             size: resultSet.getString(resultSet.getColumnIndex("size")),
             sweetness: resultSet.getString(resultSet.getColumnIndex("sweetness")),
             temperature: resultSet.getString(resultSet.getColumnIndex("temperature")),

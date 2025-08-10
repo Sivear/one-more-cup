@@ -100,7 +100,7 @@ export class RecordApi {
               id: resultSet.getLong(resultSet.getColumnIndex("id")),
               time: resultSet.getLong(resultSet.getColumnIndex("time")),
               remark: resultSet.getString(resultSet.getColumnIndex("remark")),
-              price: resultSet.getLong(resultSet.getColumnIndex("price")),
+              price: resultSet.getDouble(resultSet.getColumnIndex("price")),
               size: resultSet.getString(resultSet.getColumnIndex("size")),
               sweetness: resultSet.getString(resultSet.getColumnIndex("sweetness")),
               temperature: resultSet.getString(resultSet.getColumnIndex("temperature")),
