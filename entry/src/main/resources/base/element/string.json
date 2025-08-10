@@ -125,6 +125,10 @@
       "value": "时间"
     },
     {
+      "name": "size",
+      "value": "杯型"
+    },
+    {
       "name": "sweetness",
       "value": "甜度"
     },
