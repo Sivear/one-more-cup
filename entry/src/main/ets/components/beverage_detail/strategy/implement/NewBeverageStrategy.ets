@@ -36,5 +36,9 @@ export class NewBeverageStrategy implements IBeverageDetailSheetStrategy {
     this.close(uiCtx)
     // 路由跳转
     HMRouterMgr.pop()
+    // 添加成功提示
+    uiCtx.getPromptAction().showToast({
+      message: $r('app.string.add_success')
+    })
   }
 }
