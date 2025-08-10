@@ -38,7 +38,7 @@ export struct DailyRecordsPage {
         // header
         Row() {
           Row({ space: 16 }) {
-            Text($r("app.string.date", this.date.getMonth() + 1, this.date.getDate()))
+            Text($r("app.string.date2", this.date.getMonth() + 1, this.date.getDate()))
               .fontSize(24)
               .fontWeight(FontWeight.Bold)
             Text(TimeUtil.getWeekdayName(this.date.getDay()))
@@ -136,7 +136,6 @@ export struct DailyRecordsPage {
     .justifyContent(FlexAlign.End)
     .height("100%")
     .width("100%")
-    .backgroundColor($r("app.color.mask"))
     .onClick(() => {
       HMRouterMgr.pop()
     })

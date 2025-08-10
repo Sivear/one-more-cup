@@ -77,6 +77,10 @@
       "value": "%d年%d月%d日"
     },
     {
+      "name": "date2",
+      "value": "%d月%d日"
+    },
+    {
       "name": "back_to_this_month",
       "value": "回到本月"
     },
@@ -119,6 +123,10 @@
     {
       "name": "time",
       "value": "时间"
+    },
+    {
+      "name": "size",
+      "value": "杯型"
     },
     {
       "name": "sweetness",

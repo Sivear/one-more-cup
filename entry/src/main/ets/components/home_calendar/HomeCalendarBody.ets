@@ -233,7 +233,12 @@ struct CalendarItem {
                 date: this.calendarItem.date,
                 homeViewModel: this.homePageViewModel
               }
+            }, {
+              onResult: () => {
+                this.homePageViewModel.isShowing = true
+              }
             })
+            this.homePageViewModel.isShowing = false
           })
         }
         .margin({

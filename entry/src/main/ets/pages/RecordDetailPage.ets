@@ -1,6 +1,7 @@
 import { HMRouter, HMRouterMgr } from '@hadss/hmrouter';
-import { BeverageSweetness, BeverageTemperature } from 'omc_db';
+import { BeverageSize, BeverageSweetness, BeverageTemperature } from 'omc_db';
 import { OpenBeverageDetailSheet } from '../components/beverage_detail/OpenBeverageDetailSheet';
+import { BeverageSizeUtil } from '../components/beverage_detail/utils/BeverageSizeUtil';
 import { BeverageSweetnessUtil } from '../components/beverage_detail/utils/BeverageSweetnessUtil';
 import { BeverageTemperatureUtil } from '../components/beverage_detail/utils/BeverageTemperatureUtil';
 import { DrinkRecord } from '../model/Record';
@@ -111,6 +112,17 @@ export struct RecordDetailPage {
           .fontWeight(FontWeight.Bold)
         Text($r("app.string.date1", new Date(this.record?.time ?? 0).getFullYear(),
           new Date(this.record?.time ?? 0).getMonth() + 1, new Date(this.record?.time ?? 0).getDate()))
+          .fontSize(18)
+      }
+      .justifyContent(FlexAlign.SpaceBetween)
+      .alignItems(VerticalAlign.Top)
+      .width("100%")
+
+      Row() {
+        Text($r("app.string.size"))
+          .fontSize(18)
+          .fontWeight(FontWeight.Bold)
+        Text(BeverageSizeUtil.transferSizeToString(this.record?.size as BeverageSize))
           .fontSize(18)
       }
       .justifyContent(FlexAlign.SpaceBetween)
