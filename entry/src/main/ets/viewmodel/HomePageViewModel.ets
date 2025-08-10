@@ -10,6 +10,7 @@ export class HomePageViewModel {
   @Trace latestRecord: DrinkRecord | undefined = undefined
   @Trace rankListByBrand: IRanking[] = []
   @Trace rankListByBeverage: IRanking[] = []
+  @Trace isShowing: boolean = true
   condimentList: ICondiment[] = []
   // id 与 name 的映射，便于处理数据
   condimentMap: Map<number, string> = new Map()

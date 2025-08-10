@@ -136,7 +136,6 @@ export struct DailyRecordsPage {
     .justifyContent(FlexAlign.End)
     .height("100%")
     .width("100%")
-    .backgroundColor($r("app.color.mask"))
     .onClick(() => {
       HMRouterMgr.pop()
     })

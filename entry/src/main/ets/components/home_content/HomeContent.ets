@@ -11,7 +11,6 @@ import { HomePanel } from "./HomePanel"
 @ComponentV2
 struct HomeContentComp {
   @Provider() homePageViewModel: HomePageViewModel = new HomePageViewModel()
-
   init = () => {
     this.homePageViewModel.init()
   }
@@ -29,22 +28,35 @@ struct HomeContentComp {
   }
 
   build() {
-    Column({
-      space: 16
-    }) {
-      HomeCalendarDateSelector()
-      HomePanel()
-      HomeCalendarBody()
+    Stack() {
+      Column({
+        space: 16
+      }) {
+        HomeCalendarDateSelector()
+        HomePanel()
+        HomeCalendarBody()
+      }
+      .width("100%")
+      .height("100%")
+      .padding({
+        top: 18,
+        left: 26,
+        right: 26,
+        bottom: 26
+      })
+
+      Column()
+        .width("100%")
+        .height("100%")
+        .backgroundColor(this.homePageViewModel.isShowing ? Color.Transparent : $r("app.color.mask"))
+        .animation({
+          duration: 250
+        })
+        .hitTestBehavior(this.homePageViewModel.isShowing ? HitTestMode.Transparent : HitTestMode.Block)
     }
     .width("100%")
     .height("100%")
     .backgroundColor($r("app.color.bg_02"))
-    .padding({
-      top: 18,
-      left: 26,
-      right: 26,
-      bottom: 26
-    })
   }
 }
 
